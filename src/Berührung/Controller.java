@@ -1,6 +1,6 @@
 package Berührung;
 
-
+//TESTTEST
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
