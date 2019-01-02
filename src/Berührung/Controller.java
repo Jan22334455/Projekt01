@@ -58,6 +58,8 @@ public class Controller {
     private Main main1;
     private Stage windowMain;
 
+
+    //TEST
     @FXML
     Label movingBox;
     @FXML
