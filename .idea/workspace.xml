@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="NewestCommit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Berührung/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Berührung/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Projekt01/Berührung/Berührung.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt01/Berührung/Berührung.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,8 +69,8 @@
     <session id="487117245">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="38" />
-          <entry key="project.open.time.0" value="2" />
+          <entry key="project.closed" value="40" />
+          <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.4" value="12" />
@@ -78,7 +78,7 @@
           <entry key="project.open.time.6" value="7" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -121,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="68" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
+            <state relative-caret-position="425">
+              <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,57 +130,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="586" lean-forward="true" selection-start-line="586" selection-end-line="586" />
-              <folding>
-                <element signature="e#2714#2780#0" />
-                <element signature="e#2817#2900#0" />
-                <element signature="e#2905#2988#0" />
-                <element signature="e#3405#4541#0" />
-                <element signature="e#4204#9114#0" />
-                <element signature="e#3312#7827#0" />
-                <element signature="e#9463#13571#0" />
-                <element signature="e#8071#11959#0" />
-                <element signature="e#13234#13430#0" />
-                <element signature="e#12034#12101#0" />
-                <element signature="e#13779#15968#0" />
-                <element signature="e#12388#14356#0" />
-                <element signature="e#15974#16786#0" />
-                <element signature="e#14480#15204#0" />
-                <element signature="e#16792#16824#0" />
-                <element signature="e#16830#17105#0" />
-                <element signature="e#15298#15392#0" />
-                <element signature="e#17111#17816#0" />
-                <element signature="e#15723#16200#0" />
-                <element signature="e#16483#20463#0" expanded="true" />
-                <element signature="e#20462#20463#0" expanded="true" />
-                <element signature="e#22057#22562#0" />
-                <element signature="e#22568#23083#0" />
-                <element signature="e#23089#23611#0" />
-                <element signature="e#23617#23881#0" />
-                <element signature="e#23961#24203#0" />
-                <element signature="e#24209#25533#0" />
-                <element signature="e#25539#28718#0" />
-                <element signature="e#24194#27105#0" />
-                <element signature="e#28724#29182#0" />
-                <element signature="e#29188#29413#0" />
-                <element signature="e#29419#29990#0" />
-                <element signature="e#29996#30451#0" />
-                <element signature="e#28599#28835#0" />
-                <element signature="e#31771#32049#0" />
-              </folding>
+            <state relative-caret-position="13923">
+              <caret line="862" column="42" selection-start-line="862" selection-start-column="40" selection-end-line="862" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="542">
+            <state relative-caret-position="595">
               <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
             </state>
           </provider>
@@ -229,6 +192,7 @@
       <find>AutoMove</find>
       <find>Scene</find>
       <find>getRand</find>
+      <find>Normal</find>
     </findStrings>
     <replaceStrings>
       <replace>//System.out</replace>
@@ -264,8 +228,8 @@
         <option value="$PROJECT_DIR$/src/Berührung/Main.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Scene2Controller.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Scene2.fxml" />
-        <option value="$PROJECT_DIR$/src/Berührung/Berührung.fxml" />
         <option value="$PROJECT_DIR$/src/Berührung/Controller.java" />
+        <option value="$PROJECT_DIR$/src/Berührung/Berührung.fxml" />
       </list>
     </option>
   </component>
@@ -322,9 +286,9 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546532918286" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546533940245" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Projekt01 - Kopie" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -520,9 +484,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16364606" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1652452" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -531,7 +494,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" x="743" y="196" width="972" height="434" id="Run" order="2" visible="true" weight="0.24186552" />
+      <window_info anchor="bottom" x="743" y="196" width="972" height="434" id="Run" order="2" weight="0.24186552" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -799,16 +762,6 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Berührung/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="68" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Berührung/Scene2Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -827,55 +780,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
+    <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13923">
+          <caret line="862" column="42" selection-start-line="862" selection-start-column="40" selection-end-line="862" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/Berührung/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="586" lean-forward="true" selection-start-line="586" selection-end-line="586" />
+        <state relative-caret-position="425">
+          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
           <folding>
-            <element signature="e#2714#2780#0" />
-            <element signature="e#2817#2900#0" />
-            <element signature="e#2905#2988#0" />
-            <element signature="e#3405#4541#0" />
-            <element signature="e#4204#9114#0" />
-            <element signature="e#3312#7827#0" />
-            <element signature="e#9463#13571#0" />
-            <element signature="e#8071#11959#0" />
-            <element signature="e#13234#13430#0" />
-            <element signature="e#12034#12101#0" />
-            <element signature="e#13779#15968#0" />
-            <element signature="e#12388#14356#0" />
-            <element signature="e#15974#16786#0" />
-            <element signature="e#14480#15204#0" />
-            <element signature="e#16792#16824#0" />
-            <element signature="e#16830#17105#0" />
-            <element signature="e#15298#15392#0" />
-            <element signature="e#17111#17816#0" />
-            <element signature="e#15723#16200#0" />
-            <element signature="e#16483#20463#0" expanded="true" />
-            <element signature="e#20462#20463#0" expanded="true" />
-            <element signature="e#22057#22562#0" />
-            <element signature="e#22568#23083#0" />
-            <element signature="e#23089#23611#0" />
-            <element signature="e#23617#23881#0" />
-            <element signature="e#23961#24203#0" />
-            <element signature="e#24209#25533#0" />
-            <element signature="e#25539#28718#0" />
-            <element signature="e#24194#27105#0" />
-            <element signature="e#28724#29182#0" />
-            <element signature="e#29188#29413#0" />
-            <element signature="e#29419#29990#0" />
-            <element signature="e#29996#30451#0" />
-            <element signature="e#28599#28835#0" />
-            <element signature="e#31771#32049#0" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
         </state>
       </provider>
     </entry>

@@ -26,7 +26,7 @@
                   <Image url="@Bilder/c76cd244506d531c.jpg" />
                </image></ImageView>
             <Label fx:id="InfoLabel" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="302.0" />
-            <Label fx:id="SpielerLinks" layoutY="190.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
+            <Label fx:id="SpielerLinks" layoutY="190.0" style="-fx-background-color: #000000;" />
             <Label fx:id="movingBox" layoutX="364.0" layoutY="239.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="722.0" layoutY="189.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Slider fx:id="LauterLeiserSlider" layoutX="708.0" layoutY="14.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="1.0" />
