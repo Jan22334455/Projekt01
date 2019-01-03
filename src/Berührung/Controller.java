@@ -1,6 +1,6 @@
 package Berührung;
 
-//TESTTEST
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,7 +59,7 @@ public class Controller {
     private Stage windowMain;
 
 
-    //TEST dd
+    //TEST
     @FXML
     Label movingBox;
     @FXML
@@ -265,7 +265,7 @@ public class Controller {
                         auswahlAutoMove2 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() < 375 && richtungX == -1) {
+                    if (movingBox.getLayoutX() < 100 && richtungX == -1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove2 = 3;
                         }
@@ -307,7 +307,7 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 375 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 650 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove3 = 3;
                         }
@@ -779,7 +779,6 @@ public class Controller {
                     MediaView1.setMediaPlayer(videoPlayer);
                     videoPlayer.setMute(true);
                     videoPlayer.play();
-
                 });
             }
         }, 0,68000 );
@@ -801,5 +800,4 @@ public class Controller {
         }
 
     }
-
 }
