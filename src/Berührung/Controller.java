@@ -136,11 +136,11 @@ public class Controller {
     }
 
     public void start() {
-        System.out.println(auswahl);
+        //System.out.println(auswahl);
         switch (auswahl) {
             case 1: // Script gegen Script
                 if (!start) {
-                    System.out.println("test 1");
+                    //System.out.println("test 1");
                     VideoLaden();
                     MusikLaden();
                     Media();
@@ -860,7 +860,7 @@ public class Controller {
             videoPlayer.stop();
             mediaPlayer.stop();
         } catch (Exception ex) {
-            System.out.println("Normal");
+            //System.out.println("Normal");
         }
 
     }
