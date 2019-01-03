@@ -58,6 +58,16 @@ public class Controller {
     private Main main1;
     private Stage windowMain;
 
+    //Menue
+    private static int auswahl;
+
+    @FXML
+    Button ButtonSGS;
+    @FXML
+    Button ButtonSGP;
+    @FXML
+    Button ButtonPGP;
+
 
     //TEST
     @FXML
@@ -105,25 +115,77 @@ public class Controller {
     @FXML
     Button Button3;
 
+
+    public void AuswahlSpieMode() throws Exception {
+        SceneWechsel2();
+        wertUebergabe(1);
+    }
+
+    public void AuswahlSpieMode2() throws Exception {
+        SceneWechsel2();
+        wertUebergabe(2);
+    }
+
+    public void AuswahlSpieMode3() throws Exception {
+        SceneWechsel2();
+        wertUebergabe(3);
+    }
+
+    public void wertUebergabe(int übergabe) {
+        auswahl = übergabe;
+    }
+
     public void start() {
-        if (!start) {
-            System.out.println("Test");
-            DeusVult.setVisible(true);
-            Moveing();
-            //OnePlayer();
-            DeusVult();
+        System.out.println(auswahl);
+        switch (auswahl) {
+            case 1: // Script gegen Script
+                if (!start) {
+                    System.out.println("test 1");
+                    VideoLaden();
+                    MusikLaden();
+                    Media();
 
-            VideoLaden();
-            MusikLaden();
-            AutoMove2();
-            movePingPong();
-            Media();
-            start = true;
+                    AutoMove2();
+                    movePingPong();
+                    start = true;
+                } else {
+                    movingBox.setLayoutY(220);
+                    movingBox.setLayoutX(335);
+                }
+                break;
+            case 2: //Script gegen Player
+                if (!start) {
+                    Moveing();
+                    OnePlayer();
 
-        } else {
-            movingBox.setLayoutY(220);
-            movingBox.setLayoutX(335);
+                    VideoLaden();
+                    MusikLaden();
+                    Media();
+
+                    movePingPong();
+                    start = true;
+                } else {
+                    movingBox.setLayoutY(220);
+                    movingBox.setLayoutX(335);
+                }
+                break;
+            case 3: //Player gegen Player
+                if (!start) {
+                    //Moveing 2 Players TODO
+                    VideoLaden();
+                    MusikLaden();
+                    Media();
+
+                    AutoMove2();
+                    movePingPong();
+                    start = true;
+                } else {
+                    movingBox.setLayoutY(220);
+                    movingBox.setLayoutX(335);
+                }
+                break;
         }
+
     }
 
     public void AutoMove() {
@@ -749,11 +811,9 @@ public class Controller {
 
     public void MusikLautstärkeLauter() {
         System.out.println("Lauter " + mediaPlayer.getVolume());
-        if (!(mediaPlayer == null)){
+        if (!(mediaPlayer == null)) {
             mediaPlayer.setVolume(LauterLeiserSlider.getValue());
         }
-
-
 
 
     }
@@ -785,7 +845,7 @@ public class Controller {
                     videoPlayer.play();
                 });
             }
-        }, 0,68000 );
+        }, 0, 68000);
     }
 
     public void SceneWechsel() throws Exception {
@@ -804,4 +864,15 @@ public class Controller {
         }
 
     }
+
+    public void SceneWechsel2() throws Exception {
+        Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
+        Scene scene3 = new Scene(FXMLDING2);
+        Stage window = main1.getS1();
+        window.setScene(scene3);
+        window.show();
+
+    }
+
+
 }

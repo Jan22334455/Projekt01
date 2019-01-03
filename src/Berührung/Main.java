@@ -12,7 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+
         primaryStage.setTitle("SuperTollesSpiel2");
         primaryStage.setMaxHeight(500);
         primaryStage.setMaxWidth(750);

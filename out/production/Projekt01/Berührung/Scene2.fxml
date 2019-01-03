@@ -4,9 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Scene2Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
    <children>
-      <Label layoutX="215.0" layoutY="166.0" prefHeight="102.0" prefWidth="180.0" text="Hey" />
-      <Button fx:id="Button4a" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#SceneWechsel2" text="Button" />
+      <Button fx:id="Button4a" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#SceneWechsel2" text="ModButton" />
+      <Label layoutX="202.0" layoutY="70.0" prefHeight="25.0" prefWidth="173.0" text="Wie Möchten sie spielen ?" textAlignment="CENTER" />
+      <Button fx:id="ButtonSGS" layoutX="202.0" layoutY="105.0" mnemonicParsing="false" onAction="#AuswahlSpieMode" text="Button" />
+      <Button fx:id="ButtonSGP" layoutX="202.0" layoutY="141.0" mnemonicParsing="false" onAction="#AuswahlSpieMode2" text="Button" />
+      <Button fx:id="ButtonPGP" layoutX="202.0" layoutY="175.0" mnemonicParsing="false" onAction="#AuswahlSpieMode3" text="Button" />
+      <Label layoutX="275.0" layoutY="105.0" prefHeight="25.0" prefWidth="120.0" text="Script Gegen Script" />
+      <Label layoutX="275.0" layoutY="141.0" prefHeight="25.0" prefWidth="120.0" text="Script gegen Spieler" />
+      <Label layoutX="275.0" layoutY="175.0" prefHeight="25.0" prefWidth="120.0" text="Spieler gegen Spieler" />
    </children>
 </AnchorPane>
