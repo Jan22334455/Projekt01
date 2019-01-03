@@ -17,7 +17,7 @@
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" onMouseMoved="#MausMovement" prefHeight="500.0" prefWidth="750.0">
          <children>
-            <MediaView fx:id="MediaView1" fitHeight="200.0" fitWidth="300.0" focusTraversable="true" layoutX="180.0" layoutY="150.0" visible="false">
+            <MediaView fx:id="MediaView1" fitHeight="200.0" fitWidth="300.0" focusTraversable="true" layoutX="180.0" layoutY="150.0">
                <viewport>
                   <Rectangle2D />
                </viewport></MediaView>

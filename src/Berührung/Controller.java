@@ -39,7 +39,7 @@ public class Controller {
     //MoveBox
     private double richtungX = -1;
     private double richtnungY = 1;
-    private double bewegungx = 5;
+    private double bewegungx = 10;
     //DeusVult
     private double DeusRichtungX = -1;
     private double DeusRichtungY = 1;
@@ -265,7 +265,7 @@ public class Controller {
                         auswahlAutoMove2 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() < 100 && richtungX == -1) {
+                    if (movingBox.getLayoutX() < 150 && richtungX == -1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove2 = 3;
                         }
@@ -307,7 +307,7 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 650 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 600 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove3 = 3;
                         }
@@ -720,7 +720,7 @@ public class Controller {
                             paneaBackground.setStyle("-fx-background-color: #15deed;");
 
                             break;
-//
+
                         default:
                             //System.out.println("Default");
 
@@ -749,7 +749,11 @@ public class Controller {
 
     public void MusikLautstärkeLauter() {
         System.out.println("Lauter " + mediaPlayer.getVolume());
-        mediaPlayer.setVolume(LauterLeiserSlider.getValue());
+        if (!(mediaPlayer == null)){
+            mediaPlayer.setVolume(LauterLeiserSlider.getValue());
+        }
+
+
 
 
     }
