@@ -8,11 +8,11 @@
    <children>
       <Button fx:id="Button4a" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#SceneWechsel2" text="ModButton" />
       <Label layoutX="202.0" layoutY="70.0" prefHeight="25.0" prefWidth="173.0" text="Wie Möchten sie spielen ?" textAlignment="CENTER" />
-      <Button fx:id="ButtonSGS" layoutX="202.0" layoutY="105.0" mnemonicParsing="false" onAction="#AuswahlSpieMode" text="Button" />
-      <Button fx:id="ButtonSGP" layoutX="202.0" layoutY="141.0" mnemonicParsing="false" onAction="#AuswahlSpieMode2" text="Button" />
-      <Button fx:id="ButtonPGP" layoutX="202.0" layoutY="175.0" mnemonicParsing="false" onAction="#AuswahlSpieMode3" text="Button" />
-      <Label layoutX="275.0" layoutY="105.0" prefHeight="25.0" prefWidth="120.0" text="Script Gegen Script" />
-      <Label layoutX="275.0" layoutY="141.0" prefHeight="25.0" prefWidth="120.0" text="Script gegen Spieler" />
-      <Label layoutX="275.0" layoutY="175.0" prefHeight="25.0" prefWidth="120.0" text="Spieler gegen Spieler" />
+      <Button fx:id="ButtonSGS" layoutX="202.0" layoutY="105.0" mnemonicParsing="false" onAction="#AuswahlSpieMode" text="Button" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="105.0" />
+      <Button fx:id="ButtonSGP" layoutX="202.0" layoutY="141.0" mnemonicParsing="false" onAction="#AuswahlSpieMode2" text="Button" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="105.0" />
+      <Button fx:id="ButtonPGP" layoutX="202.0" layoutY="175.0" mnemonicParsing="false" onAction="#AuswahlSpieMode3" text="Button" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="105.0" />
+      <Label layoutX="275.0" layoutY="105.0" prefHeight="25.0" prefWidth="120.0" text="Script Gegen Script" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="105.0" />
+      <Label layoutX="275.0" layoutY="141.0" prefHeight="25.0" prefWidth="120.0" text="Script gegen Spieler" AnchorPane.bottomAnchor="234.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="141.0" />
+      <Label layoutX="275.0" layoutY="175.0" prefHeight="25.0" prefWidth="120.0" text="Spieler gegen Spieler" AnchorPane.bottomAnchor="234.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="141.0" />
    </children>
 </AnchorPane>

@@ -65,6 +65,7 @@ public class Controller {
     private int multipikatorBackground = 1;
     private boolean PaneVisibility = true;
     private boolean jaNeinKP = false;
+    private int zähler = 0;
     //Menue
     private static int auswahl;
 
@@ -154,12 +155,14 @@ public class Controller {
                     Media();
 
                     BackgroundMovementLoad();
-                    BackgroundMovement();
+                    //BackgroundMovement();
+                    BackGroundMovementRandome();
 
                     AutoMove2();
                     movePingPong();
                     start = true;
                 } else {
+                    BackgroundMovement();
                     movingBox.setLayoutY(960);
                     movingBox.setLayoutX(540);
                 }
@@ -934,59 +937,90 @@ public class Controller {
     }
 
     public void BackgroundMovement() {
-
+        PaneVisibility = true;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
                     //Zeilen __ Spalten //x Max =20 y Max = 11
-System.out.println("X: " + xBackgound + " Y: " + yBackgound);
+                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
                     arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
                     xBackgound++;
                     yBackgound++;
                     if (yBackgound == 11) {
-                        System.out.println("Über 11y");
-
+                        //System.out.println("Über 11y");
                         yBackgound = 0;
                         xBackgound = multipikatorBackground;
 
                         multipikatorBackground++;
-
                     }
-                    if (xBackgound == 20) {
-                        System.out.println("über 20x");
-                        if (PaneVisibility = true) {
-                            PaneVisibility = false;
-                            System.out.println(PaneVisibility);
-                            System.out.println("DOOONE" + PaneVisibility);
-                            jaNeinKP = true;
-                            xBackgound = 0;
-                            yBackgound = 0;
-                            multipikatorBackground = 0;
-                        }
+                    if (xBackgound == 19) {
+                        xBackgound = 0;
+                        yBackgound = 0;
+                        multipikatorBackground = 0;
+                        BackgoundMovementSetInVisible();
+                        cancel();
 
+//
                     }
-                    System.out.println(PaneVisibility);
-                    if (xBackgound == 19 && yBackgound == 9) {
-                        System.out.println("über 20x");
-                        if (PaneVisibility = false) {
-                            PaneVisibility = true;
-                            System.out.println(PaneVisibility);
-                            System.out.println("DOOONE" + PaneVisibility);
-                            jaNeinKP = true;
-                            xBackgound = 0;
-                            yBackgound = 0;
-                            multipikatorBackground = 0;
-                        }
-
-                    }
-
-
                 });
             }
-        }, 0, 10);
+        }, 0, 100);
 
     }
 
+    public void BackgoundMovementSetInVisible() {
+        PaneVisibility = false;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    //Zeilen __ Spalten //x Max =20 y Max = 11
+                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
+                    arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
+                    xBackgound++;
+                    yBackgound++;
+                    if (yBackgound == 11) {
+                        //System.out.println("Über 11y");
+                        yBackgound = 0;
+                        xBackgound = multipikatorBackground;
+
+                        multipikatorBackground++;
+                    }
+                    if (xBackgound == 19) {
+                        xBackgound = 0;
+                        yBackgound = 0;
+                        multipikatorBackground = 0;
+                        BackgroundMovement();
+                        cancel();
+
+                    }
+                });
+            }
+        }, 0, 100);
+    }
+
+    public void BackGroundMovementRandome() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+
+                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(true);
+
+                });
+            }
+        }, 0, 100);
+
+        Timer timer2 = new Timer();
+        timer2.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(false);
+                });
+            }
+        }, 0, 25);
+    }
 }
+
 

@@ -14,5 +14,6 @@
       <Label layoutX="275.0" layoutY="105.0" prefHeight="25.0" prefWidth="120.0" text="Script Gegen Script" />
       <Label layoutX="275.0" layoutY="141.0" prefHeight="25.0" prefWidth="120.0" text="Script gegen Spieler" />
       <Label layoutX="275.0" layoutY="175.0" prefHeight="25.0" prefWidth="120.0" text="Spieler gegen Spieler" />
+      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
    </children>
 </AnchorPane>
