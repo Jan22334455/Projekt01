@@ -13,7 +13,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" onMouseMoved="#MausMovement" prefHeight="500.0" prefWidth="750.0">
          <children>
@@ -26,12 +26,13 @@
                   <Image url="@Bilder/c76cd244506d531c.jpg" />
                </image></ImageView>
             <Label fx:id="InfoLabel" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="302.0" />
-            <Label fx:id="SpielerLinks" layoutY="190.0" style="-fx-background-color: #000000;" />
+            <Label fx:id="SpielerLinks" layoutY="190.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
             <Label fx:id="movingBox" layoutX="364.0" layoutY="239.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="722.0" layoutY="189.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Slider fx:id="LauterLeiserSlider" layoutX="708.0" layoutY="14.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="1.0" />
             <Label fx:id="Label2" layoutX="349.0" layoutY="49.0" prefHeight="35.0" prefWidth="317.0" textFill="#e10000" />
             <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
+            <Button layoutX="397.0" layoutY="13.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
          </children></Pane>
       <Button layoutX="349.0" layoutY="13.0" mnemonicParsing="false" onAction="#start" text="Start" />
       <Label fx:id="Label1Rechts" layoutX="740.0" layoutY="-1.0" prefHeight="500.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />

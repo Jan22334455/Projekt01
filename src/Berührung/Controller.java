@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -39,7 +40,7 @@ public class Controller {
     //MoveBox
     private double richtungX = -1;
     private double richtnungY = 1;
-    private double bewegungx = 10;
+    private double bewegungx = 5;
     //DeusVult
     private double DeusRichtungX = -1;
     private double DeusRichtungY = 1;
@@ -57,9 +58,17 @@ public class Controller {
 
     private Main main1;
     private Stage windowMain;
-
+    private Pane[][] arr1 = new Pane[20][20];
+    private ArrayList<Pane> arrayListPane;
+    private int xBackgound = 0;
+    private int yBackgound = 0;
+    private int multipikatorBackground = 1;
+    private boolean PaneVisibility = true;
+    private boolean jaNeinKP = false;
+    private int zähler = 0;
     //Menue
     private static int auswahl;
+
 
     @FXML
     Button ButtonSGS;
@@ -145,12 +154,17 @@ public class Controller {
                     MusikLaden();
                     Media();
 
+                    BackgroundMovementLoad();
+                    //BackgroundMovement();
+                    BackGroundMovementRandome();
+
                     AutoMove2();
                     movePingPong();
                     start = true;
                 } else {
-                    movingBox.setLayoutY(220);
-                    movingBox.setLayoutX(335);
+                    BackgroundMovement();
+                    movingBox.setLayoutY(960);
+                    movingBox.setLayoutX(540);
                 }
                 break;
             case 2: //Script gegen Player
@@ -160,6 +174,11 @@ public class Controller {
 
                     VideoLaden();
                     MusikLaden();
+                    BackgroundMovementLoad();
+                    //BackgroundMovement();
+                    BackGroundMovementRandome();
+
+
                     Media();
 
                     movePingPong();
@@ -317,9 +336,9 @@ public class Controller {
             public void run() {
                 Platform.runLater(() -> {
                     IstZulaessigAutoMove2 = true;
+                    Label2.setText(SpielerLinks.getLayoutY() + " :Y");
 
-
-                    if (SpielerLinks.getLayoutY() > 350) {
+                    if (SpielerLinks.getLayoutY() > 390) {
                         auswahlAutoMove2 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -361,7 +380,7 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
 
 
-                    if (SpielerRechts.getLayoutY() > 350) {
+                    if (SpielerRechts.getLayoutY() > 390) {
                         auswahlAutoMove3 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -369,7 +388,7 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 600 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 350 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove3 = 3;
                         }
@@ -409,10 +428,12 @@ public class Controller {
     }
 
     public void MausMovement() {
-//        MainAnchorPane.addEventHandler(MouseEvent.ANY, event -> {
-//                    SpielerLinks.setLayoutY(event.getY());
-//                }
-//        );
+        MainAnchorPane.addEventHandler(MouseEvent.ANY, event -> {
+                    SpielerLinks.setLayoutY(event.getY());
+//                    movingBox.setLayoutY(event.getY());
+//                    movingBox.setLayoutX(event.getX());
+                }
+        );
     }
 
     public void OnePlayer() {
@@ -423,7 +444,7 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
 //50
 
-                    if (SpielerRechts.getLayoutY() > 333) {
+                    if (SpielerRechts.getLayoutY() > 390) {
                         auswahlAutoMove3 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -431,7 +452,7 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 375 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 350 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove3 = 3;
                         }
@@ -565,11 +586,11 @@ public class Controller {
                             punkteLinks++;
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
 
-                            movingBox.setLayoutX(350);
-                            movingBox.setLayoutY(220);
+                            movingBox.setLayoutX(960);
+                            movingBox.setLayoutY(540);
 
-                            richtnungY = getRandomNumberInRange(-2, -1);
-                            richtungX = getRandomNumberInRange(-2, -1);
+//                            richtnungY = getRandomNumberInRange(-2, -1);
+//                            richtungX = getRandomNumberInRange(-2, -1);
 
 
                             break;
@@ -578,12 +599,12 @@ public class Controller {
 
                             punkteRechts++;
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-                            movingBox.setLayoutX(350);
-                            movingBox.setLayoutY(220);
+                            movingBox.setLayoutX(960);
+                            movingBox.setLayoutY(540);
 
 
-                            richtnungY = getRandomNumberInRange(1, 2);
-                            richtungX = getRandomNumberInRange(1, 2);
+//                            richtnungY = getRandomNumberInRange(1, 2);
+//                            richtungX = getRandomNumberInRange(1, 2);
 
                             break;
                         case 3:
@@ -658,7 +679,7 @@ public class Controller {
 
     }
 
-    public boolean collidesWithRectangle(Rectangle border, Rectangle border2) {
+    public boolean collidesWith(Rectangle border, Rectangle border2) {
         double x = border2.getLayoutX();
         double y = border2.getLayoutY();
 
@@ -851,11 +872,13 @@ public class Controller {
     public void SceneWechsel() throws Exception {
         Parent FXMLDING = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
         Scene scene2 = new Scene(FXMLDING);
-
         Stage window = main1.getS1();
+
 
         window.setScene(scene2);
         window.show();
+        window.setFullScreenExitHint("");
+        window.setFullScreen(true);
         try {
             videoPlayer.stop();
             mediaPlayer.stop();
@@ -869,10 +892,138 @@ public class Controller {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
         Scene scene3 = new Scene(FXMLDING2);
         Stage window = main1.getS1();
+
         window.setScene(scene3);
+        window.setFullScreenExitHint("");
         window.show();
+        window.setFullScreen(true);
 
     }
 
+    public void Exit() {
+        System.exit(0);
+    }
 
+    public void BackgroundMovementLoad() {
+
+
+        int xWert = 0;
+        int yWert = 0;
+
+        for (int x = 0; x < 20; x++) {
+
+            for (int y = 0; y < 11; y++) {
+
+                //System.out.println("test");
+                arr1[x][y] = new Pane();
+                arr1[x][y].setMaxWidth(50);
+                arr1[x][y].setMinWidth(50);
+                arr1[x][y].setMaxHeight(50);
+                arr1[x][y].setMinHeight(50);
+
+                arr1[x][y].setLayoutX(50 + xWert);
+                arr1[x][y].setLayoutY(20 + yWert);
+                arr1[x][y].setStyle("-fx-background-color: #35c49e;");
+                arr1[x][y].setOpacity(0.40);
+
+                String felder = "Zeile " + (x + 1) + " Spalte " + (y + 1) + " (Index[" + x + "][" + y + "]) Feld " + i;
+                arr1[x][y].setId(felder);
+                arrayListPane = new ArrayList<Pane>();
+                arrayListPane.add(arr1[x][y]);
+                arr1[x][y].setVisible(false);
+                MainAnchorPane.getChildren().add(arr1[x][y]);
+
+                yWert += 100;
+            }
+            yWert = 0;
+            xWert += 100;
+
+        }
+    }
+
+    public void BackgroundMovement() {
+        PaneVisibility = true;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    //Zeilen __ Spalten //x Max =20 y Max = 11
+                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
+                    arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
+                    xBackgound++;
+                    yBackgound++;
+                    if (yBackgound == 11) {
+                        //System.out.println("Über 11y");
+                        yBackgound = 0;
+                        xBackgound = multipikatorBackground;
+
+                        multipikatorBackground++;
+                    }
+                    if (xBackgound == 19) {
+                        xBackgound = 0;
+                        yBackgound = 0;
+                        multipikatorBackground = 0;
+                        BackgoundMovementSetInVisible();
+                        cancel();
+
+//
+                    }
+                });
+            }
+        }, 0, 100);
+
+    }
+
+    public void BackgoundMovementSetInVisible() {
+        PaneVisibility = false;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    //Zeilen __ Spalten //x Max =20 y Max = 11
+                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
+                    arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
+                    xBackgound++;
+                    yBackgound++;
+                    if (yBackgound == 11) {
+                        //System.out.println("Über 11y");
+                        yBackgound = 0;
+                        xBackgound = multipikatorBackground;
+
+                        multipikatorBackground++;
+                    }
+                    if (xBackgound == 19) {
+                        xBackgound = 0;
+                        yBackgound = 0;
+                        multipikatorBackground = 0;
+                        BackgroundMovement();
+                        cancel();
+
+                    }
+                });
+            }
+        }, 0, 100);
+    }
+
+    public void BackGroundMovementRandome() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+
+                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(true);
+
+                });
+            }
+        }, 0, 100);
+
+        Timer timer2 = new Timer();
+        timer2.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(false);
+                });
+            }
+        }, 0, 25);
+    }
 }
