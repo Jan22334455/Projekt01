@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Projekt01/Berührung/Scene2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt01/Berührung/Scene2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Berührung/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Berührung/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Berührung/Scene2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Berührung/Scene2.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,22 +116,23 @@
     <session id="-884011260">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.5" value="5" />
+          <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2471" />
+          <entry key="java" value="2483" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2471" />
+          <entry key="JAVA" value="4168" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -142,7 +142,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="3" />
+          <entry key="JAVA" value="6" />
         </counts>
       </usages-collector>
     </session>
@@ -155,7 +155,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="357">
               <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -164,65 +164,72 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="852" column="24" selection-start-line="852" selection-start-column="24" selection-end-line="852" selection-end-column="24" />
+            <state relative-caret-position="1299">
+              <caret line="669" lean-forward="true" selection-start-line="669" selection-end-line="669" />
               <folding>
-                <element signature="e#2995#3100#0" />
-                <element signature="e#3106#3212#0" />
-                <element signature="e#3218#3324#0" />
-                <element signature="e#3411#5126#0" />
-                <element signature="e#5132#10042#0" />
-                <element signature="e#5469#9984#0" />
-                <element signature="e#10048#14227#0" />
-                <element signature="e#10228#14187#0" />
-                <element signature="e#14233#14539#0" />
-                <element signature="e#14317#14522#0" />
-                <element signature="e#14348#14388#0" />
-                <element signature="e#14545#16734#0" />
-                <element signature="e#14726#16694#0" />
-                <element signature="e#16740#17552#0" />
-                <element signature="e#16818#17542#0" />
-                <element signature="e#17558#17590#0" />
-                <element signature="e#17596#17871#0" />
-                <element signature="e#17636#17730#0" />
-                <element signature="e#17877#18582#0" />
-                <element signature="e#18061#18538#0" />
-                <element signature="e#18588#22817#0" />
-                <element signature="e#18905#22775#0" />
-                <element signature="e#22823#23328#0" />
-                <element signature="e#23334#23849#0" />
-                <element signature="e#23855#24377#0" />
-                <element signature="e#24383#24647#0" />
-                <element signature="e#24727#24969#0" />
-                <element signature="e#24975#26299#0" />
-                <element signature="e#26305#29484#0" />
-                <element signature="e#26532#29443#0" />
-                <element signature="e#29490#29948#0" />
-                <element signature="e#29954#30178#0" />
-                <element signature="e#30184#30755#0" />
-                <element signature="e#30761#31216#0" />
-                <element signature="e#30936#31172#0" />
-                <element signature="e#31222#31739#0" />
-                <element signature="e#31745#32102#0" />
-                <element signature="e#32164#33303#0" />
-                <element signature="e#33309#34474#0" />
-                <element signature="e#33528#34431#0" />
-                <element signature="e#33556#33598#0" />
-                <element signature="e#34480#35642#0" />
-                <element signature="e#34711#35600#0" />
-                <element signature="e#34739#34781#0" />
-                <element signature="e#35648#36339#0" />
-                <element signature="e#35843#35975#0" />
-                <element signature="e#36166#36297#0" />
+                <element signature="e#3178#5125#0" />
+                <element signature="e#3180#3285#0" />
+                <element signature="e#3291#3397#0" />
+                <element signature="e#3403#3509#0" />
+                <element signature="e#5547#10457#0" />
+                <element signature="e#5884#10399#0" />
+                <element signature="e#10463#14642#0" />
+                <element signature="e#10643#14602#0" />
+                <element signature="e#14648#14954#0" />
+                <element signature="e#14732#14937#0" />
+                <element signature="e#14763#14803#0" />
+                <element signature="e#14960#17150#0" />
+                <element signature="e#15141#17110#0" />
+                <element signature="e#17156#17968#0" />
+                <element signature="e#17234#17958#0" />
+                <element signature="e#17974#18006#0" />
+                <element signature="e#19004#23241#0" />
+                <element signature="e#19321#23199#0" />
+                <element signature="e#20515#20589#0" />
+                <element signature="e#21101#21173#0" />
+                <element signature="e#22552#23320#0" />
+                <element signature="e#22715#23302#0" expanded="true" />
+                <element signature="e#23301#23302#0" expanded="true" />
+                <element signature="e#23247#23752#0" />
+                <element signature="e#23758#24273#0" />
+                <element signature="e#24279#24792#0" />
+                <element signature="e#24798#25062#0" />
+                <element signature="e#24950#25225#0" />
+                <element signature="e#28331#28573#0" />
+                <element signature="e#28579#30193#0" />
+                <element signature="e#30195#30879#0" />
+                <element signature="e#30428#30836#0" />
+                <element signature="e#30820#31278#0" />
+                <element signature="e#31284#31508#0" />
+                <element signature="e#31514#32085#0" />
+                <element signature="e#32091#32546#0" />
+                <element signature="e#32552#33069#0" />
+                <element signature="e#33075#33432#0" />
+                <element signature="e#33494#35830#0" />
+                <element signature="e#35836#37001#0" />
+                <element signature="e#36055#36958#0" />
+                <element signature="e#36083#36125#0" />
+                <element signature="e#37007#38169#0" />
+                <element signature="e#37238#38127#0" />
+                <element signature="e#37266#37308#0" />
+                <element signature="e#38175#38867#0" />
+                <element signature="e#38370#38502#0" />
+                <element signature="e#38695#38826#0" />
+                <element signature="e#38873#39570#0" />
+                <element signature="e#39073#39205#0" />
+                <element signature="e#39398#39529#0" />
+                <element signature="e#36612#39791#0" />
+                <element signature="e#36755#39776#0" expanded="true" />
+                <element signature="e#39775#39776#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
           <provider editor-type-id="text-editor">
@@ -279,6 +286,8 @@
       <find>Maus</find>
       <find>test</find>
       <find>DOOONE</find>
+      <find>arr1</find>
+      <find>Mediaplayer</find>
     </findStrings>
     <replaceStrings>
       <replace>//System.out</replace>
@@ -286,6 +295,7 @@
       <replace>SpielerRechts</replace>
       <replace>IstZulae</replace>
       <replace>DeusVult</replace>
+      <replace>arr2</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\Programming\Java\Projekt01\src\Berührung\Musik</dir>
@@ -313,18 +323,18 @@
         <option value="$PROJECT_DIR$/src/Berührung2/Controller.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Scene2Controller.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Berührung.fxml" />
-        <option value="$PROJECT_DIR$/src/Berührung/Controller.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Main.java" />
         <option value="$PROJECT_DIR$/src/Berührung/Scene2.fxml" />
+        <option value="$PROJECT_DIR$/src/Berührung/Controller.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="92" />
-    <option name="y" value="-16" />
-    <option name="width" value="1702" />
-    <option name="height" value="980" />
+    <option name="x" value="642" />
+    <option name="y" value="56" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -334,7 +344,32 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Projekt01 - Kopie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt01 - Kopie" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projekt01 - Kopie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt01 - Kopie" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projekt01 - Kopie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt01 - Kopie" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Musik" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ChangesTree.GroupingKeys" value="directory" />
@@ -346,13 +381,14 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546614173188" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546713052343" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Projekt01" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
@@ -543,17 +579,33 @@
       <option name="project" value="LOCAL" />
       <updated>1546554588928</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="NewestCommit">
+      <created>1546614179087</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1546614179087</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
   </component>
+  <component name="TodoView" selected-index="3">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.0208" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16364606" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -562,11 +614,11 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" x="743" y="196" width="972" height="434" id="Run" order="2" visible="true" weight="0.29175705" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991009" />
+      <window_info anchor="bottom" auto_hide="true" x="-955" y="242" width="856" height="662" id="Run" order="2" type="WINDOWED" weight="0.15618221" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39804772" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.33188722" />
       <window_info anchor="bottom" id="Problems" order="9" />
@@ -851,69 +903,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="852" column="24" selection-start-line="852" selection-start-column="24" selection-end-line="852" selection-end-column="24" />
-          <folding>
-            <element signature="e#2995#3100#0" />
-            <element signature="e#3106#3212#0" />
-            <element signature="e#3218#3324#0" />
-            <element signature="e#3411#5126#0" />
-            <element signature="e#5132#10042#0" />
-            <element signature="e#5469#9984#0" />
-            <element signature="e#10048#14227#0" />
-            <element signature="e#10228#14187#0" />
-            <element signature="e#14233#14539#0" />
-            <element signature="e#14317#14522#0" />
-            <element signature="e#14348#14388#0" />
-            <element signature="e#14545#16734#0" />
-            <element signature="e#14726#16694#0" />
-            <element signature="e#16740#17552#0" />
-            <element signature="e#16818#17542#0" />
-            <element signature="e#17558#17590#0" />
-            <element signature="e#17596#17871#0" />
-            <element signature="e#17636#17730#0" />
-            <element signature="e#17877#18582#0" />
-            <element signature="e#18061#18538#0" />
-            <element signature="e#18588#22817#0" />
-            <element signature="e#18905#22775#0" />
-            <element signature="e#22823#23328#0" />
-            <element signature="e#23334#23849#0" />
-            <element signature="e#23855#24377#0" />
-            <element signature="e#24383#24647#0" />
-            <element signature="e#24727#24969#0" />
-            <element signature="e#24975#26299#0" />
-            <element signature="e#26305#29484#0" />
-            <element signature="e#26532#29443#0" />
-            <element signature="e#29490#29948#0" />
-            <element signature="e#29954#30178#0" />
-            <element signature="e#30184#30755#0" />
-            <element signature="e#30761#31216#0" />
-            <element signature="e#30936#31172#0" />
-            <element signature="e#31222#31739#0" />
-            <element signature="e#31745#32102#0" />
-            <element signature="e#32164#33303#0" />
-            <element signature="e#33309#34474#0" />
-            <element signature="e#33528#34431#0" />
-            <element signature="e#33556#33598#0" />
-            <element signature="e#34480#35642#0" />
-            <element signature="e#34711#35600#0" />
-            <element signature="e#34739#34781#0" />
-            <element signature="e#35648#36339#0" />
-            <element signature="e#35843#35975#0" />
-            <element signature="e#36166#36297#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Berührung/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="357">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -925,11 +929,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Berührung/Berührung.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/Labeled.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4879">
+          <caret line="385" column="31" selection-start-line="385" selection-start-column="31" selection-end-line="385" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/text/Font.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Berührung/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1299">
+          <caret line="669" lean-forward="true" selection-start-line="669" selection-end-line="669" />
+          <folding>
+            <element signature="e#3178#5125#0" />
+            <element signature="e#3180#3285#0" />
+            <element signature="e#3291#3397#0" />
+            <element signature="e#3403#3509#0" />
+            <element signature="e#5547#10457#0" />
+            <element signature="e#5884#10399#0" />
+            <element signature="e#10463#14642#0" />
+            <element signature="e#10643#14602#0" />
+            <element signature="e#14648#14954#0" />
+            <element signature="e#14732#14937#0" />
+            <element signature="e#14763#14803#0" />
+            <element signature="e#14960#17150#0" />
+            <element signature="e#15141#17110#0" />
+            <element signature="e#17156#17968#0" />
+            <element signature="e#17234#17958#0" />
+            <element signature="e#17974#18006#0" />
+            <element signature="e#19004#23241#0" />
+            <element signature="e#19321#23199#0" />
+            <element signature="e#20515#20589#0" />
+            <element signature="e#21101#21173#0" />
+            <element signature="e#22552#23320#0" />
+            <element signature="e#22715#23302#0" expanded="true" />
+            <element signature="e#23301#23302#0" expanded="true" />
+            <element signature="e#23247#23752#0" />
+            <element signature="e#23758#24273#0" />
+            <element signature="e#24279#24792#0" />
+            <element signature="e#24798#25062#0" />
+            <element signature="e#24950#25225#0" />
+            <element signature="e#28331#28573#0" />
+            <element signature="e#28579#30193#0" />
+            <element signature="e#30195#30879#0" />
+            <element signature="e#30428#30836#0" />
+            <element signature="e#30820#31278#0" />
+            <element signature="e#31284#31508#0" />
+            <element signature="e#31514#32085#0" />
+            <element signature="e#32091#32546#0" />
+            <element signature="e#32552#33069#0" />
+            <element signature="e#33075#33432#0" />
+            <element signature="e#33494#35830#0" />
+            <element signature="e#35836#37001#0" />
+            <element signature="e#36055#36958#0" />
+            <element signature="e#36083#36125#0" />
+            <element signature="e#37007#38169#0" />
+            <element signature="e#37238#38127#0" />
+            <element signature="e#37266#37308#0" />
+            <element signature="e#38175#38867#0" />
+            <element signature="e#38370#38502#0" />
+            <element signature="e#38695#38826#0" />
+            <element signature="e#38873#39570#0" />
+            <element signature="e#39073#39205#0" />
+            <element signature="e#39398#39529#0" />
+            <element signature="e#36612#39791#0" />
+            <element signature="e#36755#39776#0" expanded="true" />
+            <element signature="e#39775#39776#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
