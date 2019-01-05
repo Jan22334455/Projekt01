@@ -13,7 +13,11 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Circle?>
 
+<<<<<<< HEAD
 <AnchorPane fx:id="MainAnchorPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+=======
+<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+>>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" onMouseMoved="#MausMovement" prefHeight="1080.0" prefWidth="1920.0">
          <children>
@@ -36,11 +40,16 @@
             <Label fx:id="SpielerRechts" layoutX="1904.0" layoutY="540.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Slider fx:id="LauterLeiserSlider" layoutX="1890.0" layoutY="28.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="1.0" />
             <Label fx:id="Label2" layoutX="349.0" layoutY="49.0" prefHeight="35.0" prefWidth="317.0" textFill="#e10000" />
+<<<<<<< HEAD
             <Button fx:id="Button3" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
             <CheckBox fx:id="volume" layoutX="1836.0" layoutY="35.0" mnemonicParsing="false" onAction="#MusikLautStärke" text="Mute" />
             <ComboBox fx:id="ComboBoxMusik" cache="true" layoutX="1626.0" layoutY="31.0" onAction="#MusikAuswahl" prefWidth="150.0" promptText="Musik Wahl" visibleRowCount="5" />
             <Button layoutX="928.0" layoutY="32.0" mnemonicParsing="false" onAction="#start" text="Start" />
             <Button layoutX="984.0" layoutY="32.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
+=======
+            <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
+            <Button layoutX="397.0" layoutY="13.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
+>>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
          </children></Pane>
       <Label fx:id="Label1Rechts" layoutX="1920.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
       <Label fx:id="Label3Links" layoutX="-10.0" prefHeight="1080.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
