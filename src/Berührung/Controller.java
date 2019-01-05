@@ -135,27 +135,28 @@ public class Controller {
 
     //Start Methoden
 
+    public void Laden(){
+        VideoLaden();
+        MusikLaden();
+        Media();
+        BackgroundMovementLoad();
+    }
+
     public void start() {
         //System.out.println(auswahl);
         switch (auswahl) {
             case 1: // Script gegen Script
                 if (!start) {
-                    //System.out.println("test 1");
-                    VideoLaden();
-                    MusikLaden();
-                    Media();
-                    //MusikPrank();
-                    BackgroundMovementLoad();
-                    //BackgroundMovement();
-                    //BackGroundMovementRandome();
-                    BackGroundMovementRandomeLabel();
+                    System.out.println("test 1");
 
-                    BackgroundMovementLoad();
-                    //BackgroundMovement();
+                    //MusikPrank();
+
                     BackGroundMovementRandome();
+                    BackGroundMovementRandomeLabel();
 
                     AutoMove2();
                     movePingPong();
+
                     start = true;
                 } else {
                     BackgroundMovement();
@@ -168,14 +169,12 @@ public class Controller {
                     Moveing();
                     OnePlayer();
 
-                    VideoLaden();
-                    MusikLaden();
-                    BackgroundMovementLoad();
+
+
                     //BackgroundMovement();
                     BackGroundMovementRandome();
 
 
-                    Media();
 
                     movePingPong();
                     start = true;
@@ -187,11 +186,10 @@ public class Controller {
             case 3: //Player gegen Player
                 if (!start) {
                     //Moveing 2 Players TODO
-                    VideoLaden();
-                    MusikLaden();
-                    Media();
 
-                    AutoMove2();
+
+                    Moveing();
+                    MausMovement();
                     movePingPong();
                     start = true;
                 } else {
@@ -204,22 +202,28 @@ public class Controller {
     }
 
     public void AuswahlSpieMode() throws Exception {
+
         SceneWechsel2();
+
         wertUebergabe(1);
+
     }
 
     public void AuswahlSpieMode2() throws Exception {
+
         SceneWechsel2();
         wertUebergabe(2);
     }
 
     public void AuswahlSpieMode3() throws Exception {
+
         SceneWechsel2();
         wertUebergabe(3);
     }
 
     public void wertUebergabe(int übergabe) {
         auswahl = übergabe;
+
     }
 
     //Bewegung Script und Maussteuerung
@@ -355,102 +359,95 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
                     Label2.setText(SpielerLinks.getLayoutY() + " :Y");
 
-
+                    //System.out.println("Step:1");
                     if (SpielerLinks.getLayoutY() > 960) {
-
-                        if (SpielerLinks.getLayoutY() > 390) {
-
-                            auswahlAutoMove2 = 1;
-                            IstZulaessigAutoMove2 = false;
+                        auswahlAutoMove2 = 1;
+                        IstZulaessigAutoMove2 = false;
+                    }
+                    if (SpielerLinks.getLayoutY() < 0) {
+                        auswahlAutoMove2 = 2;
+                        IstZulaessigAutoMove2 = false;
+                    }
+                    if (movingBox.getLayoutX() < 300 && richtungX == -1) {
+                        if (IstZulaessigAutoMove2) {
+                            auswahlAutoMove2 = 3;
                         }
-                        if (SpielerLinks.getLayoutY() < 0) {
-                            auswahlAutoMove2 = 2;
-                            IstZulaessigAutoMove2 = false;
-                        }
-                        if (movingBox.getLayoutX() < 300 && richtungX == -1) {
+                    }
+
+                    switch (auswahlAutoMove2) {
+                        case 1:
+                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
+                            auswahlAutoMove2 = 0;
+                            break;
+                        case 2:
+                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
+                            auswahlAutoMove2 = 0;
+                            break;
+                        case 3:
+                            if (movingBox.getLayoutY() < SpielerLinks.getLayoutY()) {
+                                //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 4);
+                                auswahlAutoMove2 = 0;
+                            } else {
+                                //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 4);
+                                auswahlAutoMove2 = 0;
+                            }
+                            break;
+                        default:
+
+                            break;
+                    }
+
+
+                    IstZulaessigAutoMove2 = true;
+
+
+                    if (SpielerRechts.getLayoutY() > 960) {
+                        auswahlAutoMove3 = 1;
+                        IstZulaessigAutoMove2 = false;
+                    }
+                    if (SpielerRechts.getLayoutY() < 0) {
+                        auswahlAutoMove3 = 2;
+                        IstZulaessigAutoMove2 = false;
+                    }
+
+                    if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
+
+                        if (movingBox.getLayoutX() > 350 && richtungX == 1) {
                             if (IstZulaessigAutoMove2) {
-                                auswahlAutoMove2 = 3;
+                                auswahlAutoMove3 = 3;
                             }
                         }
 
-                        switch (auswahlAutoMove2) {
+                        switch (auswahlAutoMove3) {
                             case 1:
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
-                                auswahlAutoMove2 = 0;
+                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
+                                auswahlAutoMove3 = 0;
                                 break;
                             case 2:
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
-                                auswahlAutoMove2 = 0;
+                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
+                                auswahlAutoMove3 = 0;
                                 break;
                             case 3:
-                                if (movingBox.getLayoutY() < SpielerLinks.getLayoutY()) {
-                                    //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 4);
-                                    auswahlAutoMove2 = 0;
+                                if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
+                                    //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 6);
+
+                                    auswahlAutoMove3 = 0;
                                 } else {
-                                    //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 4);
-                                    auswahlAutoMove2 = 0;
+                                    //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 6);
+
+                                    auswahlAutoMove3 = 0;
                                 }
                                 break;
                             default:
 
                                 break;
                         }
-                    }
-
-                    IstZulaessigAutoMove2 = true;
 
 
-                    if (SpielerRechts.getLayoutY() > 960) {
-
-                        if (SpielerRechts.getLayoutY() > 390) {
-
-                            auswahlAutoMove3 = 1;
-                            IstZulaessigAutoMove2 = false;
-                        }
-                        if (SpielerRechts.getLayoutY() < 0) {
-                            auswahlAutoMove3 = 2;
-                            IstZulaessigAutoMove2 = false;
-                        }
-
-                        if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
-
-//                            if (movingBox.getLayoutX() > 350 && richtungX == 1) {
-                            if (IstZulaessigAutoMove2) {
-                                auswahlAutoMove3 = 3;
-                            }
-                            //}
-
-                            switch (auswahlAutoMove3) {
-                                case 1:
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                                    auswahlAutoMove3 = 0;
-                                    break;
-                                case 2:
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                                    auswahlAutoMove3 = 0;
-                                    break;
-                                case 3:
-                                    if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
-                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 6);
-
-                                        auswahlAutoMove3 = 0;
-                                    } else {
-                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 6);
-
-                                        auswahlAutoMove3 = 0;
-                                    }
-                                    break;
-                                default:
-
-                                    break;
-                            }
-
-
-                        }
                     }
                 });
             }
@@ -460,11 +457,7 @@ public class Controller {
 
     public void MausMovement() {
         MainAnchorPane.addEventHandler(MouseEvent.ANY, event -> {
-
-                    //SpielerLinks.setLayoutY(event.getY());
-
                     SpielerLinks.setLayoutY(event.getY());
-
 //                    movingBox.setLayoutY(event.getY());
 //                    movingBox.setLayoutX(event.getX());
                 }
@@ -482,77 +475,74 @@ public class Controller {
 
                     if (SpielerRechts.getLayoutY() > 960) {
 
-                        if (SpielerRechts.getLayoutY() > 390) {
 
-                            auswahlAutoMove3 = 1;
-                            IstZulaessigAutoMove2 = false;
-                        }
-                        if (SpielerRechts.getLayoutY() < 0) {
-                            auswahlAutoMove3 = 2;
-                            IstZulaessigAutoMove2 = false;
-                        }
-
-                        if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
-
-                            if (movingBox.getLayoutX() > 350 && richtungX == 1) {
-
-                                if (IstZulaessigAutoMove2) {
-                                    auswahlAutoMove3 = 3;
-                                }
-                            }
-
-                            switch (auswahlAutoMove3) {
-                                case 1:
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                                    auswahlAutoMove3 = 0;
-                                    break;
-                                case 2:
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                                    auswahlAutoMove3 = 0;
-                                    break;
-                                case 3:
-                                    if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
-                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 4);
-
-                                        auswahlAutoMove3 = 0;
-                                    } else {
-                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 4);
-
-                                        auswahlAutoMove3 = 0;
-                                    }
-                                    break;
-                                default:
-
-                                    break;
-                            }
-
-                        }
+                        auswahlAutoMove3 = 1;
+                        IstZulaessigAutoMove2 = false;
                     }
+                    if (SpielerRechts.getLayoutY() < 0) {
+                        auswahlAutoMove3 = 2;
+                        IstZulaessigAutoMove2 = false;
+                    }
+
+                    if (movingBox.getLayoutX() > 1500 && richtungX == 1) {
+
+                        if (movingBox.getLayoutX() > 350 && richtungX == 1) {
+
+                            if (IstZulaessigAutoMove2) {
+                                auswahlAutoMove3 = 3;
+                            }
+                        }
+
+                        switch (auswahlAutoMove3) {
+                            case 1:
+                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
+                                auswahlAutoMove3 = 0;
+                                break;
+                            case 2:
+                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
+                                auswahlAutoMove3 = 0;
+                                break;
+                            case 3:
+                                if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
+                                    //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 10);
+
+                                    auswahlAutoMove3 = 0;
+                                } else {
+                                    //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 10);
+
+                                    auswahlAutoMove3 = 0;
+                                }
+                                break;
+                            default:
+
+                                break;
+                        }
+
+                    }
+
                 });
             }
         }, 0, 6);
     }
 
-
     public void Moveing() {
-
         MainAnchorPane.addEventHandler(KeyEvent.ANY, keyEvent2 -> {
             tmp = keyEvent2.getCharacter();
 
             switch (tmp) {
                 case "w":
-                    if (!(SpielerLinks.getLayoutY() < 0)) {
-                        SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
-                        System.out.println("W Pressed");
+                    if (!(SpielerRechts.getLayoutY() < 0)) {
+                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 20);
+                        //System.out.println("W Pressed");
                         tmp = "";
                     }
                     break;
                 case "s":
-                    if (!(SpielerLinks.getLayoutY() > 333)) {
-                        SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
-                        System.out.println("S Pressed");
+                    if (!(SpielerRechts.getLayoutY() > 960)) {
+                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 20);
+                        //System.out.println("S Pressed");
                         tmp = "";
                     }
                     break;
@@ -759,9 +749,9 @@ public class Controller {
         if (!(mediaPlayer == null)) {
             mediaPlayer.setMute(volume.isSelected());
         }
-        if (!(videoPlayer == null)) {
-            videoPlayer.setMute(volume.isSelected());
-        }
+//        if (!(videoPlayer == null)) {
+//            videoPlayer.setMute(volume.isSelected());
+//        }
 
     }
 
@@ -885,7 +875,6 @@ public class Controller {
         Scene scene2 = new Scene(FXMLDING);
         Stage window = main1.getS1();
 
-
         window.setScene(scene2);
         window.show();
         window.setFullScreenExitHint("");
@@ -901,6 +890,7 @@ public class Controller {
 
     public void SceneWechsel2() throws Exception {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
+
         Scene scene3 = new Scene(FXMLDING2);
         Stage window = main1.getS1();
 
