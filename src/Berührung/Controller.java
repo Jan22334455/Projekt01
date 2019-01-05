@@ -39,11 +39,11 @@ public class Controller {
     //MoveBox
     private double richtungX = -1;
     private double richtnungY = 1;
-<<<<<<< HEAD
+
     private double bewegungx = 15;
-=======
-    private double bewegungx = 5;
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
+
+    //private double bewegungx = 5;
+
     //DeusVult
     private double DeusRichtungX = -1;
     private double DeusRichtungY = 1;
@@ -70,13 +70,11 @@ public class Controller {
     private boolean PaneVisibility = true;
     private boolean jaNeinKP = false;
     private int zähler = 0;
-<<<<<<< HEAD
+
     //MK2
     private Label[][] arr2 = new Label[200][200];
     private ArrayList<Label> arrayListLabel;
 
-=======
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
     //Menue
     private static int auswahl;
 
@@ -357,114 +355,116 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
                     Label2.setText(SpielerLinks.getLayoutY() + " :Y");
 
-<<<<<<< HEAD
+
                     if (SpielerLinks.getLayoutY() > 960) {
-=======
-                    if (SpielerLinks.getLayoutY() > 390) {
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-                        auswahlAutoMove2 = 1;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (SpielerLinks.getLayoutY() < 0) {
-                        auswahlAutoMove2 = 2;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (movingBox.getLayoutX() < 300 && richtungX == -1) {
-                        if (IstZulaessigAutoMove2) {
-                            auswahlAutoMove2 = 3;
+
+                        if (SpielerLinks.getLayoutY() > 390) {
+
+                            auswahlAutoMove2 = 1;
+                            IstZulaessigAutoMove2 = false;
                         }
-                    }
-
-                    switch (auswahlAutoMove2) {
-                        case 1:
-                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
-                            auswahlAutoMove2 = 0;
-                            break;
-                        case 2:
-                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
-                            auswahlAutoMove2 = 0;
-                            break;
-                        case 3:
-                            if (movingBox.getLayoutY() < SpielerLinks.getLayoutY()) {
-                                //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 4);
-                                auswahlAutoMove2 = 0;
-                            } else {
-                                //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 4);
-                                auswahlAutoMove2 = 0;
+                        if (SpielerLinks.getLayoutY() < 0) {
+                            auswahlAutoMove2 = 2;
+                            IstZulaessigAutoMove2 = false;
+                        }
+                        if (movingBox.getLayoutX() < 300 && richtungX == -1) {
+                            if (IstZulaessigAutoMove2) {
+                                auswahlAutoMove2 = 3;
                             }
-                            break;
-                        default:
+                        }
 
-                            break;
+                        switch (auswahlAutoMove2) {
+                            case 1:
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
+                                auswahlAutoMove2 = 0;
+                                break;
+                            case 2:
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
+                                auswahlAutoMove2 = 0;
+                                break;
+                            case 3:
+                                if (movingBox.getLayoutY() < SpielerLinks.getLayoutY()) {
+                                    //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 4);
+                                    auswahlAutoMove2 = 0;
+                                } else {
+                                    //SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 4);
+                                    auswahlAutoMove2 = 0;
+                                }
+                                break;
+                            default:
+
+                                break;
+                        }
                     }
 
                     IstZulaessigAutoMove2 = true;
 
 
-<<<<<<< HEAD
                     if (SpielerRechts.getLayoutY() > 960) {
-=======
-                    if (SpielerRechts.getLayoutY() > 390) {
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-                        auswahlAutoMove3 = 1;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (SpielerRechts.getLayoutY() < 0) {
-                        auswahlAutoMove3 = 2;
-                        IstZulaessigAutoMove2 = false;
-                    }
-<<<<<<< HEAD
-                    if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
-=======
-                    if (movingBox.getLayoutX() > 350 && richtungX == 1) {
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-                        if (IstZulaessigAutoMove2) {
-                            auswahlAutoMove3 = 3;
+
+                        if (SpielerRechts.getLayoutY() > 390) {
+
+                            auswahlAutoMove3 = 1;
+                            IstZulaessigAutoMove2 = false;
+                        }
+                        if (SpielerRechts.getLayoutY() < 0) {
+                            auswahlAutoMove3 = 2;
+                            IstZulaessigAutoMove2 = false;
+                        }
+
+                        if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
+
+//                            if (movingBox.getLayoutX() > 350 && richtungX == 1) {
+                            if (IstZulaessigAutoMove2) {
+                                auswahlAutoMove3 = 3;
+                            }
+                            //}
+
+                            switch (auswahlAutoMove3) {
+                                case 1:
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
+                                    auswahlAutoMove3 = 0;
+                                    break;
+                                case 2:
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
+                                    auswahlAutoMove3 = 0;
+                                    break;
+                                case 3:
+                                    if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
+                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 6);
+
+                                        auswahlAutoMove3 = 0;
+                                    } else {
+                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 6);
+
+                                        auswahlAutoMove3 = 0;
+                                    }
+                                    break;
+                                default:
+
+                                    break;
+                            }
+
+
                         }
                     }
-
-                    switch (auswahlAutoMove3) {
-                        case 1:
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                            auswahlAutoMove3 = 0;
-                            break;
-                        case 2:
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                            auswahlAutoMove3 = 0;
-                            break;
-                        case 3:
-                            if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
-                                //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 6);
-
-                                auswahlAutoMove3 = 0;
-                            } else {
-                                //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 6);
-
-                                auswahlAutoMove3 = 0;
-                            }
-                            break;
-                        default:
-
-                            break;
-                    }
-
-
                 });
             }
         }, 0, 6);
     }
 
+
     public void MausMovement() {
         MainAnchorPane.addEventHandler(MouseEvent.ANY, event -> {
-<<<<<<< HEAD
+
                     //SpielerLinks.setLayoutY(event.getY());
-=======
+
                     SpielerLinks.setLayoutY(event.getY());
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
+
 //                    movingBox.setLayoutY(event.getY());
 //                    movingBox.setLayoutX(event.getX());
                 }
@@ -479,59 +479,62 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
 //50
 
-<<<<<<< HEAD
+
                     if (SpielerRechts.getLayoutY() > 960) {
-=======
-                    if (SpielerRechts.getLayoutY() > 390) {
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-                        auswahlAutoMove3 = 1;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (SpielerRechts.getLayoutY() < 0) {
-                        auswahlAutoMove3 = 2;
-                        IstZulaessigAutoMove2 = false;
-                    }
-<<<<<<< HEAD
-                    if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
-=======
-                    if (movingBox.getLayoutX() > 350 && richtungX == 1) {
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-                        if (IstZulaessigAutoMove2) {
-                            auswahlAutoMove3 = 3;
+
+                        if (SpielerRechts.getLayoutY() > 390) {
+
+                            auswahlAutoMove3 = 1;
+                            IstZulaessigAutoMove2 = false;
+                        }
+                        if (SpielerRechts.getLayoutY() < 0) {
+                            auswahlAutoMove3 = 2;
+                            IstZulaessigAutoMove2 = false;
+                        }
+
+                        if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
+
+                            if (movingBox.getLayoutX() > 350 && richtungX == 1) {
+
+                                if (IstZulaessigAutoMove2) {
+                                    auswahlAutoMove3 = 3;
+                                }
+                            }
+
+                            switch (auswahlAutoMove3) {
+                                case 1:
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
+                                    auswahlAutoMove3 = 0;
+                                    break;
+                                case 2:
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
+                                    auswahlAutoMove3 = 0;
+                                    break;
+                                case 3:
+                                    if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
+                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
+                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 4);
+
+                                        auswahlAutoMove3 = 0;
+                                    } else {
+                                        //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
+                                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 4);
+
+                                        auswahlAutoMove3 = 0;
+                                    }
+                                    break;
+                                default:
+
+                                    break;
+                            }
+
                         }
                     }
-
-                    switch (auswahlAutoMove3) {
-                        case 1:
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                            auswahlAutoMove3 = 0;
-                            break;
-                        case 2:
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                            auswahlAutoMove3 = 0;
-                            break;
-                        case 3:
-                            if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
-                                //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - (movingBox.getLayoutY() / 20));
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 4);
-
-                                auswahlAutoMove3 = 0;
-                            } else {
-                                //SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + (movingBox.getLayoutY() / 80));
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 4);
-
-                                auswahlAutoMove3 = 0;
-                            }
-                            break;
-                        default:
-
-                            break;
-                    }
-
                 });
             }
         }, 0, 6);
     }
+
 
     public void Moveing() {
 
@@ -613,16 +616,15 @@ public class Controller {
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
                             movingBox.setLayoutX(960);
                             movingBox.setLayoutY(540);
-<<<<<<< HEAD
-//                            richtnungY = getRandomNumberInRange(1, 2);
-//                            richtungX = getRandomNumberInRange(1, 2);
-=======
-
 
 //                            richtnungY = getRandomNumberInRange(1, 2);
 //                            richtungX = getRandomNumberInRange(1, 2);
 
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
+
+//                            richtnungY = getRandomNumberInRange(1, 2);
+//                            richtungX = getRandomNumberInRange(1, 2);
+
+
                             break;
                         case 3:
                             //Unten
@@ -806,7 +808,7 @@ public class Controller {
                 Platform.runLater(() -> {
                     for (int x = 0; x < 31; x++) {
                         for (int y = 0; y < 18; y++) {
-                            if (collidesWith(movingBox,arr2[x][y])) {
+                            if (collidesWith(movingBox, arr2[x][y])) {
                                 mediaPlayer2.play();
                                 mediaPlayer2 = null;
                                 mediaPlayer2 = new MediaPlayer(hit1.get(6));
@@ -908,7 +910,7 @@ public class Controller {
         window.setFullScreen(true);
 
     }
-<<<<<<< HEAD
+
 
     public void Exit() {
         System.exit(0);
@@ -1169,7 +1171,7 @@ public class Controller {
 
     //Test
 
-    private void Test(){
+    private void Test() {
 
     }
 
@@ -1236,133 +1238,7 @@ public class Controller {
                 ", MediaView1=" + MediaView1 +
                 ", Button3=" + Button3 +
                 '}';
-=======
-
-    public void Exit() {
-        System.exit(0);
->>>>>>> ffce6b3a0cb5983ae4c1d103e4dbc16ef3ea09f8
-    }
-
-    public void BackgroundMovementLoad() {
-
-
-        int xWert = 0;
-        int yWert = 0;
-
-        for (int x = 0; x < 20; x++) {
-
-            for (int y = 0; y < 11; y++) {
-
-                //System.out.println("test");
-                arr1[x][y] = new Pane();
-                arr1[x][y].setMaxWidth(50);
-                arr1[x][y].setMinWidth(50);
-                arr1[x][y].setMaxHeight(50);
-                arr1[x][y].setMinHeight(50);
-
-                arr1[x][y].setLayoutX(50 + xWert);
-                arr1[x][y].setLayoutY(20 + yWert);
-                arr1[x][y].setStyle("-fx-background-color: #35c49e;");
-                arr1[x][y].setOpacity(0.40);
-
-                String felder = "Zeile " + (x + 1) + " Spalte " + (y + 1) + " (Index[" + x + "][" + y + "]) Feld " + i;
-                arr1[x][y].setId(felder);
-                arrayListPane = new ArrayList<Pane>();
-                arrayListPane.add(arr1[x][y]);
-                arr1[x][y].setVisible(false);
-                MainAnchorPane.getChildren().add(arr1[x][y]);
-
-                yWert += 100;
-            }
-            yWert = 0;
-            xWert += 100;
-
-        }
-    }
-
-    public void BackgroundMovement() {
-        PaneVisibility = true;
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    //Zeilen __ Spalten //x Max =20 y Max = 11
-                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
-                    arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
-                    xBackgound++;
-                    yBackgound++;
-                    if (yBackgound == 11) {
-                        //System.out.println("Über 11y");
-                        yBackgound = 0;
-                        xBackgound = multipikatorBackground;
-
-                        multipikatorBackground++;
-                    }
-                    if (xBackgound == 19) {
-                        xBackgound = 0;
-                        yBackgound = 0;
-                        multipikatorBackground = 0;
-                        BackgoundMovementSetInVisible();
-                        cancel();
-
-//
-                    }
-                });
-            }
-        }, 0, 100);
 
     }
 
-    public void BackgoundMovementSetInVisible() {
-        PaneVisibility = false;
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    //Zeilen __ Spalten //x Max =20 y Max = 11
-                    //System.out.println("X: " + xBackgound + " Y: " + yBackgound + " : " + zähler);
-                    arr1[xBackgound][yBackgound].setVisible(PaneVisibility);
-                    xBackgound++;
-                    yBackgound++;
-                    if (yBackgound == 11) {
-                        //System.out.println("Über 11y");
-                        yBackgound = 0;
-                        xBackgound = multipikatorBackground;
-
-                        multipikatorBackground++;
-                    }
-                    if (xBackgound == 19) {
-                        xBackgound = 0;
-                        yBackgound = 0;
-                        multipikatorBackground = 0;
-                        BackgroundMovement();
-                        cancel();
-
-                    }
-                });
-            }
-        }, 0, 100);
-    }
-
-    public void BackGroundMovementRandome() {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-
-                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(true);
-
-                });
-            }
-        }, 0, 100);
-
-        Timer timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    arr1[getRandomNumberInRange(0, 19)][getRandomNumberInRange(0, 10)].setVisible(false);
-                });
-            }
-        }, 0, 25);
-    }
 }
