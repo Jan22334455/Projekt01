@@ -25,10 +25,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Controller {
     private ArrayList<Media> hit1 = new ArrayList<Media>();
@@ -1131,4 +1128,71 @@ public class Controller {
     private void Test(){
 
     }
+
+    @Override
+    public String toString() {
+        return "Controller{" +
+                "hit1=" + hit1 +
+                ", vid1=" + vid1 +
+                ", mediaPlayer=" + mediaPlayer +
+                ", mediaPlayer2=" + mediaPlayer2 +
+                ", videoPlayer=" + videoPlayer +
+                ", tmp='" + tmp + '\'' +
+                ", i=" + i +
+                ", richtungX=" + richtungX +
+                ", richtnungY=" + richtnungY +
+                ", bewegungx=" + bewegungx +
+                ", DeusRichtungX=" + DeusRichtungX +
+                ", DeusRichtungY=" + DeusRichtungY +
+                ", Deusbewegungx=" + Deusbewegungx +
+                ", auswahlAutoMove2=" + auswahlAutoMove2 +
+                ", auswahlAutoMove3=" + auswahlAutoMove3 +
+                ", punkteRechts=" + punkteRechts +
+                ", punkteLinks=" + punkteLinks +
+                ", warteBisSpielBegin=" + warteBisSpielBegin +
+                ", start=" + start +
+                ", tmp1=" + tmp1 +
+                ", musikgeladen=" + musikgeladen +
+                ", IstZulaessigAutoMove2=" + IstZulaessigAutoMove2 +
+                ", main1=" + main1 +
+                ", windowMain=" + windowMain +
+                ", arr1=" + Arrays.toString(arr1) +
+                ", arrayListPane=" + arrayListPane +
+                ", xBackgound=" + xBackgound +
+                ", yBackgound=" + yBackgound +
+                ", multipikatorBackground=" + multipikatorBackground +
+                ", PaneVisibility=" + PaneVisibility +
+                ", jaNeinKP=" + jaNeinKP +
+                ", zähler=" + zähler +
+                ", arr2=" + Arrays.toString(arr2) +
+                ", arrayListLabel=" + arrayListLabel +
+                ", ButtonSGS=" + ButtonSGS +
+                ", ButtonSGP=" + ButtonSGP +
+                ", ButtonPGP=" + ButtonPGP +
+                ", movingBox=" + movingBox +
+                ", MainAnchorPane=" + MainAnchorPane +
+                ", button1=" + button1 +
+                ", Label2=" + Label2 +
+                ", paneaBackground=" + paneaBackground +
+                ", InfoLabel=" + InfoLabel +
+                ", Label1Rechts=" + Label1Rechts +
+                ", Label3Links=" + Label3Links +
+                ", Label4Unten=" + Label4Unten +
+                ", Label5Top=" + Label5Top +
+                ", SpielerRechts=" + SpielerRechts +
+                ", SpielerLinks=" + SpielerLinks +
+                ", DeusVult=" + DeusVult +
+                ", volume=" + volume +
+                ", canves1=" + canves1 +
+                ", ComboBoxMusik=" + ComboBoxMusik +
+                ", Button2=" + Button2 +
+                ", ButtonMinus=" + ButtonMinus +
+                ", ButtonPlus=" + ButtonPlus +
+                ", LauterLeiserSlider=" + LauterLeiserSlider +
+                ", MediaView1=" + MediaView1 +
+                ", Button3=" + Button3 +
+                '}';
+    }
+
+
 }
