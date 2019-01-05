@@ -577,16 +577,12 @@ public class Controller {
                             break;
                         case 2:
                             System.out.println("Links");
-
                             punkteRechts++;
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
                             movingBox.setLayoutX(960);
                             movingBox.setLayoutY(540);
-
-
 //                            richtnungY = getRandomNumberInRange(1, 2);
 //                            richtungX = getRandomNumberInRange(1, 2);
-
                             break;
                         case 3:
                             //Unten
@@ -601,7 +597,6 @@ public class Controller {
                             movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                             movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
                             //paneaBackground.setStyle("-fx-background-color: #35c49e;");
-
                             break;
                         case 5:
                             richtungX *= -1;
@@ -615,17 +610,13 @@ public class Controller {
                             break;
                         default:
                             //System.out.println("Default");
-
                             movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                             movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
                             break;
                     }
-
-
                 });
             }
         }, 0, 20);
-
     }
 
     //Methoden die gebraucht werden Kollision oder RandomeInts
@@ -1133,5 +1124,11 @@ public class Controller {
                 });
             }
         }, 0, 20);
+    }
+
+    //Test
+
+    private void Test(){
+
     }
 }

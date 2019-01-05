@@ -13,10 +13,15 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="MainAnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+<AnchorPane fx:id="MainAnchorPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" onMouseMoved="#MausMovement" prefHeight="1080.0" prefWidth="1920.0">
          <children>
+            <ImageView fitHeight="1081.0" fitWidth="1921.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@Bilder/288367-free-technology-background-1920x1080.jpg" />
+               </image>
+            </ImageView>
             <MediaView fx:id="MediaView1" fitHeight="200.0" fitWidth="300.0" focusTraversable="true" layoutX="180.0" layoutY="150.0">
                <viewport>
                   <Rectangle2D />
@@ -26,7 +31,7 @@
                   <Image url="@Bilder/c76cd244506d531c.jpg" />
                </image></ImageView>
             <Label fx:id="InfoLabel" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="302.0" />
-            <Label fx:id="SpielerLinks" layoutX="16.0" layoutY="531.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
+            <Label fx:id="SpielerLinks" layoutY="531.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
             <Label fx:id="movingBox" layoutX="952.0" layoutY="592.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="1904.0" layoutY="540.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Slider fx:id="LauterLeiserSlider" layoutX="1890.0" layoutY="28.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="1.0" />
@@ -40,7 +45,7 @@
       <Label fx:id="Label1Rechts" layoutX="1920.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
       <Label fx:id="Label3Links" layoutX="-10.0" prefHeight="1080.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
       <Label fx:id="Label4Unten" layoutY="1080.0" prefHeight="25.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" text="Unten" textFill="#e10000" />
-      <Label fx:id="Label5Top" layoutY="-16.0" prefHeight="16.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
+      <Label fx:id="Label5Top" layoutY="-16.0" prefHeight="16.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />
       <Circle fill="DODGERBLUE" radius="8.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
 
    </children>
