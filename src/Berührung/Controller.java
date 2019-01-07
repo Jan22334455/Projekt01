@@ -32,6 +32,8 @@ public class Controller {
     private ArrayList<Media> vid1 = new ArrayList<Media>();
     private MediaPlayer mediaPlayer;
     private MediaPlayer mediaPlayer2;
+    private MediaPlayer mediaPlayer3;
+    private MediaPlayer oof;
     private MediaPlayer videoPlayer;
 
     private String tmp = "";
@@ -40,7 +42,7 @@ public class Controller {
     private double richtungX = -1;
     private double richtnungY = 1;
 
-    private double bewegungx = 15;
+    private double bewegungx = 20;
 
     //private double bewegungx = 5;
 
@@ -55,6 +57,7 @@ public class Controller {
     private int punkteLinks = 0;
     private int warteBisSpielBegin = 0;
     private boolean start = false;
+    private boolean start2 = false;
     private boolean tmp1 = true;
     private boolean musikgeladen = false;
     private boolean IstZulaessigAutoMove2 = true;
@@ -135,12 +138,26 @@ public class Controller {
 
     //Start Methoden
 
-    public void Laden(){
-        VideoLaden();
-        MusikLaden();
-        Media();
-        BackgroundMovementLoad();
+    public void Laden() {
+        if (!start2) {
+            VideoLaden();
+            MusikLaden();
+            Media();
+            BackgroundMovementLoad();
+            //MusikPrank();
+            Runnable r1 = new Runnable() {
+                @Override
+                public void run() {
+                    MusikPrank2();
+                }
+            };
+            Thread t1 = new Thread(r1);
+            t1.start();
+        }
+        start2 = true;
+
     }
+
 
     public void start() {
         //System.out.println(auswahl);
@@ -169,12 +186,9 @@ public class Controller {
                     Moveing();
                     OnePlayer();
 
-
-
                     //BackgroundMovement();
                     BackGroundMovementRandome();
-
-
+                    BackGroundMovementRandomeLabel();
 
                     movePingPong();
                     start = true;
@@ -548,8 +562,6 @@ public class Controller {
                     break;
             }
         });
-
-
     }
 
     public void Moveing2() {
@@ -558,6 +570,8 @@ public class Controller {
     }
 
     public void movePingPong() {
+
+
         Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
 
         Timer timer = new Timer();
@@ -587,7 +601,7 @@ public class Controller {
 
                     switch (tmp) {
                         case 1:
-                            System.out.println("Rechts");
+                            //System.out.println("Rechts");
 
                             punkteLinks++;
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
@@ -601,7 +615,7 @@ public class Controller {
 
                             break;
                         case 2:
-                            System.out.println("Links");
+                            //System.out.println("Links");
                             punkteRechts++;
                             Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
                             movingBox.setLayoutX(960);
@@ -634,16 +648,31 @@ public class Controller {
                             richtungX *= -1;
                             movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                             movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
+                            try {
+                                oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
+                            } catch (Exception ex) {
+                            }
+
+                            oof.play();
+
                             break;
                         case 6:
                             richtungX *= -1;
                             movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                             movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
+                            try {
+                                oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
+                            } catch (Exception ex) {
+                            }
+
+                            oof.play();
+
                             break;
                         default:
                             //System.out.println("Default");
                             movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                             movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
+
                             break;
                     }
                 });
@@ -815,6 +844,25 @@ public class Controller {
 
     }
 
+    public void MusikPrank2() {
+        while (true) {
+            for (int x = 0; x < 31; x++) {
+                for (int y = 0; y < 18; y++) {
+                    if (collidesWith(movingBox, arr2[x][y]) && arr2[x][y].isVisible()) {
+                        //System.out.println(arr2[x][y].getLayoutY() + " : " + arr2[x][y].getLayoutY());
+                        mediaPlayer2 = new MediaPlayer(hit1.get(6));
+                        mediaPlayer2.play();
+                        try {
+                            Thread.sleep((long) hit1.get(6).getDuration().toMillis());
+                        } catch (Exception ex) {
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
     public void MusikAuswahl() {
         if (!(mediaPlayer == null)) {
             mediaPlayer.setMute(true);
@@ -900,7 +948,6 @@ public class Controller {
         window.setFullScreen(true);
 
     }
-
 
     public void Exit() {
         System.exit(0);
@@ -1160,7 +1207,6 @@ public class Controller {
     }
 
     //Test
-
     private void Test() {
 
     }
