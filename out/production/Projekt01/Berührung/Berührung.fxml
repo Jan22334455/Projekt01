@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
 
@@ -39,15 +40,19 @@
             <Label fx:id="Label2" layoutX="349.0" layoutY="49.0" prefHeight="35.0" prefWidth="317.0" textFill="#e10000" />
             <CheckBox fx:id="volume" layoutX="1836.0" layoutY="35.0" mnemonicParsing="false" onAction="#MusikLautStärke" text="Mute" />
             <ComboBox fx:id="ComboBoxMusik" cache="true" layoutX="1626.0" layoutY="31.0" onAction="#MusikAuswahl" prefWidth="150.0" promptText="Musik Wahl" visibleRowCount="5" />
-            <Button layoutX="928.0" layoutY="32.0" mnemonicParsing="false" onAction="#start" text="Start" />
+            <Button fx:id="StartButton" layoutX="928.0" layoutY="32.0" mnemonicParsing="false" onAction="#start" text="Start" />
             <Button layoutX="984.0" layoutY="32.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
 
             <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
+            <Label fx:id="AttLabel" layoutX="888.0" layoutY="100.0" prefHeight="961.0" prefWidth="737.0" text="Label" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
 
          </children></Pane>
-      <Label fx:id="Label1Rechts" layoutX="1920.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
+      <Label fx:id="Label1Rechts" layoutX="1920.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />
       <Label fx:id="Label3Links" layoutX="-10.0" prefHeight="1080.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" />
-      <Label fx:id="Label4Unten" layoutY="1080.0" prefHeight="25.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" text="Unten" textFill="#e10000" />
+      <Label fx:id="Label4Unten" layoutY="1080.0" prefHeight="25.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" text="Unten" textFill="#e10000" visible="false" />
       <Label fx:id="Label5Top" layoutY="-16.0" prefHeight="16.0" prefWidth="1920.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />
       <Circle fill="DODGERBLUE" radius="8.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
 
