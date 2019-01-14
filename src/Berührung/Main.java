@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private static Stage s1;
-
+    private static Parent root;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
 
         primaryStage.setTitle("SuperTollesSpiel2");
 //        primaryStage.setMaxHeight(500);
@@ -29,11 +29,16 @@ public class Main extends Application {
     }
 
 
+
     public static void main(String[] args) {
         launch(args);
     }
 
     public static Stage getS1() {
         return s1;
+    }
+
+    public Parent getRoot() {
+        return root;
     }
 }

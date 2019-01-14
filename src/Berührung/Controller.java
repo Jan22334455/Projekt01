@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -22,8 +21,13 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
+import java.util.Timer;
 
 public class Controller {
     private ArrayList<Media> hit1 = new ArrayList<Media>();
@@ -188,7 +192,6 @@ public class Controller {
                     //BackGroundMovementRandome();
                     //BackGroundMovementRandomeLabel();
                     AutoMove2();
-
                     movePingPong();
 
                     start = true;
@@ -207,6 +210,7 @@ public class Controller {
                     BackGroundMovementRandome();
                     BackGroundMovementRandomeLabel();
                     movePingPong();
+                    testKey();
                     start = true;
                 } else {
                     movingBox.setLayoutY(960);
@@ -534,6 +538,71 @@ public class Controller {
 //        );
     }
 
+public void testKey(){
+//    InputMap am = new InputMap();
+//    InputMap bm = new InputMap();
+//
+//    am.setParent(bm);
+//    bm.setParent(am);
+//
+//    Action a1 = new Action() {
+//        @Override
+//        public Object getValue(String key) {
+//            return null;
+//        }
+//
+//        @Override
+//        public void putValue(String key, Object value) {
+//
+//        }
+//
+//        @Override
+//        public void setEnabled(boolean b) {
+//
+//        }
+//
+//        @Override
+//        public boolean isEnabled() {
+//            return false;
+//        }
+//
+//        @Override
+//        public void addPropertyChangeListener(PropertyChangeListener listener) {
+//
+//        }
+//
+//        @Override
+//        public void removePropertyChangeListener(PropertyChangeListener listener) {
+//
+//        }
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//
+//        }
+//    };
+//
+//    am.put(KeyStroke.getKeyStroke("w"));
+}
+
+    public void keyPressed() {
+        System.out.println("test");
+            SpielerLinks.setLayoutY(-5);
+    }
+
+    public String keyReleased(KeyEvent e) {
+        String retrn = "";
+        int keys = e.getKeyCode();
+        if (keys == KeyEvent.VK_W) {
+            SpielerLinks.setLayoutY(-5);
+        }
+        if (keys == KeyEvent.VK_S) {
+            SpielerLinks.setLayoutY(-5);
+        }
+        return retrn;
+    }
+
+
     public void OnePlayer() {
         Timer timer2 = new Timer();
         timer2.scheduleAtFixedRate(new TimerTask() {
@@ -587,23 +656,7 @@ public class Controller {
     }
 
     public void Moveing() {
-        MainAnchorPane.addEventHandler(KeyEvent.ANY, keyEvent2 -> {
-            tmp = keyEvent2.getCharacter();
-            switch (tmp) {
-                case "w":
-                    if (!(SpielerRechts.getLayoutY() < 0)) {
-                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 20);
-                        tmp = "";
-                    }
-                    break;
-                case "s":
-                    if (!(SpielerRechts.getLayoutY() > 960)) {
-                        SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 20);
-                        tmp = "";
-                    }
-                    break;
-            }
-        });
+
     }
 
     public void Moveing2() {
@@ -1270,72 +1323,72 @@ public class Controller {
     @Override
     public String toString() {
         return "Controller{" + "\n" +
-                "hit1="+hit1 + "\n" +
-                ", vid1="+vid1 + "\n" +
-                ", mediaPlayer="+getMediaPlayer() + "\n" +
-                ", mediaPlayer2="+mediaPlayer2 + "\n" +
-                ", mediaPlayer3="+mediaPlayer3 + "\n" +
-                ", oof="+oof + "\n" +
-                ", videoPlayer="+videoPlayer + "\n" +
-                ", tmp='"+tmp+'\'' + "\n" +
-                ", i="+i + "\n" +
-                ", MausMove="+MausMove + "\n" +
-                ", richtungX="+richtungX + "\n" +
-                ", richtnungY="+richtnungY + "\n" +
-                ", bewegungx="+bewegungx + "\n" +
-                ", DeusRichtungX="+DeusRichtungX + "\n" +
-                ", DeusRichtungY="+DeusRichtungY + "\n" +
-                ", Deusbewegungx="+Deusbewegungx + "\n" +
-                ", auswahlAutoMove2="+auswahlAutoMove2 + "\n" +
-                ", auswahlAutoMove3="+auswahlAutoMove3 + "\n" +
-                ", punkteRechts="+punkteRechts + "\n" +
-                ", punkteLinks="+punkteLinks + "\n" +
-                ", warteBisSpielBegin="+warteBisSpielBegin + "\n" +
-                ", start="+start + "\n" +
-                ", start2="+start2 + "\n" +
-                ", tmp1="+tmp1 + "\n" +
-                ", musikgeladen="+musikgeladen + "\n" +
-                ", IstZulaessigAutoMove2="+IstZulaessigAutoMove2 + "\n" +
-                ", WallBugFixMK1="+WallBugFixMK1 + "\n" +
-                ", main1="+main1 + "\n" +
-                ", windowMain="+windowMain + "\n" +
-                ", arr1="+Arrays.toString(arr1) + "\n" +
-                ", arrayListPane="+arrayListPane + "\n" +
-                ", xBackgound="+xBackgound + "\n" +
-                ", yBackgound="+yBackgound + "\n" +
-                ", multipikatorBackground="+multipikatorBackground + "\n" +
-                ", PaneVisibility="+PaneVisibility + "\n" +
-                ", jaNeinKP="+jaNeinKP + "\n" +
-                ", zähler="+zähler + "\n" +
-                ", arr2="+Arrays.toString(arr2) + "\n" +
-                ", arrayListLabel="+arrayListLabel + "\n" +
-                ", buttonumbennenung="+buttonumbennenung + "\n" +
-                ", ButtonSGS="+ButtonSGS + "\n" +
-                ", ButtonSGP="+ButtonSGP + "\n" +
-                ", ButtonPGP="+ButtonPGP + "\n" +
-                ", movingBox="+movingBox + "\n" +
-                ", MainAnchorPane="+MainAnchorPane + "\n" +
-                ", button1="+button1 + "\n" +
-                ", Label2="+Label2 + "\n" +
-                ", paneaBackground="+paneaBackground + "\n" +
-                ", InfoLabel="+InfoLabel + "\n" +
-                ", Label1Rechts="+Label1Rechts + "\n" +
-                ", Label3Links="+Label3Links + "\n" +
-                ", Label4Unten="+Label4Unten + "\n" +
-                ", Label5Top="+Label5Top + "\n" +
-                ", SpielerRechts="+SpielerRechts + "\n" +
-                ", SpielerLinks="+SpielerLinks + "\n" +
-                ", DeusVult="+DeusVult + "\n" +
-                ", volume="+volume + "\n" +
-                ", canves1="+canves1 + "\n" +
-                ", ComboBoxMusik="+ComboBoxMusik + "\n" +
-                ", Button2="+Button2 + "\n" +
-                ", StartButton="+StartButton + "\n" +
-                ", ButtonMinus="+ButtonMinus + "\n" +
-                ", ButtonPlus="+ButtonPlus + "\n" +
-                ", LauterLeiserSlider="+LauterLeiserSlider + "\n" +
-                ", MediaView1="+MediaView1 + "\n" +
-                ", Button3="+Button3 + "\n" +
+                "hit1=" + hit1 + "\n" +
+                ", vid1=" + vid1 + "\n" +
+                ", mediaPlayer=" + getMediaPlayer() + "\n" +
+                ", mediaPlayer2=" + mediaPlayer2 + "\n" +
+                ", mediaPlayer3=" + mediaPlayer3 + "\n" +
+                ", oof=" + oof + "\n" +
+                ", videoPlayer=" + videoPlayer + "\n" +
+                ", tmp='" + tmp + '\'' + "\n" +
+                ", i=" + i + "\n" +
+                ", MausMove=" + MausMove + "\n" +
+                ", richtungX=" + richtungX + "\n" +
+                ", richtnungY=" + richtnungY + "\n" +
+                ", bewegungx=" + bewegungx + "\n" +
+                ", DeusRichtungX=" + DeusRichtungX + "\n" +
+                ", DeusRichtungY=" + DeusRichtungY + "\n" +
+                ", Deusbewegungx=" + Deusbewegungx + "\n" +
+                ", auswahlAutoMove2=" + auswahlAutoMove2 + "\n" +
+                ", auswahlAutoMove3=" + auswahlAutoMove3 + "\n" +
+                ", punkteRechts=" + punkteRechts + "\n" +
+                ", punkteLinks=" + punkteLinks + "\n" +
+                ", warteBisSpielBegin=" + warteBisSpielBegin + "\n" +
+                ", start=" + start + "\n" +
+                ", start2=" + start2 + "\n" +
+                ", tmp1=" + tmp1 + "\n" +
+                ", musikgeladen=" + musikgeladen + "\n" +
+                ", IstZulaessigAutoMove2=" + IstZulaessigAutoMove2 + "\n" +
+                ", WallBugFixMK1=" + WallBugFixMK1 + "\n" +
+                ", main1=" + main1 + "\n" +
+                ", windowMain=" + windowMain + "\n" +
+                ", arr1=" + Arrays.toString(arr1) + "\n" +
+                ", arrayListPane=" + arrayListPane + "\n" +
+                ", xBackgound=" + xBackgound + "\n" +
+                ", yBackgound=" + yBackgound + "\n" +
+                ", multipikatorBackground=" + multipikatorBackground + "\n" +
+                ", PaneVisibility=" + PaneVisibility + "\n" +
+                ", jaNeinKP=" + jaNeinKP + "\n" +
+                ", zähler=" + zähler + "\n" +
+                ", arr2=" + Arrays.toString(arr2) + "\n" +
+                ", arrayListLabel=" + arrayListLabel + "\n" +
+                ", buttonumbennenung=" + buttonumbennenung + "\n" +
+                ", ButtonSGS=" + ButtonSGS + "\n" +
+                ", ButtonSGP=" + ButtonSGP + "\n" +
+                ", ButtonPGP=" + ButtonPGP + "\n" +
+                ", movingBox=" + movingBox + "\n" +
+                ", MainAnchorPane=" + MainAnchorPane + "\n" +
+                ", button1=" + button1 + "\n" +
+                ", Label2=" + Label2 + "\n" +
+                ", paneaBackground=" + paneaBackground + "\n" +
+                ", InfoLabel=" + InfoLabel + "\n" +
+                ", Label1Rechts=" + Label1Rechts + "\n" +
+                ", Label3Links=" + Label3Links + "\n" +
+                ", Label4Unten=" + Label4Unten + "\n" +
+                ", Label5Top=" + Label5Top + "\n" +
+                ", SpielerRechts=" + SpielerRechts + "\n" +
+                ", SpielerLinks=" + SpielerLinks + "\n" +
+                ", DeusVult=" + DeusVult + "\n" +
+                ", volume=" + volume + "\n" +
+                ", canves1=" + canves1 + "\n" +
+                ", ComboBoxMusik=" + ComboBoxMusik + "\n" +
+                ", Button2=" + Button2 + "\n" +
+                ", StartButton=" + StartButton + "\n" +
+                ", ButtonMinus=" + ButtonMinus + "\n" +
+                ", ButtonPlus=" + ButtonPlus + "\n" +
+                ", LauterLeiserSlider=" + LauterLeiserSlider + "\n" +
+                ", MediaView1=" + MediaView1 + "\n" +
+                ", Button3=" + Button3 + "\n" +
                 '}';
     }
 
