@@ -23,9 +23,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeListener;
 import java.util.*;
 import java.util.Timer;
 
@@ -194,6 +192,7 @@ public class Controller {
                     AutoMove2();
                     movePingPong();
 
+                    testKey();
                     start = true;
                 } else {
                     movingBox.setLayoutY(960);
@@ -538,56 +537,21 @@ public class Controller {
 //        );
     }
 
-public void testKey(){
-//    InputMap am = new InputMap();
-//    InputMap bm = new InputMap();
+    public void testKey() {
+//        JPanel jp1 = new JPanel();
+//        jp1.setLocation(0, 0);
+//        jp1.setSize(1920, 1080);
+//        jp1.setBackground(Color.GREEN);
+//        jp1.setBackground(new Color(200, 1, 3));
+//        //MainAnchorPane.getChildren().add(10,jp1);
+//        jp1.getInputMap().put();
 //
-//    am.setParent(bm);
-//    bm.setParent(am);
-//
-//    Action a1 = new Action() {
-//        @Override
-//        public Object getValue(String key) {
-//            return null;
-//        }
-//
-//        @Override
-//        public void putValue(String key, Object value) {
-//
-//        }
-//
-//        @Override
-//        public void setEnabled(boolean b) {
-//
-//        }
-//
-//        @Override
-//        public boolean isEnabled() {
-//            return false;
-//        }
-//
-//        @Override
-//        public void addPropertyChangeListener(PropertyChangeListener listener) {
-//
-//        }
-//
-//        @Override
-//        public void removePropertyChangeListener(PropertyChangeListener listener) {
-//
-//        }
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//
-//        }
-//    };
-//
-//    am.put(KeyStroke.getKeyStroke("w"));
-}
+//        jp1.setVisible(true);
+    }
 
     public void keyPressed() {
         System.out.println("test");
-            SpielerLinks.setLayoutY(-5);
+        SpielerLinks.setLayoutY(-5);
     }
 
     public String keyReleased(KeyEvent e) {
@@ -1013,19 +977,25 @@ public void testKey(){
         if (!(mediaPlayer == null)) {
             mediaPlayer.setMute(true);
             mediaPlayer = new MediaPlayer(hit1.get(ComboBoxMusik.getSelectionModel().getSelectedIndex()));
+            mediaPlayer.setVolume(LauterLeiserSlider.getValue());
             mediaPlayer.play();
         } else {
             //mediaPlayer.setMute(false);
             mediaPlayer = new MediaPlayer(hit1.get(ComboBoxMusik.getSelectionModel().getSelectedIndex()));
+            mediaPlayer.setVolume(LauterLeiserSlider.getValue());
             mediaPlayer.play();
         }
     }
 
     public void MusikLautstärkeLauter() {
-        System.out.println("Lauter " + mediaPlayer.getVolume());
-        if (!(mediaPlayer == null)) {
-            mediaPlayer.setVolume(LauterLeiserSlider.getValue());
+        //System.out.println("Lauter " + mediaPlayer.getVolume());
+        try {
+            if (!(mediaPlayer == null)) {
+                mediaPlayer.setVolume(LauterLeiserSlider.getValue());
+            }
+        } catch (Exception ex) {
         }
+
     }
 
     //MediaView
@@ -1393,7 +1363,6 @@ public void testKey(){
     }
 
     //get Set Not Needed
-
 
     public ArrayList<Media> getHit1() {
         return hit1;
