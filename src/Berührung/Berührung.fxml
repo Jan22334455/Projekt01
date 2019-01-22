@@ -36,7 +36,7 @@
             <Label fx:id="SpielerLinks" layoutY="531.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
             <Label fx:id="movingBox" layoutX="952.0" layoutY="592.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="1904.0" layoutY="540.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
-            <Slider fx:id="LauterLeiserSlider" layoutX="1890.0" layoutY="28.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="0.4" />
+            <Slider fx:id="LauterLeiserSlider" layoutX="1890.0" layoutY="28.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" value="0.1" />
             <Label fx:id="Label2" layoutX="349.0" layoutY="49.0" prefHeight="35.0" prefWidth="317.0" textFill="#e10000" />
             <CheckBox fx:id="volume" layoutX="1836.0" layoutY="35.0" mnemonicParsing="false" onAction="#MusikLautStärke" text="Mute" />
             <ComboBox fx:id="ComboBoxMusik" cache="true" layoutX="1626.0" layoutY="31.0" onAction="#MusikAuswahl" prefWidth="150.0" promptText="Musik Wahl" visibleRowCount="5" />

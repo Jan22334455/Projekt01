@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -20,6 +21,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,10 +42,10 @@ public class Controller {
     private int i = 0;
     private boolean MausMove = true;
     //MoveBox
-    private double richtungX = -1;
-    private double richtnungY = 1;
+    private double richtungX = -0.01; //Eventuell noch ändern unten
+    private double richtnungY = 0.01;
 
-    private double bewegungx = 15;
+    private double bewegungx = 50;
 
     //private double bewegungx = 5;
 
@@ -84,6 +86,9 @@ public class Controller {
     private static int auswahl;
     private boolean buttonumbennenung = true;
 
+    //Bewegung
+    private boolean w = false;
+    private boolean s = false;
 
     @FXML
     Button ButtonSGS;
@@ -145,6 +150,7 @@ public class Controller {
 
     public void Laden() {
         if (!start2) {
+            testKey();
             VideoLaden();
             MusikLaden();
             Media2();
@@ -189,10 +195,10 @@ public class Controller {
                     //MusikPrank();
                     //BackGroundMovementRandome();
                     //BackGroundMovementRandomeLabel();
-                    AutoMove2();
+                    //AutoMove2();
                     movePingPong();
 
-                    testKey();
+
                     start = true;
                 } else {
                     movingBox.setLayoutY(960);
@@ -353,7 +359,7 @@ public class Controller {
                         auswahlAutoMove2 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() < 300 && richtungX == -1) {
+                    if (movingBox.getLayoutX() < 300 && richtungX == -0.01) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove2 = 3;
                         }
@@ -391,13 +397,13 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 1620 && richtungX == 0.01) {
 
-                        if (movingBox.getLayoutX() > 350 && richtungX == 1) {
-                            if (IstZulaessigAutoMove2) {
-                                auswahlAutoMove3 = 3;
-                            }
+                        //if (movingBox.getLayoutX() > 350 && richtungX == 1) {
+                        if (IstZulaessigAutoMove2) {
+                            auswahlAutoMove3 = 3;
                         }
+                        //}
 
                         switch (auswahlAutoMove3) {
                             case 1:
@@ -538,15 +544,24 @@ public class Controller {
     }
 
     public void testKey() {
-//        JPanel jp1 = new JPanel();
-//        jp1.setLocation(0, 0);
-//        jp1.setSize(1920, 1080);
-//        jp1.setBackground(Color.GREEN);
-//        jp1.setBackground(new Color(200, 1, 3));
-//        //MainAnchorPane.getChildren().add(10,jp1);
-//        jp1.getInputMap().put();
-//
-//        jp1.setVisible(true);
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+                    if (w) {
+                        getSpielerLinks().setLayoutY(SpielerLinks.getLayoutY() + 2);
+
+                    }else if (s) {
+                        getSpielerLinks().setLayoutY(SpielerLinks.getLayoutY() - 2);
+
+                    }
+
+
+                });
+            }
+        }, 0, 20);
+
     }
 
     public void keyPressed() {
@@ -628,7 +643,7 @@ public class Controller {
 
     public void movePingPong() {
         //Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-        AttLabel.setText(toString());
+        AttLabel.setText(Attribute());
 
 
         Timer timer = new Timer();
@@ -714,16 +729,17 @@ public class Controller {
                                 //oof.play();
                                 break;
                             default:
-                                int Chaos = getRandomNumberInRange(1, 2);
-                                int Chaos2 = getRandomNumberInRange(1, 2);
-                                movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX + Chaos));
-                                movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY + Chaos2));
+//                                int Chaos = getRandomNumberInRange(1, 2);
+//                                int Chaos2 = getRandomNumberInRange(1, 2);
+                                movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
+                                movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
                                 break;
                         }
+
                     }
                 });
             }
-        }, 0, 20);
+        }, 0, 1);
     }
 
     public void movePingPong2(Label beweglichesTeil) {
@@ -1064,6 +1080,30 @@ public class Controller {
     public void SceneWechsel2() throws Exception {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
         Scene scene3 = new Scene(FXMLDING2);
+
+        scene3.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.W) {
+                //System.out.println("W");
+                w = true;
+            }
+            if (event.getCode() == KeyCode.S) {
+                //System.out.println("S");
+                s = true;
+            }
+        scene3.setOnKeyReleased(event1 -> {
+            if (event.getCode() == KeyCode.W) {
+                //System.out.println("W");
+                w = false;
+            }
+            if (event.getCode() == KeyCode.S) {
+                //System.out.println("S");
+                s = false;
+            }
+        });
+            testKey();
+
+        });
+
         Stage window = main1.getS1();
         window.setScene(scene3);
         window.setFullScreenExitHint("");
@@ -1290,8 +1330,7 @@ public class Controller {
 
     }
 
-    @Override
-    public String toString() {
+    public String Attribute() {
         return "Controller{" + "\n" +
                 "hit1=" + hit1 + "\n" +
                 ", vid1=" + vid1 + "\n" +
