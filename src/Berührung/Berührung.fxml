@@ -44,7 +44,7 @@
             <Button layoutX="984.0" layoutY="32.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
 
             <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
-            <Label fx:id="AttLabel" layoutX="888.0" layoutY="100.0" prefHeight="961.0" prefWidth="737.0" text="Label" textFill="RED">
+            <Label fx:id="AttLabel" layoutX="888.0" layoutY="100.0" prefHeight="961.0" prefWidth="737.0" text="Label" textFill="RED" visible="false">
                <font>
                   <Font size="10.0" />
                </font></Label>

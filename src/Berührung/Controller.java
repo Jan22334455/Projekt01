@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
@@ -86,9 +87,23 @@ public class Controller {
     private static int auswahl;
     private boolean buttonumbennenung = true;
 
+
     //Bewegung
     private boolean w = false;
     private boolean s = false;
+    private boolean a = false;
+    private boolean d = false;
+    private double x; // Move
+    private double y = 540;
+    private double x2 = 1904; // Move2
+    private double y2 = 540;
+    private static Label Move = new Label();
+    private static Label Move2 = new Label();
+    private static boolean Tastaturbewegung = false;
+    private static boolean Tastaturbewegung2Spieler = false;
+
+    //Scene
+    private Scene scene3;
 
     @FXML
     Button ButtonSGS;
@@ -146,24 +161,17 @@ public class Controller {
     @FXML
     Label AttLabel;
 
+    //Main
+
     //Start Methoden
 
     public void Laden() {
         if (!start2) {
-            testKey();
             VideoLaden();
             MusikLaden();
             Media2();
             BackgroundMovementLoad();
-            //MusikPrank();
-            Runnable r1 = new Runnable() {
-                @Override
-                public void run() {
-                    //MusikPrank2();
-                }
-            };
-            Thread t1 = new Thread(r1);
-            t1.start();
+
             start2 = true;
         }
     }
@@ -195,7 +203,7 @@ public class Controller {
                     //MusikPrank();
                     //BackGroundMovementRandome();
                     //BackGroundMovementRandomeLabel();
-                    //AutoMove2();
+                    AutoMove2();
                     movePingPong();
 
 
@@ -207,15 +215,22 @@ public class Controller {
                 break;
             case 2: //Script gegen Player
                 StartButton.setText("Rest Ball/Cube");
-
                 if (!start) {
-                    Moveing();
+                    System.out.println("SpielModus 2");
+                    setTastaturbewegung(true);
+
+                    Move.relocate(SpielerLinks.getLayoutX(), SpielerLinks.getLayoutY());
+                    //Move.setText("Move");
+                    Move.setMaxWidth(SpielerLinks.getMaxWidth());
+                    Move.setMaxHeight(SpielerLinks.getMaxHeight());
+                    Move.setMinWidth(SpielerLinks.getMinWidth());
+                    Move.setMinHeight(SpielerLinks.getMinHeight());
+
+                    MainAnchorPane.getChildren().add(Move);
+
+
                     OnePlayer();
-                    //BackgroundMovement();
-                    BackGroundMovementRandome();
-                    BackGroundMovementRandomeLabel();
                     movePingPong();
-                    testKey();
                     start = true;
                 } else {
                     movingBox.setLayoutY(960);
@@ -226,10 +241,41 @@ public class Controller {
                 StartButton.setText("Rest Ball/Cube");
 
                 if (!start) {
-                    //Moveing 2 Players TODO
-                    Moveing();
-                    MausMovement();
+                    Tastaturbewegung2Spieler = true;
+                    Tastaturbewegung = true;
+                    Move.relocate(SpielerLinks.getLayoutX(), SpielerLinks.getLayoutY());
+                    //Move.setText("Move");
+                    Move.setMaxWidth(SpielerLinks.getMaxWidth());
+                    Move.setMaxHeight(SpielerLinks.getMaxHeight());
+                    Move.setMinWidth(SpielerLinks.getMinWidth());
+                    Move.setMinHeight(SpielerLinks.getMinHeight());
+
+                    MainAnchorPane.getChildren().add(Move);
+
+
+                    Move2.relocate(SpielerRechts.getLayoutX(), SpielerRechts.getLayoutY());
+                    //Move2.setText("Move2");
+                    Move2.setMaxWidth(SpielerRechts.getMaxWidth());
+                    Move2.setMaxHeight(SpielerRechts.getMaxHeight());
+                    Move2.setMinWidth(SpielerRechts.getMinWidth());
+                    Move2.setMinHeight(SpielerRechts.getMinHeight());
+
+                    MainAnchorPane.getChildren().add(Move2);
+
                     movePingPong();
+
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask() {
+                        public void run() {
+                            Platform.runLater(() -> {
+                                SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
+                                SpielerRechts.relocate(Move2.getLayoutX(), Move2.getLayoutY());
+                            });
+                        }
+                    }, 0, 4);
+
+
+
                     start = true;
                 } else {
                     movingBox.setLayoutY(220);
@@ -432,6 +478,45 @@ public class Controller {
         }, 0, 6);
     }
 
+    public void SchleifeTasteGedrückt() throws IOException {
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                Platform.runLater(() -> {
+
+                    if (isW()) {
+                        if (Tastaturbewegung) {
+                            Move.relocate(x, y);
+                            y -= 2;
+                        }
+                    }
+                    if (isS()) {
+                        if (Tastaturbewegung) {
+                            Move.relocate(x, y);
+                            y += 2;
+                        }
+                    }
+                    if (isA()) { // Up
+                        if (Tastaturbewegung2Spieler) {
+                            Move2.relocate(x2, y2);
+                            y2 -= 2;
+                        }
+                    }
+                    if (isD()) { // Down
+                        if (Tastaturbewegung2Spieler) {
+                            Move2.relocate(x2, y2);
+                            y2 += 2;
+                        }
+                    }
+
+                });
+            }
+        }, 0, 4);
+
+    }
+
+
     public void AutoMove3() {
 
         Timer timer = new Timer();
@@ -543,50 +628,14 @@ public class Controller {
 //        );
     }
 
-    public void testKey() {
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    if (w) {
-                        getSpielerLinks().setLayoutY(SpielerLinks.getLayoutY() + 2);
-
-                    }else if (s) {
-                        getSpielerLinks().setLayoutY(SpielerLinks.getLayoutY() - 2);
-
-                    }
-
-
-                });
-            }
-        }, 0, 20);
-
-    }
-
-    public void keyPressed() {
-        System.out.println("test");
-        SpielerLinks.setLayoutY(-5);
-    }
-
-    public String keyReleased(KeyEvent e) {
-        String retrn = "";
-        int keys = e.getKeyCode();
-        if (keys == KeyEvent.VK_W) {
-            SpielerLinks.setLayoutY(-5);
-        }
-        if (keys == KeyEvent.VK_S) {
-            SpielerLinks.setLayoutY(-5);
-        }
-        return retrn;
-    }
-
-
     public void OnePlayer() {
         Timer timer2 = new Timer();
         timer2.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
+                    SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
+
+
                     IstZulaessigAutoMove2 = true;
 
                     if (SpielerRechts.getLayoutY() > 960) {
@@ -598,8 +647,8 @@ public class Controller {
                         IstZulaessigAutoMove2 = false;
                     }
 
-                    if (movingBox.getLayoutX() > 1500 && richtungX == 1) {
-                        if (movingBox.getLayoutX() > 350 && richtungX == 1) {
+                    if (movingBox.getLayoutX() > 1500 && richtungX == 0.01) {
+                        if (movingBox.getLayoutX() > 350 && richtungX == 0.01) {
                             if (IstZulaessigAutoMove2) {
                                 auswahlAutoMove3 = 3;
                             }
@@ -631,14 +680,7 @@ public class Controller {
                     }
                 });
             }
-        }, 0, 6);
-    }
-
-    public void Moveing() {
-
-    }
-
-    public void Moveing2() {
+        }, 0, 13);
     }
 
     public void movePingPong() {
@@ -901,18 +943,6 @@ public class Controller {
         return r.nextInt((max - min) + 1) + min;
     }
 
-    public double wertUmkehren(double b) {
-        return b *= -1;
-    }
-
-    public String getKeyText(int keyCode) {
-//        if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 || keyCode >= KeyEvent.VK_A
-//                && keyCode <= KeyEvent.VK_Z) {
-//            return String.valueOf((char) keyCode);
-//        }
-        return null;
-    }
-
     //Musik usw.
 
     public void MusikLautStärke() {
@@ -1079,37 +1109,45 @@ public class Controller {
 
     public void SceneWechsel2() throws Exception {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
-        Scene scene3 = new Scene(FXMLDING2);
+        scene3 = new Scene(FXMLDING2);
 
-        scene3.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.W) {
-                //System.out.println("W");
-                w = true;
-            }
-            if (event.getCode() == KeyCode.S) {
-                //System.out.println("S");
-                s = true;
-            }
-        scene3.setOnKeyReleased(event1 -> {
-            if (event.getCode() == KeyCode.W) {
-                //System.out.println("W");
-                w = false;
-            }
-            if (event.getCode() == KeyCode.S) {
-                //System.out.println("S");
-                s = false;
-            }
-        });
-            testKey();
-
-        });
 
         Stage window = main1.getS1();
         window.setScene(scene3);
         window.setFullScreenExitHint("");
         window.show();
         window.setFullScreen(true);
+
+        scene3.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.W) {
+                setW(true);
+            }
+            if (event.getCode() == KeyCode.S) {
+                setS(true);
+            }
+            if (event.getCode() == KeyCode.O) {
+                setA(true);
+            }
+            if (event.getCode() == KeyCode.L) {
+                setD(true);
+            }
+        });
+
+        scene3.setOnKeyReleased(event -> {
+
+            if (event.getCode() == KeyCode.W)
+                setW(false);
+            if (event.getCode() == KeyCode.S)
+                setS(false);
+            if (event.getCode() == KeyCode.O)
+                setA(false);
+            if (event.getCode() == KeyCode.L)
+                setD(false);
+
+        });
+        SchleifeTasteGedrückt();
     }
+
 
     public void Exit() {
         System.exit(0);
@@ -1402,6 +1440,22 @@ public class Controller {
     }
 
     //get Set Not Needed
+
+    public boolean isW() {
+        return w;
+    }
+
+    public void setW(boolean w) {
+        this.w = w;
+    }
+
+    public boolean isS() {
+        return s;
+    }
+
+    public void setS(boolean s) {
+        this.s = s;
+    }
 
     public ArrayList<Media> getHit1() {
         return hit1;
@@ -1835,21 +1889,6 @@ public class Controller {
         Label5Top = label5Top;
     }
 
-    public Label getSpielerRechts() {
-        return SpielerRechts;
-    }
-
-    public void setSpielerRechts(Label spielerRechts) {
-        SpielerRechts = spielerRechts;
-    }
-
-    public Label getSpielerLinks() {
-        return SpielerLinks;
-    }
-
-    public void setSpielerLinks(Label spielerLinks) {
-        SpielerLinks = spielerLinks;
-    }
 
     public ImageView getDeusVult() {
         return DeusVult;
@@ -1945,5 +1984,77 @@ public class Controller {
 
     public void setAttLabel(Label attLabel) {
         AttLabel = attLabel;
+    }
+
+    public void setTastaturbewegung(boolean tastaturbewegung) {
+        Tastaturbewegung = tastaturbewegung;
+    }
+
+    public boolean isA() {
+        return a;
+    }
+
+    public void setA(boolean a) {
+        this.a = a;
+    }
+
+    public boolean isD() {
+        return d;
+    }
+
+    public void setD(boolean d) {
+        this.d = d;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public static Label getMove() {
+        return Move;
+    }
+
+    public static void setMove(Label move) {
+        Move = move;
+    }
+
+    public static boolean isTastaturbewegung() {
+        return Tastaturbewegung;
+    }
+
+    public Scene getScene3() {
+        return scene3;
+    }
+
+    public void setScene3(Scene scene3) {
+        this.scene3 = scene3;
+    }
+
+    public Label getSpielerRechts() {
+        return SpielerRechts;
+    }
+
+    public void setSpielerRechts(Label spielerRechts) {
+        SpielerRechts = spielerRechts;
+    }
+
+    public Label getSpielerLinks() {
+        return SpielerLinks;
+    }
+
+    public void setSpielerLinks(Label spielerLinks) {
+        SpielerLinks = spielerLinks;
     }
 }

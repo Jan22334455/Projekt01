@@ -11,7 +11,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private static Stage s1;
     private static Parent root;
-    private static Scene sc;
+    private Scene sc;
+    private static Controller c1;
     @Override
     public void start(Stage primaryStage) throws Exception {
         root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
@@ -29,6 +30,23 @@ public class Main extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
+
+//        sc.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.W)
+//                c1.setW(true);
+//            if (event.getCode() == KeyCode.S)
+//                c1.setS(true);
+//
+//
+//        });
+//
+//        sc.setOnKeyReleased(event -> {
+//            if (event.getCode() == KeyCode.W)
+//                c1.setW(false);
+//            if (event.getCode() == KeyCode.S)
+//                c1.setW(false);
+//
+//        });
 
         s1 = primaryStage;
     }
