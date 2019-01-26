@@ -31,6 +31,7 @@ import java.util.*;
 import java.util.Timer;
 
 public class Controller {
+    //MediaPlayer bzw. Musikplayer + Listen mit gespeicherten Titeln
     private ArrayList<Media> hit1 = new ArrayList<Media>();
     private ArrayList<Media> vid1 = new ArrayList<Media>();
     private MediaPlayer mediaPlayer;
@@ -39,37 +40,42 @@ public class Controller {
     private MediaPlayer oof;
     private MediaPlayer videoPlayer;
 
-    private String tmp = "";
-    private int i = 0;
-    private boolean MausMove = true;
+    private boolean musikgeladen = false; //Musik Playlist geladen oder nicht
+
+    private int i = 0;                  //Wird für die Generierung von Panes gebraucht BackgroundMovementLoad();
+
     //MoveBox
     private double richtungX = -0.01; //Eventuell noch ändern unten
     private double richtnungY = 0.01;
 
-    private double bewegungx = 50;
+    private double bewegungx = 50;      //Geschwindigkeit
 
-    //private double bewegungx = 5;
-
-    //DeusVult
+    //Weiterer sich bewegender Block unbeeinflusst von Spielern
     private double DeusRichtungX = -1;
     private double DeusRichtungY = 1;
     private double Deusbewegungx = 5;
 
-    private int auswahlAutoMove2 = 0;
-    private int auswahlAutoMove3 = 0;
-    private int punkteRechts = 0;
-    private int punkteLinks = 0;
-    private int warteBisSpielBegin = 0;
-    private boolean start = false;
-    private boolean start2 = false;
-    private boolean tmp1 = true;
-    private boolean musikgeladen = false;
+
+    private int auswahlAutoMove2 = 0;   //Wird für die Überprüfung von der Spieler Position 
+    private int auswahlAutoMove3 = 0;   //gebraucht damit dieser nicht über den rand gehen darf.
     private boolean IstZulaessigAutoMove2 = true;
     private boolean WallBugFixMK1 = true;
+    private int punkteRechts = 0;   //Punkte Rechts gewinnbringende Punkte
+    private int punkteLinks = 0;    //Punkte Links ""
+    
+    private boolean start = false; //Wiederholungs blocker damit der Start button nicht immer wieder das Spiel neu startet bzw. Schleifen und Thread mehrfach angesprochen werden
+    private boolean start2 = false;
+
+    
+    
+    
 
     //MK1
-    private Main main1;
-    private Stage windowMain;
+
+    private Main main1; // Ermöglicht stage wechsel
+    private Stage windowMain;   //""
+
+    //Panes für den Hintergrund + variablen mit Listen um erzeugung zu ermöglichen
     private Pane[][] arr1 = new Pane[20][20];
     private ArrayList<Pane> arrayListPane;
     private int xBackgound = 0;
@@ -79,51 +85,58 @@ public class Controller {
     private boolean jaNeinKP = false;
     private int zähler = 0;
 
-    //MK2
+
+    //Labels die im hintergrund verwendet werden können
     private Label[][] arr2 = new Label[200][200];
     private ArrayList<Label> arrayListLabel;
 
-    //Menue
+    //Menue mit überprüfung auf wiederholungen
     private static int auswahl;
     private boolean buttonumbennenung = true;
 
 
-    //Bewegung
+    //Bewegung Tastatur
     private boolean w = false;
     private boolean s = false;
-    private boolean a = false;
-    private boolean d = false;
-    private double x; // Move
+    private boolean a = false; // Eigentlich O
+    private boolean d = false; // Eigentlich L
+
+    private double x; // Move  Position des Beweglichen teils
     private double y = 540;
-    private double x2 = 1904; // Move2
+
+    private double x2 = 1904; // Move2 Position des 2 Beweglichen teils
     private double y2 = 540;
-    private static Label Move = new Label();
+
+    private static Label Move = new Label();    //Anlegen der Beweglichen teile
     private static Label Move2 = new Label();
-    private static boolean Tastaturbewegung = false;
+
+    private static boolean Tastaturbewegung = false; //Überprüfung ob 2 oder 1 lebender Spieler
     private static boolean Tastaturbewegung2Spieler = false;
 
-    //Scene
+    //Scene Berührung.fxml
     private Scene scene3;
 
+    //FXML eingaben
     @FXML
-    Button ButtonSGS;
+    Button ButtonSGS; //S = Script P = Player
     @FXML
     Button ButtonSGP;
     @FXML
     Button ButtonPGP;
-    //TEST
+
     @FXML
-    Label movingBox;
+    Label movingBox;    // SpielBall
     @FXML
-    AnchorPane MainAnchorPane;
+    AnchorPane MainAnchorPane; //HauptPane
+
     @FXML
-    Button button1;
+    Label Label2; // Punkte anzeige + Geschwindigkeit
     @FXML
-    Label Label2;
-    @FXML
-    Pane paneaBackground;
+    Pane paneaBackground; // Packgroundpane
     @FXML
     Label InfoLabel;
+
+    //Ränder Wiederstände Kollision mit dem Ball
     @FXML
     Label Label1Rechts;
     @FXML
@@ -132,28 +145,36 @@ public class Controller {
     Label Label4Unten;
     @FXML
     Label Label5Top;
+
+    //Spieler
     @FXML
     Label SpielerRechts;
     @FXML
     Label SpielerLinks;
+
+    //Image View Deko
     @FXML
     ImageView DeusVult;
+
+    //Volume Musik / Video
     @FXML
     CheckBox volume;
-    @FXML
-    Canvas canves1;
+
+    //Musik auswahl
     @FXML
     ComboBox ComboBoxMusik;
+
     @FXML
     Button Button2;
+
+    //Start button
     @FXML
     Button StartButton;
-    @FXML
-    Button ButtonMinus;
-    @FXML
-    Button ButtonPlus;
+
+    //Lautstärke regler
     @FXML
     Slider LauterLeiserSlider;
+    //Media View Neon Cat //TODO
     @FXML
     MediaView MediaView1;
     @FXML
@@ -161,7 +182,6 @@ public class Controller {
     @FXML
     Label AttLabel;
 
-    //Main
 
     //Start Methoden
 
@@ -685,7 +705,7 @@ public class Controller {
 
     public void movePingPong() {
         //Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-        AttLabel.setText(Attribute());
+        AttLabel.setText(toString());
 
 
         Timer timer = new Timer();
@@ -1111,7 +1131,6 @@ public class Controller {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
         scene3 = new Scene(FXMLDING2);
 
-
         Stage window = main1.getS1();
         window.setScene(scene3);
         window.setFullScreenExitHint("");
@@ -1362,84 +1381,87 @@ public class Controller {
         }, 0, 20);
     }
 
-    //Test
 
-    private void Test() {
+    @Override
+    public String toString() {
+        return "Controller{" +
+                "hit1=" + hit1 +
+                ", vid1=" + vid1 +
+                ", mediaPlayer=" + mediaPlayer +
+                ", mediaPlayer2=" + mediaPlayer2 +
+                ", mediaPlayer3=" + mediaPlayer3 +
+                ", oof=" + oof +
+                ", videoPlayer=" + videoPlayer +
 
-    }
+                ", i=" + i +
 
-    public String Attribute() {
-        return "Controller{" + "\n" +
-                "hit1=" + hit1 + "\n" +
-                ", vid1=" + vid1 + "\n" +
-                ", mediaPlayer=" + getMediaPlayer() + "\n" +
-                ", mediaPlayer2=" + mediaPlayer2 + "\n" +
-                ", mediaPlayer3=" + mediaPlayer3 + "\n" +
-                ", oof=" + oof + "\n" +
-                ", videoPlayer=" + videoPlayer + "\n" +
-                ", tmp='" + tmp + '\'' + "\n" +
-                ", i=" + i + "\n" +
-                ", MausMove=" + MausMove + "\n" +
-                ", richtungX=" + richtungX + "\n" +
-                ", richtnungY=" + richtnungY + "\n" +
-                ", bewegungx=" + bewegungx + "\n" +
-                ", DeusRichtungX=" + DeusRichtungX + "\n" +
-                ", DeusRichtungY=" + DeusRichtungY + "\n" +
-                ", Deusbewegungx=" + Deusbewegungx + "\n" +
-                ", auswahlAutoMove2=" + auswahlAutoMove2 + "\n" +
-                ", auswahlAutoMove3=" + auswahlAutoMove3 + "\n" +
-                ", punkteRechts=" + punkteRechts + "\n" +
-                ", punkteLinks=" + punkteLinks + "\n" +
-                ", warteBisSpielBegin=" + warteBisSpielBegin + "\n" +
-                ", start=" + start + "\n" +
-                ", start2=" + start2 + "\n" +
-                ", tmp1=" + tmp1 + "\n" +
-                ", musikgeladen=" + musikgeladen + "\n" +
-                ", IstZulaessigAutoMove2=" + IstZulaessigAutoMove2 + "\n" +
-                ", WallBugFixMK1=" + WallBugFixMK1 + "\n" +
-                ", main1=" + main1 + "\n" +
-                ", windowMain=" + windowMain + "\n" +
-                ", arr1=" + Arrays.toString(arr1) + "\n" +
-                ", arrayListPane=" + arrayListPane + "\n" +
-                ", xBackgound=" + xBackgound + "\n" +
-                ", yBackgound=" + yBackgound + "\n" +
-                ", multipikatorBackground=" + multipikatorBackground + "\n" +
-                ", PaneVisibility=" + PaneVisibility + "\n" +
-                ", jaNeinKP=" + jaNeinKP + "\n" +
-                ", zähler=" + zähler + "\n" +
-                ", arr2=" + Arrays.toString(arr2) + "\n" +
-                ", arrayListLabel=" + arrayListLabel + "\n" +
-                ", buttonumbennenung=" + buttonumbennenung + "\n" +
-                ", ButtonSGS=" + ButtonSGS + "\n" +
-                ", ButtonSGP=" + ButtonSGP + "\n" +
-                ", ButtonPGP=" + ButtonPGP + "\n" +
-                ", movingBox=" + movingBox + "\n" +
-                ", MainAnchorPane=" + MainAnchorPane + "\n" +
-                ", button1=" + button1 + "\n" +
-                ", Label2=" + Label2 + "\n" +
-                ", paneaBackground=" + paneaBackground + "\n" +
-                ", InfoLabel=" + InfoLabel + "\n" +
-                ", Label1Rechts=" + Label1Rechts + "\n" +
-                ", Label3Links=" + Label3Links + "\n" +
-                ", Label4Unten=" + Label4Unten + "\n" +
-                ", Label5Top=" + Label5Top + "\n" +
-                ", SpielerRechts=" + SpielerRechts + "\n" +
-                ", SpielerLinks=" + SpielerLinks + "\n" +
-                ", DeusVult=" + DeusVult + "\n" +
-                ", volume=" + volume + "\n" +
-                ", canves1=" + canves1 + "\n" +
-                ", ComboBoxMusik=" + ComboBoxMusik + "\n" +
-                ", Button2=" + Button2 + "\n" +
-                ", StartButton=" + StartButton + "\n" +
-                ", ButtonMinus=" + ButtonMinus + "\n" +
-                ", ButtonPlus=" + ButtonPlus + "\n" +
-                ", LauterLeiserSlider=" + LauterLeiserSlider + "\n" +
-                ", MediaView1=" + MediaView1 + "\n" +
-                ", Button3=" + Button3 + "\n" +
+                ", richtungX=" + richtungX +
+                ", richtnungY=" + richtnungY +
+                ", bewegungx=" + bewegungx +
+                ", DeusRichtungX=" + DeusRichtungX +
+                ", DeusRichtungY=" + DeusRichtungY +
+                ", Deusbewegungx=" + Deusbewegungx +
+                ", auswahlAutoMove2=" + auswahlAutoMove2 +
+                ", auswahlAutoMove3=" + auswahlAutoMove3 +
+                ", punkteRechts=" + punkteRechts +
+                ", punkteLinks=" + punkteLinks +
+
+                ", start=" + start +
+                ", start2=" + start2 +
+
+                ", musikgeladen=" + musikgeladen +
+                ", IstZulaessigAutoMove2=" + IstZulaessigAutoMove2 +
+                ", WallBugFixMK1=" + WallBugFixMK1 +
+                ", main1=" + main1 +
+                ", windowMain=" + windowMain +
+                ", arr1=" + Arrays.toString(arr1) +
+                ", arrayListPane=" + arrayListPane +
+                ", xBackgound=" + xBackgound +
+                ", yBackgound=" + yBackgound +
+                ", multipikatorBackground=" + multipikatorBackground +
+                ", PaneVisibility=" + PaneVisibility +
+                ", jaNeinKP=" + jaNeinKP +
+                ", zähler=" + zähler +
+                ", arr2=" + Arrays.toString(arr2) +
+                ", arrayListLabel=" + arrayListLabel +
+                ", buttonumbennenung=" + buttonumbennenung +
+                ", w=" + w +
+                ", s=" + s +
+                ", a=" + a +
+                ", d=" + d +
+                ", x=" + x +
+                ", y=" + y +
+                ", x2=" + x2 +
+                ", y2=" + y2 +
+                ", scene3=" + scene3 +
+                ", ButtonSGS=" + ButtonSGS +
+                ", ButtonSGP=" + ButtonSGP +
+                ", ButtonPGP=" + ButtonPGP +
+                ", movingBox=" + movingBox +
+                ", MainAnchorPane=" + MainAnchorPane +
+
+                ", Label2=" + Label2 +
+                ", paneaBackground=" + paneaBackground +
+                ", InfoLabel=" + InfoLabel +
+                ", Label1Rechts=" + Label1Rechts +
+                ", Label3Links=" + Label3Links +
+                ", Label4Unten=" + Label4Unten +
+                ", Label5Top=" + Label5Top +
+                ", SpielerRechts=" + SpielerRechts +
+                ", SpielerLinks=" + SpielerLinks +
+                ", DeusVult=" + DeusVult +
+                ", volume=" + volume +
+                ", ComboBoxMusik=" + ComboBoxMusik +
+                ", Button2=" + Button2 +
+                ", StartButton=" + StartButton +
+                ", LauterLeiserSlider=" + LauterLeiserSlider +
+                ", MediaView1=" + MediaView1 +
+                ", Button3=" + Button3 +
+                ", AttLabel=" + AttLabel +
                 '}';
     }
 
-    //get Set Not Needed
+//get Set Not Needed
 
     public boolean isW() {
         return w;
@@ -1513,28 +1535,12 @@ public class Controller {
         this.videoPlayer = videoPlayer;
     }
 
-    public String getTmp() {
-        return tmp;
-    }
-
-    public void setTmp(String tmp) {
-        this.tmp = tmp;
-    }
-
     public int getI() {
         return i;
     }
 
     public void setI(int i) {
         this.i = i;
-    }
-
-    public boolean isMausMove() {
-        return MausMove;
-    }
-
-    public void setMausMove(boolean mausMove) {
-        MausMove = mausMove;
     }
 
     public double getRichtungX() {
@@ -1617,14 +1623,6 @@ public class Controller {
         this.punkteLinks = punkteLinks;
     }
 
-    public int getWarteBisSpielBegin() {
-        return warteBisSpielBegin;
-    }
-
-    public void setWarteBisSpielBegin(int warteBisSpielBegin) {
-        this.warteBisSpielBegin = warteBisSpielBegin;
-    }
-
     public boolean isStart() {
         return start;
     }
@@ -1639,14 +1637,6 @@ public class Controller {
 
     public void setStart2(boolean start2) {
         this.start2 = start2;
-    }
-
-    public boolean isTmp1() {
-        return tmp1;
-    }
-
-    public void setTmp1(boolean tmp1) {
-        this.tmp1 = tmp1;
     }
 
     public boolean isMusikgeladen() {
@@ -1825,14 +1815,6 @@ public class Controller {
         MainAnchorPane = mainAnchorPane;
     }
 
-    public Button getButton1() {
-        return button1;
-    }
-
-    public void setButton1(Button button1) {
-        this.button1 = button1;
-    }
-
     public Label getLabel2() {
         return Label2;
     }
@@ -1889,7 +1871,6 @@ public class Controller {
         Label5Top = label5Top;
     }
 
-
     public ImageView getDeusVult() {
         return DeusVult;
     }
@@ -1904,14 +1885,6 @@ public class Controller {
 
     public void setVolume(CheckBox volume) {
         this.volume = volume;
-    }
-
-    public Canvas getCanves1() {
-        return canves1;
-    }
-
-    public void setCanves1(Canvas canves1) {
-        this.canves1 = canves1;
     }
 
     public ComboBox getComboBoxMusik() {
@@ -1936,22 +1909,6 @@ public class Controller {
 
     public void setStartButton(Button startButton) {
         StartButton = startButton;
-    }
-
-    public Button getButtonMinus() {
-        return ButtonMinus;
-    }
-
-    public void setButtonMinus(Button buttonMinus) {
-        ButtonMinus = buttonMinus;
-    }
-
-    public Button getButtonPlus() {
-        return ButtonPlus;
-    }
-
-    public void setButtonPlus(Button buttonPlus) {
-        ButtonPlus = buttonPlus;
     }
 
     public Slider getLauterLeiserSlider() {
