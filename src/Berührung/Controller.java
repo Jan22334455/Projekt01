@@ -221,8 +221,8 @@ public class Controller {
             case 1: // Script gegen Script
                 if (!start) {
                     //MusikPrank();
-                    //BackGroundMovementRandome();
-                    //BackGroundMovementRandomeLabel();
+                    BackGroundMovementRandome();
+                    BackGroundMovementRandomeLabel();
                     AutoMove2();
                     movePingPong();
 
