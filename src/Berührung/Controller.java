@@ -102,10 +102,10 @@ public class Controller {
     private boolean d = false; // Eigentlich L
 
     private double x; // Move  Position des Beweglichen teils
-    private double y = 540;
+    private double y = 290;
 
-    private double x2 = 1904; // Move2 Position des 2 Beweglichen teils
-    private double y2 = 540;
+    private double x2 = 985; // Move2 Position des 2 Beweglichen teils
+    private double y2 = 290;
 
     private static Label Move = new Label();    //Anlegen der Beweglichen teile
     private static Label Move2 = new Label();
@@ -182,7 +182,6 @@ public class Controller {
     @FXML
     Label AttLabel;
 
-
     //Start Methoden
 
     public void Laden() {
@@ -220,8 +219,8 @@ public class Controller {
         switch (auswahl) {
             case 1: // Script gegen Script
                 if (!start) {
-                    //MusikPrank();
-                    BackGroundMovementRandome();
+                    //MusikPrank();                         //Löschen TODO
+                    //BackGroundMovementRandome();
                     BackGroundMovementRandomeLabel();
                     AutoMove2();
                     movePingPong();
@@ -253,8 +252,8 @@ public class Controller {
                     movePingPong();
                     start = true;
                 } else {
-                    movingBox.setLayoutY(960);
-                    movingBox.setLayoutX(540);
+                    movingBox.setLayoutY(500);
+                    movingBox.setLayoutX(450);
                 }
                 break;
             case 3: //Player gegen Player
@@ -303,7 +302,6 @@ public class Controller {
                 }
                 break;
         }
-
     }
 
     public void AuswahlSpieMode() throws Exception {
@@ -417,7 +415,7 @@ public class Controller {
                     IstZulaessigAutoMove2 = true;
                     //Label2.setText(SpielerLinks.getLayoutY() + " :Y");
 
-                    if (SpielerLinks.getLayoutY() > 960) {
+                    if (SpielerLinks.getLayoutY() > 800) {
                         auswahlAutoMove2 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -425,7 +423,7 @@ public class Controller {
                         auswahlAutoMove2 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() < 300 && richtungX == -0.01) {
+                    if (movingBox.getLayoutX() < 250 && richtungX == -0.01) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove2 = 3;
                         }
@@ -455,7 +453,7 @@ public class Controller {
 
                     IstZulaessigAutoMove2 = true;
 
-                    if (SpielerRechts.getLayoutY() > 960) {
+                    if (SpielerRechts.getLayoutY() > 800) {
                         auswahlAutoMove3 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -463,7 +461,7 @@ public class Controller {
                         auswahlAutoMove3 = 2;
                         IstZulaessigAutoMove2 = false;
                     }
-                    if (movingBox.getLayoutX() > 1620 && richtungX == 0.01) {
+                    if (movingBox.getLayoutX() > 750 && richtungX == 0.01) {
 
                         //if (movingBox.getLayoutX() > 350 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
@@ -506,25 +504,26 @@ public class Controller {
                 Platform.runLater(() -> {
 
                     if (isW()) {
-                        if (Tastaturbewegung) {
+                        if (Tastaturbewegung && !(Move.getLayoutY() < 0)) {
                             Move.relocate(x, y);
                             y -= 2;
                         }
                     }
                     if (isS()) {
-                        if (Tastaturbewegung) {
+                        if (Tastaturbewegung && !(Move.getLayoutY() > 585)) {
                             Move.relocate(x, y);
                             y += 2;
                         }
                     }
+
                     if (isA()) { // Up
-                        if (Tastaturbewegung2Spieler) {
+                        if (Tastaturbewegung2Spieler && !(Move2.getLayoutY() < 0)) {
                             Move2.relocate(x2, y2);
                             y2 -= 2;
                         }
                     }
                     if (isD()) { // Down
-                        if (Tastaturbewegung2Spieler) {
+                        if (Tastaturbewegung2Spieler && !(Move2.getLayoutY() > 585)) {
                             Move2.relocate(x2, y2);
                             y2 += 2;
                         }
@@ -535,7 +534,6 @@ public class Controller {
         }, 0, 4);
 
     }
-
 
     public void AutoMove3() {
 
@@ -627,27 +625,6 @@ public class Controller {
         }, 0, 1);
     }
 
-    public void MausMovement() {
-        //MainAnchorPane.addEventHandler(MouseEvent.ANY, event -> {
-//                    MausMove = true;
-//                    if (SpielerLinks.getLayoutY() > 960) {
-//                        MausMove = false;
-//                        SpielerLinks.setLayoutY(960);
-//                    }
-//                    if (SpielerLinks.getLayoutY() < 0) {
-//                        MausMove = false;
-//                        SpielerLinks.setLayoutY(0);
-//                    }
-//                    if (MausMove) {
-//                        SpielerLinks.setLayoutY(event.getY() - 60);
-//
-//                    }
-////                    movingBox.setLayoutY(event.getY());
-////                    movingBox.setLayoutX(event.getX());
-//                }
-//        );
-    }
-
     public void OnePlayer() {
         Timer timer2 = new Timer();
         timer2.scheduleAtFixedRate(new TimerTask() {
@@ -658,7 +635,7 @@ public class Controller {
 
                     IstZulaessigAutoMove2 = true;
 
-                    if (SpielerRechts.getLayoutY() > 960) {
+                    if (SpielerRechts.getLayoutY() > 800) {
                         auswahlAutoMove3 = 1;
                         IstZulaessigAutoMove2 = false;
                     }
@@ -667,8 +644,8 @@ public class Controller {
                         IstZulaessigAutoMove2 = false;
                     }
 
-                    if (movingBox.getLayoutX() > 1500 && richtungX == 0.01) {
-                        if (movingBox.getLayoutX() > 350 && richtungX == 0.01) {
+                    if (movingBox.getLayoutX() > 750 && richtungX == 0.01) {
+                        if (movingBox.getLayoutX() > 750 && richtungX == 0.01) {
                             if (IstZulaessigAutoMove2) {
                                 auswahlAutoMove3 = 3;
                             }
@@ -744,8 +721,8 @@ public class Controller {
                             case 1:
                                 punkteLinks++;
                                 Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-                                movingBox.setLayoutX(960);
-                                movingBox.setLayoutY(540);
+                                movingBox.setLayoutX(500);
+                                movingBox.setLayoutY(350);
                                 //richtnungY = getRandomNumberInRange(-2, -1);
                                 richtungX *= -1;
                                 break;
@@ -753,8 +730,8 @@ public class Controller {
                                 //System.out.println("Links");
                                 punkteRechts++;
                                 Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-                                movingBox.setLayoutX(960);
-                                movingBox.setLayoutY(540);
+                                movingBox.setLayoutX(500);
+                                movingBox.setLayoutY(350);
                                 richtungX *= -1;
                                 //richtnungY = getRandomNumberInRange(1, 2);
                                 break;
@@ -993,6 +970,7 @@ public class Controller {
                             "PIMPMY",
                             "Numb"
                     );
+
             ComboBoxMusik.setItems(options);
             ComboBoxMusik.setVisible(true);
             System.out.println("");
@@ -1117,8 +1095,8 @@ public class Controller {
         Stage window = main1.getS1();
         window.setScene(scene2);
         window.show();
-        window.setFullScreenExitHint("");
-        window.setFullScreen(true);
+        //window.setFullScreenExitHint("");
+        //window.setFullScreen(true);
         try {
             videoPlayer.stop();
             mediaPlayer.stop();
@@ -1133,9 +1111,11 @@ public class Controller {
 
         Stage window = main1.getS1();
         window.setScene(scene3);
-        window.setFullScreenExitHint("");
         window.show();
-        window.setFullScreen(true);
+
+
+        //window.setFullScreenExitHint("");
+        //window.setFullScreen(true);
 
         scene3.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.W) {
@@ -1151,7 +1131,6 @@ public class Controller {
                 setD(true);
             }
         });
-
         scene3.setOnKeyReleased(event -> {
 
             if (event.getCode() == KeyCode.W)
@@ -1166,7 +1145,6 @@ public class Controller {
         });
         SchleifeTasteGedrückt();
     }
-
 
     public void Exit() {
         System.exit(0);
@@ -1216,7 +1194,7 @@ public class Controller {
                 arr2[x][y].setLayoutY(20 + yWert2);
                 arr2[x][y].setStyle("-fx-background-color: #35c49e;");
                 arr2[x][y].setOpacity(0.40);
-                arr2[x][y].setText("Buh");
+                arr2[x][y].setText("");
                 arr2[x][y].setFont(new Font(10));
                 String felder = "Zeile " + (x + 1) + " Spalte " + (y + 1) + " (Index[" + x + "][" + y + "]) Feld " + i;
                 arr2[x][y].setId(felder);
@@ -1381,88 +1359,6 @@ public class Controller {
         }, 0, 20);
     }
 
-
-    @Override
-    public String toString() {
-        return "Controller{" +
-                "hit1=" + hit1 +
-                ", vid1=" + vid1 +
-                ", mediaPlayer=" + mediaPlayer +
-                ", mediaPlayer2=" + mediaPlayer2 +
-                ", mediaPlayer3=" + mediaPlayer3 +
-                ", oof=" + oof +
-                ", videoPlayer=" + videoPlayer +
-
-                ", i=" + i +
-
-                ", richtungX=" + richtungX +
-                ", richtnungY=" + richtnungY +
-                ", bewegungx=" + bewegungx +
-                ", DeusRichtungX=" + DeusRichtungX +
-                ", DeusRichtungY=" + DeusRichtungY +
-                ", Deusbewegungx=" + Deusbewegungx +
-                ", auswahlAutoMove2=" + auswahlAutoMove2 +
-                ", auswahlAutoMove3=" + auswahlAutoMove3 +
-                ", punkteRechts=" + punkteRechts +
-                ", punkteLinks=" + punkteLinks +
-
-                ", start=" + start +
-                ", start2=" + start2 +
-
-                ", musikgeladen=" + musikgeladen +
-                ", IstZulaessigAutoMove2=" + IstZulaessigAutoMove2 +
-                ", WallBugFixMK1=" + WallBugFixMK1 +
-                ", main1=" + main1 +
-                ", windowMain=" + windowMain +
-                ", arr1=" + Arrays.toString(arr1) +
-                ", arrayListPane=" + arrayListPane +
-                ", xBackgound=" + xBackgound +
-                ", yBackgound=" + yBackgound +
-                ", multipikatorBackground=" + multipikatorBackground +
-                ", PaneVisibility=" + PaneVisibility +
-                ", jaNeinKP=" + jaNeinKP +
-                ", zähler=" + zähler +
-                ", arr2=" + Arrays.toString(arr2) +
-                ", arrayListLabel=" + arrayListLabel +
-                ", buttonumbennenung=" + buttonumbennenung +
-                ", w=" + w +
-                ", s=" + s +
-                ", a=" + a +
-                ", d=" + d +
-                ", x=" + x +
-                ", y=" + y +
-                ", x2=" + x2 +
-                ", y2=" + y2 +
-                ", scene3=" + scene3 +
-                ", ButtonSGS=" + ButtonSGS +
-                ", ButtonSGP=" + ButtonSGP +
-                ", ButtonPGP=" + ButtonPGP +
-                ", movingBox=" + movingBox +
-                ", MainAnchorPane=" + MainAnchorPane +
-
-                ", Label2=" + Label2 +
-                ", paneaBackground=" + paneaBackground +
-                ", InfoLabel=" + InfoLabel +
-                ", Label1Rechts=" + Label1Rechts +
-                ", Label3Links=" + Label3Links +
-                ", Label4Unten=" + Label4Unten +
-                ", Label5Top=" + Label5Top +
-                ", SpielerRechts=" + SpielerRechts +
-                ", SpielerLinks=" + SpielerLinks +
-                ", DeusVult=" + DeusVult +
-                ", volume=" + volume +
-                ", ComboBoxMusik=" + ComboBoxMusik +
-                ", Button2=" + Button2 +
-                ", StartButton=" + StartButton +
-                ", LauterLeiserSlider=" + LauterLeiserSlider +
-                ", MediaView1=" + MediaView1 +
-                ", Button3=" + Button3 +
-                ", AttLabel=" + AttLabel +
-                '}';
-    }
-
-//get Set Not Needed
-
     public boolean isW() {
         return w;
     }
@@ -1479,468 +1375,12 @@ public class Controller {
         this.s = s;
     }
 
-    public ArrayList<Media> getHit1() {
-        return hit1;
-    }
-
-    public void setHit1(ArrayList<Media> hit1) {
-        this.hit1 = hit1;
-    }
-
-    public ArrayList<Media> getVid1() {
-        return vid1;
-    }
-
-    public void setVid1(ArrayList<Media> vid1) {
-        this.vid1 = vid1;
-    }
-
-    public MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
-    }
-
-    public void setMediaPlayer(MediaPlayer mediaPlayer) {
-        this.mediaPlayer = mediaPlayer;
-    }
-
-    public MediaPlayer getMediaPlayer2() {
-        return mediaPlayer2;
-    }
-
-    public void setMediaPlayer2(MediaPlayer mediaPlayer2) {
-        this.mediaPlayer2 = mediaPlayer2;
-    }
-
-    public MediaPlayer getMediaPlayer3() {
-        return mediaPlayer3;
-    }
-
-    public void setMediaPlayer3(MediaPlayer mediaPlayer3) {
-        this.mediaPlayer3 = mediaPlayer3;
-    }
-
-    public MediaPlayer getOof() {
-        return oof;
-    }
-
-    public void setOof(MediaPlayer oof) {
-        this.oof = oof;
-    }
-
-    public MediaPlayer getVideoPlayer() {
-        return videoPlayer;
-    }
-
-    public void setVideoPlayer(MediaPlayer videoPlayer) {
-        this.videoPlayer = videoPlayer;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
-    }
-
-    public double getRichtungX() {
-        return richtungX;
-    }
-
-    public void setRichtungX(double richtungX) {
-        this.richtungX = richtungX;
-    }
-
-    public double getRichtnungY() {
-        return richtnungY;
-    }
-
-    public void setRichtnungY(double richtnungY) {
-        this.richtnungY = richtnungY;
-    }
-
-    public double getBewegungx() {
-        return bewegungx;
-    }
-
-    public void setBewegungx(double bewegungx) {
-        this.bewegungx = bewegungx;
-    }
-
-    public double getDeusRichtungX() {
-        return DeusRichtungX;
-    }
-
-    public void setDeusRichtungX(double deusRichtungX) {
-        DeusRichtungX = deusRichtungX;
-    }
-
-    public double getDeusRichtungY() {
-        return DeusRichtungY;
-    }
-
-    public void setDeusRichtungY(double deusRichtungY) {
-        DeusRichtungY = deusRichtungY;
-    }
-
-    public double getDeusbewegungx() {
-        return Deusbewegungx;
-    }
-
-    public void setDeusbewegungx(double deusbewegungx) {
-        Deusbewegungx = deusbewegungx;
-    }
-
-    public int getAuswahlAutoMove2() {
-        return auswahlAutoMove2;
-    }
-
-    public void setAuswahlAutoMove2(int auswahlAutoMove2) {
-        this.auswahlAutoMove2 = auswahlAutoMove2;
-    }
-
-    public int getAuswahlAutoMove3() {
-        return auswahlAutoMove3;
-    }
-
-    public void setAuswahlAutoMove3(int auswahlAutoMove3) {
-        this.auswahlAutoMove3 = auswahlAutoMove3;
-    }
-
-    public int getPunkteRechts() {
-        return punkteRechts;
-    }
-
-    public void setPunkteRechts(int punkteRechts) {
-        this.punkteRechts = punkteRechts;
-    }
-
-    public int getPunkteLinks() {
-        return punkteLinks;
-    }
-
-    public void setPunkteLinks(int punkteLinks) {
-        this.punkteLinks = punkteLinks;
-    }
-
-    public boolean isStart() {
-        return start;
-    }
-
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
-    public boolean isStart2() {
-        return start2;
-    }
-
-    public void setStart2(boolean start2) {
-        this.start2 = start2;
-    }
-
-    public boolean isMusikgeladen() {
-        return musikgeladen;
-    }
-
-    public void setMusikgeladen(boolean musikgeladen) {
-        this.musikgeladen = musikgeladen;
-    }
-
-    public boolean isIstZulaessigAutoMove2() {
-        return IstZulaessigAutoMove2;
-    }
-
-    public void setIstZulaessigAutoMove2(boolean istZulaessigAutoMove2) {
-        IstZulaessigAutoMove2 = istZulaessigAutoMove2;
-    }
-
     public boolean isWallBugFixMK1() {
         return WallBugFixMK1;
     }
 
     public void setWallBugFixMK1(boolean wallBugFixMK1) {
         WallBugFixMK1 = wallBugFixMK1;
-    }
-
-    public Main getMain1() {
-        return main1;
-    }
-
-    public void setMain1(Main main1) {
-        this.main1 = main1;
-    }
-
-    public Stage getWindowMain() {
-        return windowMain;
-    }
-
-    public void setWindowMain(Stage windowMain) {
-        this.windowMain = windowMain;
-    }
-
-    public Pane[][] getArr1() {
-        return arr1;
-    }
-
-    public void setArr1(Pane[][] arr1) {
-        this.arr1 = arr1;
-    }
-
-    public ArrayList<Pane> getArrayListPane() {
-        return arrayListPane;
-    }
-
-    public void setArrayListPane(ArrayList<Pane> arrayListPane) {
-        this.arrayListPane = arrayListPane;
-    }
-
-    public int getxBackgound() {
-        return xBackgound;
-    }
-
-    public void setxBackgound(int xBackgound) {
-        this.xBackgound = xBackgound;
-    }
-
-    public int getyBackgound() {
-        return yBackgound;
-    }
-
-    public void setyBackgound(int yBackgound) {
-        this.yBackgound = yBackgound;
-    }
-
-    public int getMultipikatorBackground() {
-        return multipikatorBackground;
-    }
-
-    public void setMultipikatorBackground(int multipikatorBackground) {
-        this.multipikatorBackground = multipikatorBackground;
-    }
-
-    public boolean isPaneVisibility() {
-        return PaneVisibility;
-    }
-
-    public void setPaneVisibility(boolean paneVisibility) {
-        PaneVisibility = paneVisibility;
-    }
-
-    public boolean isJaNeinKP() {
-        return jaNeinKP;
-    }
-
-    public void setJaNeinKP(boolean jaNeinKP) {
-        this.jaNeinKP = jaNeinKP;
-    }
-
-    public int getZähler() {
-        return zähler;
-    }
-
-    public void setZähler(int zähler) {
-        this.zähler = zähler;
-    }
-
-    public Label[][] getArr2() {
-        return arr2;
-    }
-
-    public void setArr2(Label[][] arr2) {
-        this.arr2 = arr2;
-    }
-
-    public ArrayList<Label> getArrayListLabel() {
-        return arrayListLabel;
-    }
-
-    public void setArrayListLabel(ArrayList<Label> arrayListLabel) {
-        this.arrayListLabel = arrayListLabel;
-    }
-
-    public static int getAuswahl() {
-        return auswahl;
-    }
-
-    public static void setAuswahl(int auswahl) {
-        Controller.auswahl = auswahl;
-    }
-
-    public boolean isButtonumbennenung() {
-        return buttonumbennenung;
-    }
-
-    public void setButtonumbennenung(boolean buttonumbennenung) {
-        this.buttonumbennenung = buttonumbennenung;
-    }
-
-    public Button getButtonSGS() {
-        return ButtonSGS;
-    }
-
-    public void setButtonSGS(Button buttonSGS) {
-        ButtonSGS = buttonSGS;
-    }
-
-    public Button getButtonSGP() {
-        return ButtonSGP;
-    }
-
-    public void setButtonSGP(Button buttonSGP) {
-        ButtonSGP = buttonSGP;
-    }
-
-    public Button getButtonPGP() {
-        return ButtonPGP;
-    }
-
-    public void setButtonPGP(Button buttonPGP) {
-        ButtonPGP = buttonPGP;
-    }
-
-    public Label getMovingBox() {
-        return movingBox;
-    }
-
-    public void setMovingBox(Label movingBox) {
-        this.movingBox = movingBox;
-    }
-
-    public AnchorPane getMainAnchorPane() {
-        return MainAnchorPane;
-    }
-
-    public void setMainAnchorPane(AnchorPane mainAnchorPane) {
-        MainAnchorPane = mainAnchorPane;
-    }
-
-    public Label getLabel2() {
-        return Label2;
-    }
-
-    public void setLabel2(Label label2) {
-        Label2 = label2;
-    }
-
-    public Pane getPaneaBackground() {
-        return paneaBackground;
-    }
-
-    public void setPaneaBackground(Pane paneaBackground) {
-        this.paneaBackground = paneaBackground;
-    }
-
-    public Label getInfoLabel() {
-        return InfoLabel;
-    }
-
-    public void setInfoLabel(Label infoLabel) {
-        InfoLabel = infoLabel;
-    }
-
-    public Label getLabel1Rechts() {
-        return Label1Rechts;
-    }
-
-    public void setLabel1Rechts(Label label1Rechts) {
-        Label1Rechts = label1Rechts;
-    }
-
-    public Label getLabel3Links() {
-        return Label3Links;
-    }
-
-    public void setLabel3Links(Label label3Links) {
-        Label3Links = label3Links;
-    }
-
-    public Label getLabel4Unten() {
-        return Label4Unten;
-    }
-
-    public void setLabel4Unten(Label label4Unten) {
-        Label4Unten = label4Unten;
-    }
-
-    public Label getLabel5Top() {
-        return Label5Top;
-    }
-
-    public void setLabel5Top(Label label5Top) {
-        Label5Top = label5Top;
-    }
-
-    public ImageView getDeusVult() {
-        return DeusVult;
-    }
-
-    public void setDeusVult(ImageView deusVult) {
-        DeusVult = deusVult;
-    }
-
-    public CheckBox getVolume() {
-        return volume;
-    }
-
-    public void setVolume(CheckBox volume) {
-        this.volume = volume;
-    }
-
-    public ComboBox getComboBoxMusik() {
-        return ComboBoxMusik;
-    }
-
-    public void setComboBoxMusik(ComboBox comboBoxMusik) {
-        ComboBoxMusik = comboBoxMusik;
-    }
-
-    public Button getButton2() {
-        return Button2;
-    }
-
-    public void setButton2(Button button2) {
-        Button2 = button2;
-    }
-
-    public Button getStartButton() {
-        return StartButton;
-    }
-
-    public void setStartButton(Button startButton) {
-        StartButton = startButton;
-    }
-
-    public Slider getLauterLeiserSlider() {
-        return LauterLeiserSlider;
-    }
-
-    public void setLauterLeiserSlider(Slider lauterLeiserSlider) {
-        LauterLeiserSlider = lauterLeiserSlider;
-    }
-
-    public MediaView getMediaView1() {
-        return MediaView1;
-    }
-
-    public void setMediaView1(MediaView mediaView1) {
-        MediaView1 = mediaView1;
-    }
-
-    public Button getButton3() {
-        return Button3;
-    }
-
-    public void setButton3(Button button3) {
-        Button3 = button3;
-    }
-
-    public Label getAttLabel() {
-        return AttLabel;
-    }
-
-    public void setAttLabel(Label attLabel) {
-        AttLabel = attLabel;
     }
 
     public void setTastaturbewegung(boolean tastaturbewegung) {
@@ -1961,57 +1401,5 @@ public class Controller {
 
     public void setD(boolean d) {
         this.d = d;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public static Label getMove() {
-        return Move;
-    }
-
-    public static void setMove(Label move) {
-        Move = move;
-    }
-
-    public static boolean isTastaturbewegung() {
-        return Tastaturbewegung;
-    }
-
-    public Scene getScene3() {
-        return scene3;
-    }
-
-    public void setScene3(Scene scene3) {
-        this.scene3 = scene3;
-    }
-
-    public Label getSpielerRechts() {
-        return SpielerRechts;
-    }
-
-    public void setSpielerRechts(Label spielerRechts) {
-        SpielerRechts = spielerRechts;
-    }
-
-    public Label getSpielerLinks() {
-        return SpielerLinks;
-    }
-
-    public void setSpielerLinks(Label spielerLinks) {
-        SpielerLinks = spielerLinks;
     }
 }

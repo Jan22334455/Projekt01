@@ -22,12 +22,12 @@ public class Main extends Application {
 //        primaryStage.setMaxWidth(750);
         primaryStage.setMinHeight(500);
         primaryStage.setMinWidth(750);
-        sc = new Scene(root, 750, 500);
+        sc = new Scene(root, 1000, 700);
         primaryStage.setScene(sc);
         primaryStage.requestFocus();
         primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setFullScreenExitHint("");
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.show();
 
 
