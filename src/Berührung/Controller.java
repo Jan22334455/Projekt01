@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -60,15 +61,12 @@ public class Controller {
     private int auswahlAutoMove3 = 0;   //gebraucht damit dieser nicht über den rand gehen darf.
     private boolean IstZulaessigAutoMove2 = true;
     private boolean WallBugFixMK1 = true;
-    private int punkteRechts = 0;   //Punkte Rechts gewinnbringende Punkte
-    private int punkteLinks = 0;    //Punkte Links ""
-    
+    private static int punkteRechts = 0;   //Punkte Rechts gewinnbringende Punkte
+    private static int punkteLinks = 0;    //Punkte Links ""
+
     private boolean start = false; //Wiederholungs blocker damit der Start button nicht immer wieder das Spiel neu startet bzw. Schleifen und Thread mehrfach angesprochen werden
     private boolean start2 = false;
 
-    
-    
-    
 
     //MK1
 
@@ -182,14 +180,26 @@ public class Controller {
     @FXML
     Label AttLabel;
 
+    @FXML
+    ImageView EndScreen;
+
     //Start Methoden
 
     public void Laden() {
         if (!start2) {
             VideoLaden();
             MusikLaden();
-            Media2();
+
             BackgroundMovementLoad();
+
+            Timer t1 = new Timer();
+            t1.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Media2();
+                    System.out.println("Neustart");
+                }
+            }, 0, 70000);
 
             start2 = true;
         }
@@ -214,16 +224,16 @@ public class Controller {
             };
             Thread WallBugFix = new Thread(runnable1);
             WallBugFix.start();
-
         }
         switch (auswahl) {
             case 1: // Script gegen Script
                 if (!start) {
                     //MusikPrank();                         //Löschen TODO
                     //BackGroundMovementRandome();
-                    BackGroundMovementRandomeLabel();
+                    //BackGroundMovementRandomeLabel();
                     AutoMove2();
                     movePingPong();
+                    DeusVult();
 
 
                     start = true;
@@ -292,7 +302,6 @@ public class Controller {
                             });
                         }
                     }, 0, 4);
-
 
 
                     start = true;
@@ -497,7 +506,6 @@ public class Controller {
     }
 
     public void SchleifeTasteGedrückt() throws IOException {
-
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -515,7 +523,6 @@ public class Controller {
                             y += 2;
                         }
                     }
-
                     if (isA()) { // Up
                         if (Tastaturbewegung2Spieler && !(Move2.getLayoutY() < 0)) {
                             Move2.relocate(x2, y2);
@@ -529,100 +536,24 @@ public class Controller {
                         }
                     }
 
+                    if (punkteRechts >= 2){
+                        try {
+                            System.out.println("Spieler Rechts");
+                            //EndSceneSwitch(1);
+                        }catch (Exception ex){};
+                        timer.cancel();
+                    }
+                    if (punkteLinks >= 2){
+                        try {
+                            System.out.println("Spieler Links");
+                            //EndSceneSwitch(0);
+                        }catch (Exception ex){};
+                        timer.cancel();
+                    }
+
                 });
             }
         }, 0, 4);
-
-    }
-
-    public void AutoMove3() {
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    IstZulaessigAutoMove2 = true;
-                    //Label2.setText(SpielerLinks.getLayoutY() + " :Y");
-
-                    if (SpielerLinks.getLayoutY() > 960) {
-                        auswahlAutoMove2 = 1;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (SpielerLinks.getLayoutY() < 0) {
-                        auswahlAutoMove2 = 2;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (movingBox.getLayoutX() < 300 && richtungX == -1) {
-                        if (IstZulaessigAutoMove2) {
-                            auswahlAutoMove2 = 3;
-                        }
-                    }
-
-                    switch (auswahlAutoMove2) {
-                        case 1:
-                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 2);
-                            auswahlAutoMove2 = 0;
-                            break;
-                        case 2:
-                            SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 2);
-                            auswahlAutoMove2 = 0;
-                            break;
-                        case 3:
-                            if (movingBox.getLayoutY() - 50 < SpielerLinks.getLayoutY()) {
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 1);
-                                auswahlAutoMove2 = 0;
-                            } else {
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 1);
-                                auswahlAutoMove2 = 0;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-
-                    IstZulaessigAutoMove2 = true;
-
-                    if (SpielerRechts.getLayoutY() > 960) {
-                        auswahlAutoMove3 = 1;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (SpielerRechts.getLayoutY() < 0) {
-                        auswahlAutoMove3 = 2;
-                        IstZulaessigAutoMove2 = false;
-                    }
-                    if (movingBox.getLayoutX() > 1620 && richtungX == 1) {
-
-                        if (movingBox.getLayoutX() > 350 && richtungX == 1) {
-                            if (IstZulaessigAutoMove2) {
-                                auswahlAutoMove3 = 3;
-                            }
-                        }
-
-                        switch (auswahlAutoMove3) {
-                            case 1:
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                                auswahlAutoMove3 = 0;
-                                break;
-                            case 2:
-                                SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                                auswahlAutoMove3 = 0;
-                                break;
-                            case 3:
-                                if (movingBox.getLayoutY() - 50 < SpielerRechts.getLayoutY()) {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
-                                    auswahlAutoMove3 = 0;
-                                } else {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 2);
-                                    auswahlAutoMove3 = 0;
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
-            }
-        }, 0, 1);
     }
 
     public void OnePlayer() {
@@ -631,7 +562,6 @@ public class Controller {
             public void run() {
                 Platform.runLater(() -> {
                     SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
-
 
                     IstZulaessigAutoMove2 = true;
 
@@ -682,8 +612,7 @@ public class Controller {
 
     public void movePingPong() {
         //Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-        AttLabel.setText(toString());
-
+        //AttLabel.setText(toString());
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -1077,10 +1006,13 @@ public class Controller {
         Runnable mediaRun = new Runnable() {
             @Override
             public void run() {
+
                 videoPlayer = new MediaPlayer(vid1.get(1));
                 MediaView1.setMediaPlayer(videoPlayer);
                 videoPlayer.setMute(true);
                 videoPlayer.play();
+                //System.out.println(videoPlayer.getTotalDuration().toMillis());
+
             }
         };
         Thread mediaThread = new Thread(mediaRun);
@@ -1144,6 +1076,19 @@ public class Controller {
 
         });
         SchleifeTasteGedrückt();
+    }
+
+    public void EndSceneSwitch() throws Exception {
+        ArrayList<Image> iv1 = new ArrayList<Image>();
+        iv1.add(new Image(getClass().getResource("win.png").toString()));
+        iv1.add(new Image(getClass().getResource("lose.png").toString()));
+
+        Parent endFXML = FXMLLoader.load(getClass().getResource(""));
+        Scene endscene = new Scene(endFXML);
+        Stage endStage = new Stage();
+        endStage.setScene(endscene);
+        endStage.show();
+        EndScreen.setImage(iv1.get(0));
     }
 
     public void Exit() {
@@ -1302,6 +1247,7 @@ public class Controller {
 
     public void DeusVult() {
         DeusVult.setRotationAxis(Rotate.Y_AXIS);
+        DeusVult.setVisible(true);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -1359,47 +1305,49 @@ public class Controller {
         }, 0, 20);
     }
 
-    public boolean isW() {
+    //Get Set
+
+    private boolean isW() {
         return w;
     }
 
-    public void setW(boolean w) {
+    private void setW(boolean w) {
         this.w = w;
     }
 
-    public boolean isS() {
+    private boolean isS() {
         return s;
     }
 
-    public void setS(boolean s) {
+    private void setS(boolean s) {
         this.s = s;
     }
 
-    public boolean isWallBugFixMK1() {
+    private boolean isWallBugFixMK1() {
         return WallBugFixMK1;
     }
 
-    public void setWallBugFixMK1(boolean wallBugFixMK1) {
+    private void setWallBugFixMK1(boolean wallBugFixMK1) {
         WallBugFixMK1 = wallBugFixMK1;
     }
 
-    public void setTastaturbewegung(boolean tastaturbewegung) {
+    private void setTastaturbewegung(boolean tastaturbewegung) {
         Tastaturbewegung = tastaturbewegung;
     }
 
-    public boolean isA() {
+    private boolean isA() {
         return a;
     }
 
-    public void setA(boolean a) {
+    private void setA(boolean a) {
         this.a = a;
     }
 
-    public boolean isD() {
+    private boolean isD() {
         return d;
     }
 
-    public void setD(boolean d) {
+    private void setD(boolean d) {
         this.d = d;
     }
 }

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -22,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
 
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" prefHeight="700.0" prefWidth="1000.0">
@@ -57,6 +49,7 @@
                </font></Label>
             <Pane layoutX="31.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" />
             <Slider fx:id="LauterLeiserSlider" layoutX="971.0" layoutY="14.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" prefHeight="140.0" prefWidth="5.0" value="0.1" />
+            <Button layoutX="131.0" layoutY="16.0" mnemonicParsing="false" onAction="#EndSceneSwitch" text="Button" />
 
          </children></Pane>
       <Label fx:id="Label1Rechts" layoutX="1000.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />
