@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -21,18 +20,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
 public class Controller {
-    //MediaPlayer bzw. Musikplayer + Listen mit gespeicherten Titeln
+    private ArrayList<Image> iv1 = new ArrayList<Image>();
     private ArrayList<Media> hit1 = new ArrayList<Media>();
     private ArrayList<Media> vid1 = new ArrayList<Media>();
     private MediaPlayer mediaPlayer;
@@ -40,36 +36,25 @@ public class Controller {
     private MediaPlayer mediaPlayer3;
     private MediaPlayer oof;
     private MediaPlayer videoPlayer;
-
     private boolean musikgeladen = false; //Musik Playlist geladen oder nicht
-
     private int i = 0;                  //Wird für die Generierung von Panes gebraucht BackgroundMovementLoad();
 
     //MoveBox
     private double richtungX = -0.01; //Eventuell noch ändern unten
     private double richtnungY = 0.01;
-
     private double bewegungx = 50;      //Geschwindigkeit
 
     //Weiterer sich bewegender Block unbeeinflusst von Spielern
-    private double DeusRichtungX = -1;
-    private double DeusRichtungY = 1;
-    private double Deusbewegungx = 5;
-
-
     private int auswahlAutoMove2 = 0;   //Wird für die Überprüfung von der Spieler Position 
     private int auswahlAutoMove3 = 0;   //gebraucht damit dieser nicht über den rand gehen darf.
     private boolean IstZulaessigAutoMove2 = true;
     private boolean WallBugFixMK1 = true;
     private static int punkteRechts = 0;   //Punkte Rechts gewinnbringende Punkte
     private static int punkteLinks = 0;    //Punkte Links ""
-
     private boolean start = false; //Wiederholungs blocker damit der Start button nicht immer wieder das Spiel neu startet bzw. Schleifen und Thread mehrfach angesprochen werden
     private boolean start2 = false;
 
-
     //MK1
-
     private Main main1; // Ermöglicht stage wechsel
     private Stage windowMain;   //""
 
@@ -98,18 +83,17 @@ public class Controller {
     private boolean s = false;
     private boolean a = false; // Eigentlich O
     private boolean d = false; // Eigentlich L
-
     private double x; // Move  Position des Beweglichen teils
     private double y = 290;
-
     private double x2 = 985; // Move2 Position des 2 Beweglichen teils
     private double y2 = 290;
-
     private static Label Move = new Label();    //Anlegen der Beweglichen teile
     private static Label Move2 = new Label();
-
     private static boolean Tastaturbewegung = false; //Überprüfung ob 2 oder 1 lebender Spieler
     private static boolean Tastaturbewegung2Spieler = false;
+
+    //Sieg
+    private static boolean EndSieg = true;
 
     //Scene Berührung.fxml
     private Scene scene3;
@@ -121,19 +105,16 @@ public class Controller {
     Button ButtonSGP;
     @FXML
     Button ButtonPGP;
-
     @FXML
     Label movingBox;    // SpielBall
     @FXML
     AnchorPane MainAnchorPane; //HauptPane
-
     @FXML
     Label Label2; // Punkte anzeige + Geschwindigkeit
     @FXML
     Pane paneaBackground; // Packgroundpane
     @FXML
     Label InfoLabel;
-
     //Ränder Wiederstände Kollision mit dem Ball
     @FXML
     Label Label1Rechts;
@@ -143,32 +124,25 @@ public class Controller {
     Label Label4Unten;
     @FXML
     Label Label5Top;
-
     //Spieler
     @FXML
     Label SpielerRechts;
     @FXML
     Label SpielerLinks;
-
     //Image View Deko
     @FXML
     ImageView DeusVult;
-
     //Volume Musik / Video
     @FXML
     CheckBox volume;
-
     //Musik auswahl
     @FXML
     ComboBox ComboBoxMusik;
-
     @FXML
     Button Button2;
-
     //Start button
     @FXML
     Button StartButton;
-
     //Lautstärke regler
     @FXML
     Slider LauterLeiserSlider;
@@ -179,9 +153,11 @@ public class Controller {
     Button Button3;
     @FXML
     Label AttLabel;
-
+    //end scene
     @FXML
-    ImageView EndScreen;
+    ImageView endScreen;
+    @FXML
+    Button retry;
 
     //Start Methoden
 
@@ -189,18 +165,15 @@ public class Controller {
         if (!start2) {
             VideoLaden();
             MusikLaden();
-
             BackgroundMovementLoad();
-
             Timer t1 = new Timer();
             t1.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     Media2();
-                    System.out.println("Neustart");
+                    //System.out.println("Neustart");
                 }
             }, 0, 70000);
-
             start2 = true;
         }
     }
@@ -228,18 +201,12 @@ public class Controller {
         switch (auswahl) {
             case 1: // Script gegen Script
                 if (!start) {
-                    //MusikPrank();                         //Löschen TODO
-                    //BackGroundMovementRandome();
-                    //BackGroundMovementRandomeLabel();
                     AutoMove2();
                     movePingPong();
-                    DeusVult();
-
-
                     start = true;
                 } else {
-                    movingBox.setLayoutY(960);
-                    movingBox.setLayoutX(540);
+                    movingBox.setLayoutY(350);
+                    movingBox.setLayoutX(500);
                 }
                 break;
             case 2: //Script gegen Player
@@ -247,19 +214,15 @@ public class Controller {
                 if (!start) {
                     System.out.println("SpielModus 2");
                     setTastaturbewegung(true);
-
                     Move.relocate(SpielerLinks.getLayoutX(), SpielerLinks.getLayoutY());
-                    //Move.setText("Move");
                     Move.setMaxWidth(SpielerLinks.getMaxWidth());
                     Move.setMaxHeight(SpielerLinks.getMaxHeight());
                     Move.setMinWidth(SpielerLinks.getMinWidth());
                     Move.setMinHeight(SpielerLinks.getMinHeight());
-
                     MainAnchorPane.getChildren().add(Move);
-
-
                     OnePlayer();
                     movePingPong();
+                    AttLabel.setText("Links_ " + SpielerLinks + " Rechts_ " + SpielerRechts);
                     start = true;
                 } else {
                     movingBox.setLayoutY(500);
@@ -273,24 +236,17 @@ public class Controller {
                     Tastaturbewegung2Spieler = true;
                     Tastaturbewegung = true;
                     Move.relocate(SpielerLinks.getLayoutX(), SpielerLinks.getLayoutY());
-                    //Move.setText("Move");
                     Move.setMaxWidth(SpielerLinks.getMaxWidth());
                     Move.setMaxHeight(SpielerLinks.getMaxHeight());
                     Move.setMinWidth(SpielerLinks.getMinWidth());
                     Move.setMinHeight(SpielerLinks.getMinHeight());
-
                     MainAnchorPane.getChildren().add(Move);
-
-
                     Move2.relocate(SpielerRechts.getLayoutX(), SpielerRechts.getLayoutY());
-                    //Move2.setText("Move2");
                     Move2.setMaxWidth(SpielerRechts.getMaxWidth());
                     Move2.setMaxHeight(SpielerRechts.getMaxHeight());
                     Move2.setMinWidth(SpielerRechts.getMinWidth());
                     Move2.setMinHeight(SpielerRechts.getMinHeight());
-
                     MainAnchorPane.getChildren().add(Move2);
-
                     movePingPong();
 
                     Timer timer = new Timer();
@@ -299,10 +255,30 @@ public class Controller {
                             Platform.runLater(() -> {
                                 SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
                                 SpielerRechts.relocate(Move2.getLayoutX(), Move2.getLayoutY());
+
+                                if (getPunkteRechts() >= 5) {
+                                    try {
+                                        //System.out.println("SceneWechsel");
+                                        EndSceneSwitch2P(1); //Lose
+                                    } catch (Exception ex) {
+                                    }
+                                    timer.cancel();
+                                }
+
+                                if (getPunkteLinks() >= 5) {
+                                    try {
+                                        //System.out.println("SceneWechsel");
+                                        EndSceneSwitch2P(0); //Win
+
+                                    } catch (Exception ex) {
+                                    }
+                                    timer.cancel();
+                                }
+
+
                             });
                         }
                     }, 0, 4);
-
 
                     start = true;
                 } else {
@@ -332,88 +308,8 @@ public class Controller {
         auswahl = übergabe;
     }
 
+
     //Bewegung Script und Maussteuerung
-
-    public void AutoMove() {
-        //RechterSpieler
-        if (!(movingBox.getLayoutY() == SpielerRechts.getLayoutY())) {
-            Timer timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-                    Platform.runLater(() -> {
-                        InfoLabel.setText(String.valueOf(SpielerLinks.getLayoutY()) + " " + String.valueOf(movingBox.getLayoutY()));
-
-                        if (SpielerRechts.getLayoutY() < SpielerRechts.getHeight() / 1.5) {
-
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 20);
-                        }
-                        if (SpielerRechts.getLayoutY() > MainAnchorPane.getHeight() - SpielerRechts.getHeight() / 1.5) {
-
-                            SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 20);
-                        }
-
-                        if (movingBox.getLayoutX() > 375 && richtungX == +1) {
-
-                            if (movingBox.getLayoutY() < SpielerRechts.getLayoutY()) {
-
-                                if (SpielerRechts.getLayoutY() > SpielerRechts.getHeight() / 2 && SpielerRechts.getLayoutY() < MainAnchorPane.getHeight() - SpielerRechts.getHeight() / 2) {
-
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - ((movingBox.getLayoutY() - 60) / 80));
-                                }
-
-                            } else {
-                                if (SpielerRechts.getLayoutY() > SpielerRechts.getHeight() / 1.5 && SpielerRechts.getLayoutY() < MainAnchorPane.getHeight() - SpielerRechts.getHeight() / 1.5) {
-
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + ((movingBox.getLayoutY() - 60) / 80));
-                                }
-                                if (SpielerRechts.getLayoutY() < SpielerRechts.getHeight() / 2) {
-
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 20);
-                                }
-                                if (SpielerRechts.getLayoutY() / 2 > MainAnchorPane.getHeight() - SpielerRechts.getHeight()) {
-
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 20);
-                                }
-                            }
-
-                        }
-
-                        if (movingBox.getLayoutX() < 375 && richtungX == -1) {
-
-                            if (movingBox.getLayoutY() < SpielerLinks.getLayoutY()) {
-
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - (movingBox.getLayoutY() / 80));//HIer
-
-                                if (SpielerLinks.getLayoutY() < 0) {
-
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 20);
-                                }
-                                if (SpielerLinks.getLayoutY() > 360) {
-
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 20);
-                                }
-
-                            } else {
-
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + (movingBox.getLayoutY() / 80));//Hier
-
-                                if (SpielerLinks.getLayoutY() < 0) {
-
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 20);
-                                }
-                                if (SpielerLinks.getLayoutY() / 2 > MainAnchorPane.getHeight() - SpielerLinks.getHeight()) {
-
-                                    SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 20);
-                                }
-                            }
-
-                        }
-
-                    });
-                }
-            }, 0, 1);
-        }
-    }
 
     public void AutoMove2() {
 
@@ -422,7 +318,6 @@ public class Controller {
             public void run() {
                 Platform.runLater(() -> {
                     IstZulaessigAutoMove2 = true;
-                    //Label2.setText(SpielerLinks.getLayoutY() + " :Y");
 
                     if (SpielerLinks.getLayoutY() > 800) {
                         auswahlAutoMove2 = 1;
@@ -461,7 +356,6 @@ public class Controller {
                     }
 
                     IstZulaessigAutoMove2 = true;
-
                     if (SpielerRechts.getLayoutY() > 800) {
                         auswahlAutoMove3 = 1;
                         IstZulaessigAutoMove2 = false;
@@ -471,13 +365,9 @@ public class Controller {
                         IstZulaessigAutoMove2 = false;
                     }
                     if (movingBox.getLayoutX() > 750 && richtungX == 0.01) {
-
-                        //if (movingBox.getLayoutX() > 350 && richtungX == 1) {
                         if (IstZulaessigAutoMove2) {
                             auswahlAutoMove3 = 3;
                         }
-                        //}
-
                         switch (auswahlAutoMove3) {
                             case 1:
                                 SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 2);
@@ -510,7 +400,6 @@ public class Controller {
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
-
                     if (isW()) {
                         if (Tastaturbewegung && !(Move.getLayoutY() < 0)) {
                             Move.relocate(x, y);
@@ -535,33 +424,41 @@ public class Controller {
                             y2 += 2;
                         }
                     }
-
-                    if (punkteRechts >= 2){
-                        try {
-                            System.out.println("Spieler Rechts");
-                            //EndSceneSwitch(1);
-                        }catch (Exception ex){};
-                        timer.cancel();
-                    }
-                    if (punkteLinks >= 2){
-                        try {
-                            System.out.println("Spieler Links");
-                            //EndSceneSwitch(0);
-                        }catch (Exception ex){};
-                        timer.cancel();
-                    }
-
                 });
             }
         }, 0, 4);
     }
 
     public void OnePlayer() {
+        setPunkteLinks(0);
+        setPunkteRechts(0);
         Timer timer2 = new Timer();
         timer2.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
                     SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
+                    Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
+                    if (EndSieg) {
+
+                        if (getPunkteRechts() >= 5) {
+                            try {
+                                //System.out.println("SceneWechsel");
+                                EndSceneSwitch(1); //Lose
+                            } catch (Exception ex) {
+                            }
+                            timer2.cancel();
+                        }
+
+                        if (getPunkteLinks() >= 5) {
+                            try {
+                                //System.out.println("SceneWechsel");
+                                EndSceneSwitch(0); //Win
+
+                            } catch (Exception ex) {
+                            }
+                            timer2.cancel();
+                        }
+                    }
 
                     IstZulaessigAutoMove2 = true;
 
@@ -618,7 +515,8 @@ public class Controller {
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
-                    AttLabel.setText(toString());
+                    //AttLabel.setText(String.valueOf(punkteRechts));
+
                     if (isWallBugFixMK1()) {
                         int tmp = 0;
                         if (collidesWith(movingBox, Label1Rechts)) {
@@ -648,21 +546,19 @@ public class Controller {
 
                         switch (tmp) {
                             case 1:
-                                punkteLinks++;
+                                setPunkteLinks(getPunkteLinks() + 1);
                                 Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
                                 movingBox.setLayoutX(500);
                                 movingBox.setLayoutY(350);
-                                //richtnungY = getRandomNumberInRange(-2, -1);
                                 richtungX *= -1;
                                 break;
                             case 2:
-                                //System.out.println("Links");
-                                punkteRechts++;
+                                int y = getPunkteLinks();
+                                setPunkteRechts(getPunkteRechts() + 1);
                                 Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
                                 movingBox.setLayoutX(500);
                                 movingBox.setLayoutY(350);
                                 richtungX *= -1;
-                                //richtnungY = getRandomNumberInRange(1, 2);
                                 break;
                             case 3:
                                 //Unten
@@ -697,8 +593,6 @@ public class Controller {
                                 //oof.play();
                                 break;
                             default:
-//                                int Chaos = getRandomNumberInRange(1, 2);
-//                                int Chaos2 = getRandomNumberInRange(1, 2);
                                 movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                                 movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
                                 break;
@@ -710,114 +604,8 @@ public class Controller {
         }, 0, 1);
     }
 
-    public void movePingPong2(Label beweglichesTeil) {
-        //Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-
-                    int tmp = 0;
-                    if (collidesWith(beweglichesTeil, Label1Rechts)) {
-                        tmp = 1;
-                    }
-                    if (collidesWith(beweglichesTeil, Label3Links)) {
-                        tmp = 2;
-                    }
-                    if (collidesWith(beweglichesTeil, Label4Unten)) {
-                        tmp = 3;
-                    }
-                    if (collidesWith(beweglichesTeil, Label5Top)) {
-                        tmp = 4;
-                    }
-                    if (collidesWith(beweglichesTeil, SpielerLinks)) {
-                        tmp = 5;
-                    }
-                    if (collidesWith(beweglichesTeil, SpielerRechts)) {
-                        tmp = 6;
-                    }
-
-                    switch (tmp) {
-                        case 1:
-                            richtnungY *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY));
-//                            beweglichesTeil.setLayoutX(960);
-//                            beweglichesTeil.setLayoutY(540);
-
-                            richtungX *= -1;
-                            break;
-                        case 2:
-                            richtnungY *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY));
-//                            beweglichesTeil.setLayoutX(960);
-//                            beweglichesTeil.setLayoutY(540);
-                            richtungX *= -1;
-
-                            break;
-                        case 3:
-                            //Unten
-                            richtnungY *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX)); // + 10
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY)); // - 10
-                            break;
-                        case 4:
-                            //Oben
-                            richtnungY *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY));
-                            break;
-                        case 5:
-                            richtungX *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY));
-                            try {
-                                oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
-                            } catch (Exception ex) {
-                            }
-                            //oof.play();
-                            break;
-                        case 6:
-                            richtungX *= -1;
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY));
-                            try {
-                                oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
-                            } catch (Exception ex) {
-                            }
-                            //oof.play();
-                            break;
-                        default:
-                            int Chaos = getRandomNumberInRange(1, 2);
-                            int Chaos2 = getRandomNumberInRange(1, 2);
-                            beweglichesTeil.setLayoutX(beweglichesTeil.getLayoutX() + (bewegungx * richtungX + Chaos));
-                            beweglichesTeil.setLayoutY(beweglichesTeil.getLayoutY() + (bewegungx * richtnungY + Chaos2));
-                            break;
-                    }
-                });
-            }
-        }, 0, 20);
-    }
-
     //Methoden die gebraucht werden Kollision oder RandomeInts
 
-    public void CheckCollision() {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    Rectangle movingBoxR = new Rectangle(movingBox.getWidth(), movingBox.getHeight());
-                    Rectangle testHindernisR = new Rectangle(SpielerRechts.getWidth(), SpielerRechts.getHeight());
-                    Rectangle testHindernisL = new Rectangle(SpielerLinks.getWidth(), SpielerLinks.getHeight());
-                    if (!collidesWith(movingBox, Label1Rechts)) {
-                    } else {
-                    }
-                });
-            }
-        }, 0, 100);
-    }
 
     public boolean collidesWith(Label border, Label border2) {
         double x = border2.getLayoutX();
@@ -869,6 +657,7 @@ public class Controller {
         return r.nextInt((max - min) + 1) + min;
     }
 
+
     //Musik usw.
 
     public void MusikLautStärke() {
@@ -883,7 +672,6 @@ public class Controller {
             hit1.add(new Media(getClass().getClassLoader().getResource("Musik/ChineseRap.mp3").toURI().toString())); //1
             hit1.add(new Media(getClass().getClassLoader().getResource("Musik/Darude.mp3").toURI().toString())); //2
             hit1.add(new Media(getClass().getClassLoader().getResource("Musik/HilariousChinese.mp3").toURI().toString())); //3
-            hit1.add(new Media(getClass().getClassLoader().getResource("Musik/PİMPMY.mp3").toURI().toString())); //4
             hit1.add(new Media(getClass().getClassLoader().getResource("Musik/Numb.mp3").toURI().toString())); //5
             hit1.add(new Media(getClass().getClassLoader().getResource("Musik/movie_1.mp3").toURI().toString())); //6
             for (Media m :
@@ -892,57 +680,17 @@ public class Controller {
             }
             ObservableList<String> options =
                     FXCollections.observableArrayList(
-                            "Background",
+                            "Anime",
                             "Chinese Rap",
                             "Darude",
                             "Hilariouse Chinese",
-                            "PIMPMY",
                             "Numb"
                     );
 
             ComboBoxMusik.setItems(options);
             ComboBoxMusik.setVisible(true);
-            System.out.println("");
         } catch (Throwable into_the_garbage_bin) {
             into_the_garbage_bin.printStackTrace();
-        }
-    }
-
-    public void MusikPrank() {
-        mediaPlayer2 = new MediaPlayer(hit1.get(6));
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    for (int x = 0; x < 31; x++) {
-                        for (int y = 0; y < 18; y++) {
-                            if (collidesWith(movingBox, arr2[x][y])) {
-                                mediaPlayer2.play();
-                                mediaPlayer2 = null;
-                                mediaPlayer2 = new MediaPlayer(hit1.get(6));
-                            }
-                        }
-                    }
-                });
-            }
-        }, 0, 2000);
-    }
-
-    public void MusikPrank2() {
-        while (true) {
-            for (int x = 0; x < 31; x++) {
-                for (int y = 0; y < 18; y++) {
-                    if (collidesWith(movingBox, arr2[x][y]) && arr2[x][y].isVisible()) {
-                        //System.out.println(arr2[x][y].getLayoutY() + " : " + arr2[x][y].getLayoutY());
-                        mediaPlayer2 = new MediaPlayer(hit1.get(6));
-                        mediaPlayer2.play();
-                        try {
-                            Thread.sleep((long) hit1.get(6).getDuration().toMillis());
-                        } catch (Exception ex) {
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -971,6 +719,7 @@ public class Controller {
 
     }
 
+
     //MediaView
 
     public void VideoLaden() {
@@ -987,36 +736,24 @@ public class Controller {
         }
     }
 
-    public void Media() {
-        int periodeMedia = 0;
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    videoPlayer = new MediaPlayer(vid1.get(1));
-                    MediaView1.setMediaPlayer(videoPlayer);
-                    videoPlayer.setMute(true);
-                    videoPlayer.play();
-                });
-            }
-        }, 0, 68000);
-    }
-
     public void Media2() {
         Runnable mediaRun = new Runnable() {
             @Override
             public void run() {
-
                 videoPlayer = new MediaPlayer(vid1.get(1));
                 MediaView1.setMediaPlayer(videoPlayer);
                 videoPlayer.setMute(true);
                 videoPlayer.play();
-                //System.out.println(videoPlayer.getTotalDuration().toMillis());
-
             }
         };
-        Thread mediaThread = new Thread(mediaRun);
-        mediaThread.start();
+        Timer t1 = new Timer();
+        t1.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Thread mediaThread = new Thread(mediaRun);
+                mediaThread.start();
+            }
+        }, 0, 68000);
     }
 
     //Scenen und Exit
@@ -1027,41 +764,36 @@ public class Controller {
         Stage window = main1.getS1();
         window.setScene(scene2);
         window.show();
-        //window.setFullScreenExitHint("");
-        //window.setFullScreen(true);
+
+        punkteRechts = 0;
+        punkteLinks = 0;
+
         try {
             videoPlayer.stop();
             mediaPlayer.stop();
         } catch (Exception ex) {
-            //System.out.println("Normal");
         }
     }
 
     public void SceneWechsel2() throws Exception {
         Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
         scene3 = new Scene(FXMLDING2);
-
         Stage window = main1.getS1();
         window.setScene(scene3);
         window.show();
 
-
-        //window.setFullScreenExitHint("");
-        //window.setFullScreen(true);
+        punkteRechts = 0;
+        punkteLinks = 0;
 
         scene3.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.W) {
+            if (event.getCode() == KeyCode.W)
                 setW(true);
-            }
-            if (event.getCode() == KeyCode.S) {
+            if (event.getCode() == KeyCode.S)
                 setS(true);
-            }
-            if (event.getCode() == KeyCode.O) {
+            if (event.getCode() == KeyCode.O)
                 setA(true);
-            }
-            if (event.getCode() == KeyCode.L) {
+            if (event.getCode() == KeyCode.L)
                 setD(true);
-            }
         });
         scene3.setOnKeyReleased(event -> {
 
@@ -1078,17 +810,37 @@ public class Controller {
         SchleifeTasteGedrückt();
     }
 
-    public void EndSceneSwitch() throws Exception {
-        ArrayList<Image> iv1 = new ArrayList<Image>();
-        iv1.add(new Image(getClass().getResource("win.png").toString()));
-        iv1.add(new Image(getClass().getResource("lose.png").toString()));
 
-        Parent endFXML = FXMLLoader.load(getClass().getResource(""));
+    public void EndSceneSwitch(int end) throws Exception {
+        Parent endFXML = null;
+        if (end ==1) {
+            endFXML = FXMLLoader.load(getClass().getResource("EndSceneLose.fxml"));
+        }
+        if (end ==0){
+            endFXML = FXMLLoader.load(getClass().getResource("EndSceneWin.fxml"));
+        }
+
         Scene endscene = new Scene(endFXML);
-        Stage endStage = new Stage();
+        Stage endStage = main1.getS1();
         endStage.setScene(endscene);
+
         endStage.show();
-        EndScreen.setImage(iv1.get(0));
+    }
+
+    public void EndSceneSwitch2P(int end) throws Exception {
+        Parent endFXML = null;
+        if (end ==1) { //Rechts
+            endFXML = FXMLLoader.load(getClass().getResource("EndSceneRechts.fxml"));
+        }
+        if (end ==0){ //Links
+            endFXML = FXMLLoader.load(getClass().getResource("EndSceneLinks.fxml"));
+        }
+
+        Scene endscene = new Scene(endFXML);
+        Stage endStage = main1.getS1();
+        endStage.setScene(endscene);
+
+        endStage.show();
     }
 
     public void Exit() {
@@ -1245,67 +997,24 @@ public class Controller {
         }, 0, 10);
     }
 
-    public void DeusVult() {
-        DeusVult.setRotationAxis(Rotate.Y_AXIS);
-        DeusVult.setVisible(true);
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                Platform.runLater(() -> {
-                    int tmp = 0;
-                    if (collidesWith(DeusVult, Label1Rechts)) {
-                        tmp = 1;
-                    }
-                    if (collidesWith(DeusVult, Label3Links)) {
-                        tmp = 2;
-                    }
-                    if (collidesWith(DeusVult, Label4Unten)) {
-                        tmp = 3;
-                    }
-                    if (collidesWith(DeusVult, Label5Top)) {
-                        tmp = 4;
-                    }
+    //Get Set
 
-                    switch (tmp) {
-                        case 1:
-                            //Rechts
-                            DeusRichtungX *= -1;
-                            DeusVult.setLayoutX(DeusVult.getLayoutX() + (Deusbewegungx * DeusRichtungX) - 10);
-                            DeusVult.setLayoutY(DeusVult.getLayoutY() + (Deusbewegungx * DeusRichtungY) + 10);
-                            DeusVult.setRotate(180);
-                            break;
-                        case 2:
-                            //Links
-                            DeusRichtungX *= -1;
-                            DeusVult.setLayoutX(DeusVult.getLayoutX() + (Deusbewegungx * DeusRichtungX) + 10);
-                            DeusVult.setLayoutY(DeusVult.getLayoutY() + (Deusbewegungx * DeusRichtungY) - 10);
-                            DeusVult.setRotate(0);
-                            break;
-                        case 3:
-                            //Unten
-                            DeusRichtungY *= -1;
-                            DeusVult.setLayoutX(DeusVult.getLayoutX() + (Deusbewegungx * DeusRichtungX) + 10);
-                            DeusVult.setLayoutY(DeusVult.getLayoutY() + (Deusbewegungx * DeusRichtungY) - 10);
-                            break;
-                        case 4:
-                            //System.out.println("Oben");
-                            DeusRichtungY *= -1;
-                            DeusVult.setLayoutX(DeusVult.getLayoutX() + (Deusbewegungx * DeusRichtungX) - 10);
-                            DeusVult.setLayoutY(DeusVult.getLayoutY() + (Deusbewegungx * DeusRichtungY) + 10);
-                            break;
 
-                        default:
-                            //System.out.println("Default");
-                            DeusVult.setLayoutX(DeusVult.getLayoutX() + (Deusbewegungx * DeusRichtungX));
-                            DeusVult.setLayoutY(DeusVult.getLayoutY() + (Deusbewegungx * DeusRichtungY));
-                            break;
-                    }
-                });
-            }
-        }, 0, 20);
+    public static int getPunkteRechts() {
+        return punkteRechts;
     }
 
-    //Get Set
+    public static void setPunkteRechts(int punkteRechts) {
+        Controller.punkteRechts = punkteRechts;
+    }
+
+    public static int getPunkteLinks() {
+        return punkteLinks;
+    }
+
+    public static void setPunkteLinks(int punkteLinks) {
+        Controller.punkteLinks = punkteLinks;
+    }
 
     private boolean isW() {
         return w;
