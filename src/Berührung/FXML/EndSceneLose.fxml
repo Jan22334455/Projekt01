@@ -5,13 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+<AnchorPane fx:id="Anchor" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000;" stylesheets="@../CSS_P/End/EndLose.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
    <children>
       <ImageView fx:id="lose" fitHeight="671.0" fitWidth="1055.0" layoutX="-3.0" pickOnBounds="true">
          <image>
             <Image url="@/Bilder/lose.png" />
          </image>
       </ImageView>
-      <Button fx:id="retry" layoutX="502.0" layoutY="670.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
+      <Button fx:id="retry" layoutX="502.0" layoutY="670.0" mnemonicParsing="false" onAction="#Exit" styleClass="retry" text="Exit" />
    </children>
 </AnchorPane>

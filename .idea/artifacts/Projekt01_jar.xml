@@ -1,7 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Projekt01:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/</output-path>
-    <root id="archive" name="Pong.jar">
+  <artifact type="jar" name="Projekt01:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Projekt01_jar</output-path>
+    <root id="archive" name="Projekt01.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="Projekt01" />
     </root>
   </artifact>

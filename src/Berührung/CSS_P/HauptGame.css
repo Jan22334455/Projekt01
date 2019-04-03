@@ -1,0 +1,51 @@
+.StartButton{
+    -fx-font: 12px "Comic Sans MS";
+    -fx-text-fill: #000000;
+    -fx-background-color: #00c214;
+}
+.StartButton:hover{
+    -fx-text-fill: #000000;
+    -fx-background-color: #ff0000;
+    -fx-font: 12px "Comic Sans MS";
+}
+.exitMain{
+    -fx-font: 12px "Comic Sans MS";
+    -fx-text-fill: #000000;
+    -fx-background-color: #00c214;
+}
+.exitMain:hover{
+    -fx-text-fill: #000000;
+    -fx-background-color: #ff0000;
+    -fx-font: 12px "Comic Sans MS";
+}
+.ComboBoxMusik{
+    -fx-background-color: #00c214;
+}
+
+.volume{
+    -fx-text-fill: #000000;
+}
+
+.SpielerRechts{
+
+}
+.SpielerLinks{
+
+}
+.MainAnchorPane{
+    -fx-background-color: #6f41ff;
+}
+.Button3{
+    -fx-font: 12px "Comic Sans MS";
+    -fx-text-fill: #000000;
+    -fx-background-color: #00c214;
+}
+.Button3:hover{
+    -fx-text-fill: #000000;
+    -fx-background-color: #98ff4d;
+    -fx-font: 12px "Comic Sans MS";
+}
+.Label2{
+    -fx-text-fill: #000000;
+    -fx-font: 30px "Comic Sans MS";
+}

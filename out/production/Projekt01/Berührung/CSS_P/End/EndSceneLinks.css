@@ -1,0 +1,13 @@
+.Label {
+    -fx-font: 30px "Comic Sans MS";
+}
+
+.retry {
+    -fx-background-color: #359599;
+    -fx-font: 10px "Comic Sans MS";
+}
+.retry:hover{
+    -fx-background-color: #1a1365;
+    -fx-text-fill: #1b923e;
+    -fx-opacity: 0.7;
+}

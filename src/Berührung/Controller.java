@@ -68,7 +68,6 @@ public class Controller {
     private boolean jaNeinKP = false;
     private int zähler = 0;
 
-
     //Labels die im hintergrund verwendet werden können
     private Label[][] arr2 = new Label[200][200];
     private ArrayList<Label> arrayListLabel;
@@ -76,7 +75,6 @@ public class Controller {
     //Menue mit überprüfung auf wiederholungen
     private static int auswahl;
     private boolean buttonumbennenung = true;
-
 
     //Bewegung Tastatur
     private boolean w = false;
@@ -95,7 +93,7 @@ public class Controller {
     //Sieg
     private static boolean EndSieg = true;
 
-    //Scene Berührung.fxml
+    //Scene HauptGame.fxml
     private Scene scene3;
 
     //FXML eingaben
@@ -163,6 +161,7 @@ public class Controller {
 
     public void Laden() {
         if (!start2) {
+            MainAnchorPane.getStyleClass().add("root");
             VideoLaden();
             MusikLaden();
             BackgroundMovementLoad();
@@ -255,7 +254,6 @@ public class Controller {
                             Platform.runLater(() -> {
                                 SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
                                 SpielerRechts.relocate(Move2.getLayoutX(), Move2.getLayoutY());
-
                                 if (getPunkteRechts() >= 5) {
                                     try {
                                         //System.out.println("SceneWechsel");
@@ -264,7 +262,6 @@ public class Controller {
                                     }
                                     timer.cancel();
                                 }
-
                                 if (getPunkteLinks() >= 5) {
                                     try {
                                         //System.out.println("SceneWechsel");
@@ -274,12 +271,9 @@ public class Controller {
                                     }
                                     timer.cancel();
                                 }
-
-
                             });
                         }
                     }, 0, 4);
-
                     start = true;
                 } else {
                     movingBox.setLayoutY(220);
@@ -308,17 +302,14 @@ public class Controller {
         auswahl = übergabe;
     }
 
-
     //Bewegung Script und Maussteuerung
 
     public void AutoMove2() {
-
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
                     IstZulaessigAutoMove2 = true;
-
                     if (SpielerLinks.getLayoutY() > 800) {
                         auswahlAutoMove2 = 1;
                         IstZulaessigAutoMove2 = false;
@@ -344,14 +335,12 @@ public class Controller {
                             break;
                         case 3:
                             if (movingBox.getLayoutY() - 50 < SpielerLinks.getLayoutY()) {
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 10);
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() - 4);
                                 auswahlAutoMove2 = 0;
                             } else {
-                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 10);
+                                SpielerLinks.setLayoutY(SpielerLinks.getLayoutY() + 4);
                                 auswahlAutoMove2 = 0;
                             }
-                            break;
-                        default:
                             break;
                     }
 
@@ -379,10 +368,10 @@ public class Controller {
                                 break;
                             case 3:
                                 if (movingBox.getLayoutY() - 50 < SpielerRechts.getLayoutY()) {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 10);
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 4);
                                     auswahlAutoMove3 = 0;
                                 } else {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 10);
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 4);
                                     auswahlAutoMove3 = 0;
                                 }
                                 break;
@@ -392,7 +381,7 @@ public class Controller {
                     }
                 });
             }
-        }, 0, 6);
+        }, 0, 5);
     }
 
     public void SchleifeTasteGedrückt() throws IOException {
@@ -437,7 +426,7 @@ public class Controller {
             public void run() {
                 Platform.runLater(() -> {
                     SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
-                    Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
+                    Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks));
                     if (EndSieg) {
 
                         if (getPunkteRechts() >= 5) {
@@ -489,11 +478,11 @@ public class Controller {
                                 break;
                             case 3:
                                 if (movingBox.getLayoutY() - 50 < SpielerRechts.getLayoutY()) {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 10);
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() - 4);
 
                                     auswahlAutoMove3 = 0;
                                 } else {
-                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 10);
+                                    SpielerRechts.setLayoutY(SpielerRechts.getLayoutY() + 4);
 
                                     auswahlAutoMove3 = 0;
                                 }
@@ -504,19 +493,15 @@ public class Controller {
                     }
                 });
             }
-        }, 0, 13);
+        }, 0, 5);
     }
 
     public void movePingPong() {
-        //Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
-        //AttLabel.setText(toString());
-
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
                     //AttLabel.setText(String.valueOf(punkteRechts));
-
                     if (isWallBugFixMK1()) {
                         int tmp = 0;
                         if (collidesWith(movingBox, Label1Rechts)) {
@@ -547,7 +532,7 @@ public class Controller {
                         switch (tmp) {
                             case 1:
                                 setPunkteLinks(getPunkteLinks() + 1);
-                                Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
+                                Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks));
                                 movingBox.setLayoutX(500);
                                 movingBox.setLayoutY(350);
                                 richtungX *= -1;
@@ -555,7 +540,7 @@ public class Controller {
                             case 2:
                                 int y = getPunkteLinks();
                                 setPunkteRechts(getPunkteRechts() + 1);
-                                Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks) + " Geschwindigkeit: " + bewegungx);
+                                Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks));
                                 movingBox.setLayoutX(500);
                                 movingBox.setLayoutY(350);
                                 richtungX *= -1;
@@ -597,7 +582,6 @@ public class Controller {
                                 movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
                                 break;
                         }
-
                     }
                 });
             }
@@ -656,7 +640,6 @@ public class Controller {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
-
 
     //Musik usw.
 
@@ -719,7 +702,6 @@ public class Controller {
 
     }
 
-
     //MediaView
 
     public void VideoLaden() {
@@ -759,7 +741,7 @@ public class Controller {
     //Scenen und Exit
 
     public void SceneWechsel() throws Exception {
-        Parent FXMLDING = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        Parent FXMLDING = FXMLLoader.load(getClass().getResource("FXML/Scene2.fxml"));
         Scene scene2 = new Scene(FXMLDING);
         Stage window = main1.getS1();
         window.setScene(scene2);
@@ -776,7 +758,7 @@ public class Controller {
     }
 
     public void SceneWechsel2() throws Exception {
-        Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("Berührung.fxml"));
+        Parent FXMLDING2 = FXMLLoader.load(getClass().getResource("FXML/HauptGame.fxml"));
         scene3 = new Scene(FXMLDING2);
         Stage window = main1.getS1();
         window.setScene(scene3);
@@ -814,10 +796,10 @@ public class Controller {
     public void EndSceneSwitch(int end) throws Exception {
         Parent endFXML = null;
         if (end ==1) {
-            endFXML = FXMLLoader.load(getClass().getResource("EndSceneLose.fxml"));
+            endFXML = FXMLLoader.load(getClass().getResource("FXML/EndSceneLose.fxml"));
         }
         if (end ==0){
-            endFXML = FXMLLoader.load(getClass().getResource("EndSceneWin.fxml"));
+            endFXML = FXMLLoader.load(getClass().getResource("FXML/EndSceneWin.fxml"));
         }
 
         Scene endscene = new Scene(endFXML);
@@ -830,10 +812,10 @@ public class Controller {
     public void EndSceneSwitch2P(int end) throws Exception {
         Parent endFXML = null;
         if (end ==1) { //Rechts
-            endFXML = FXMLLoader.load(getClass().getResource("EndSceneRechts.fxml"));
+            endFXML = FXMLLoader.load(getClass().getResource("FXML/EndSceneRechts.fxml"));
         }
         if (end ==0){ //Links
-            endFXML = FXMLLoader.load(getClass().getResource("EndSceneLinks.fxml"));
+            endFXML = FXMLLoader.load(getClass().getResource("FXML/EndSceneLinks.fxml"));
         }
 
         Scene endscene = new Scene(endFXML);
@@ -855,7 +837,6 @@ public class Controller {
 
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 11; y++) {
-
                 arr1[x][y] = new Pane();
                 arr1[x][y].setMaxWidth(50);
                 arr1[x][y].setMinWidth(50);
@@ -998,7 +979,6 @@ public class Controller {
     }
 
     //Get Set
-
 
     public static int getPunkteRechts() {
         return punkteRechts;

@@ -14,35 +14,35 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
+<AnchorPane fx:id="MainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#Laden" prefHeight="700.0" prefWidth="1000.0" styleClass="MainAnchorPane" stylesheets="@../CSS_P/HauptGame.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Berührung.Controller">
 
    <children>
       <Pane fx:id="paneaBackground" onMouseDragged="#MusikLautstärkeLauter" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <ImageView fitHeight="706.0" fitWidth="1010.0" layoutX="-1.0" layoutY="-1.0" onMouseEntered="#Laden" pickOnBounds="true">
+            <ImageView fitHeight="706.0" fitWidth="1010.0" layoutX="-1.0" layoutY="-1.0" onMouseEntered="#Laden" pickOnBounds="true" visible="false">
                <image>
-                  <Image url="@Bilder/288367-free-technology-background-1920x1080.jpg" />
+                  <Image url="@../Bilder/288367-free-technology-background-1920x1080.jpg" />
                </image>
             </ImageView>
-            <MediaView fx:id="MediaView1" fitHeight="200.0" fitWidth="300.0" focusTraversable="true" layoutX="180.0" layoutY="150.0">
+            <MediaView fx:id="MediaView1" fitHeight="200.0" fitWidth="300.0" focusTraversable="true" layoutX="180.0" layoutY="150.0" visible="false">
                <viewport>
                   <Rectangle2D />
                </viewport></MediaView>
             <ImageView fx:id="DeusVult" fitHeight="103.0" fitWidth="132.0" layoutX="142.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@Bilder/c76cd244506d531c.jpg" />
+                  <Image url="@../Bilder/c76cd244506d531c.jpg" />
                </image></ImageView>
             <Label fx:id="InfoLabel" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="302.0" />
             <Label fx:id="SpielerLinks" layoutY="290.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
             <Label fx:id="movingBox" layoutX="500.0" layoutY="350.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="985.0" layoutY="290.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
-            <Label fx:id="Label2" layoutX="349.0" layoutY="49.0" prefHeight="35.0" prefWidth="317.0" textFill="#e10000" />
-            <CheckBox fx:id="volume" layoutX="936.0" layoutY="165.0" mnemonicParsing="false" onAction="#MusikLautStärke" text="Mute" />
-            <ComboBox fx:id="ComboBoxMusik" cache="true" layoutX="813.0" layoutY="28.0" onAction="#MusikAuswahl" prefWidth="150.0" promptText="Musik Wahl" visibleRowCount="5" />
-            <Button fx:id="StartButton" layoutX="487.0" layoutY="16.0" mnemonicParsing="false" onAction="#start" text="Start" />
-            <Button layoutX="954.0" layoutY="661.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
+            <Label fx:id="Label2" layoutX="264.0" layoutY="49.0" prefHeight="42.0" prefWidth="402.0" styleClass="Label2" text="Punkte R: 0 Punkte L: 0" textFill="#e10000" />
+            <CheckBox fx:id="volume" layoutX="936.0" layoutY="165.0" mnemonicParsing="false" onAction="#MusikLautStärke" styleClass="volume" stylesheets="@../CSS_P/HauptGame.css" text="Mute" />
+            <ComboBox fx:id="ComboBoxMusik" cache="true" layoutX="813.0" layoutY="28.0" onAction="#MusikAuswahl" prefWidth="150.0" promptText="Musik Wahl" styleClass="ComboBoxMusik" visibleRowCount="5" />
+            <Button fx:id="StartButton" layoutX="487.0" layoutY="16.0" mnemonicParsing="false" onAction="#start" styleClass="StartButton" text="Start" />
+            <Button fx:id="exitMain" layoutX="954.0" layoutY="661.0" mnemonicParsing="false" onAction="#Exit" styleClass="exitMain" text="Exit" />
 
-            <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" text="SceneWechsel" />
+            <Button fx:id="Button3" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#SceneWechsel" styleClass="Button3" text="Zurück" />
             <Label fx:id="AttLabel" layoutX="888.0" layoutY="100.0" prefHeight="961.0" prefWidth="737.0" text="Label" textFill="RED" visible="false">
                <font>
                   <Font size="10.0" />
