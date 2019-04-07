@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: Berührung.Main
+Main-Class: Pong.Main
 
