@@ -43,5 +43,4 @@ public class Main extends Application {
     public Scene getSc() {
         return sc;
     }
-
 }

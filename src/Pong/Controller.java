@@ -29,8 +29,6 @@ public class Controller {
     private ArrayList<Media> hit1 = new ArrayList<>();
     private ArrayList<Media> vid1 = new ArrayList<>();
     private MediaPlayer mediaPlayer;
-    private MediaPlayer oof;
-    private boolean musikgeladen = false; //Musik Playlist geladen oder nicht
     private int i = 0;                  //Wird für die Generierung von Panes gebraucht BackgroundMovementLoad();
 
     //MoveBox
@@ -52,13 +50,6 @@ public class Controller {
     private Main main1;// Ermöglicht stage wechsel
     private Stage windowMain;   //""
 
-    //Panes für den Hintergrund + variablen mit Listen um erzeugung zu ermöglichen
-    private int xBackgound = 0;
-    private int yBackgound = 0;
-    private int multipikatorBackground = 1;
-    private boolean PaneVisibility = true;
-    private boolean jaNeinKP = false;
-    private int zähler = 0;
 
     //Labels die im hintergrund verwendet werden können
     private Label[][] arr2 = new Label[200][200];
@@ -83,8 +74,14 @@ public class Controller {
     private static boolean Tastaturbewegung = false; //Überprüfung ob 2 oder 1 Spieler
     private static boolean Tastaturbewegung2Spieler = false;
 
+    //Hintergrundbewegungen
+    private int xZähler = 0;
+    private int yZähler = 3;
+    private boolean setVisible = true;
+
+
     //Sieg
-    private static boolean EndSieg = true;
+    private static boolean FinalerBool = true;
 
     //Scene HauptGame.fxml
     private Scene scene3;
@@ -159,7 +156,6 @@ public class Controller {
             MusikLaden();
             BackgroundMovementLoad();
             BackGroundMovementMuster(2);
-            //BackGroundMovementRandomeLabel();
             start2 = true;
         }
     }
@@ -415,7 +411,7 @@ public class Controller {
                 Platform.runLater(() -> {
                     SpielerLinks.relocate(Move.getLayoutX(), Move.getLayoutY());
                     Label2.setText("Punkte R: " + String.valueOf(punkteRechts + " Punkte L: " + punkteLinks));
-                    if (EndSieg) {
+                    if (FinalerBool) {
 
                         if (getPunkteRechts() >= 5) {
                             try {
@@ -549,21 +545,11 @@ public class Controller {
                                 richtungX *= -1;
                                 movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                                 movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
-                                try {
-                                    oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
-                                } catch (Exception ex) {
-                                }
-                                //oof.play();
                                 break;
                             case 6:
                                 richtungX *= -1;
                                 movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
                                 movingBox.setLayoutY(movingBox.getLayoutY() + (bewegungx * richtnungY));
-                                try {
-                                    oof = new MediaPlayer(new Media(getClass().getClassLoader().getResource("Musik/Roblox Death Sound - OOF  Sound Effect.mp3").toURI().toString()));
-                                } catch (Exception ex) {
-                                }
-                                //oof.play();
                                 break;
                             default:
                                 movingBox.setLayoutX(movingBox.getLayoutX() + (bewegungx * richtungX));
@@ -756,11 +742,12 @@ public class Controller {
     //BackGround
 
     public void BackgroundMovementLoad() {
-        int xWert2 = 350;
+        Pane p1 = paneaBackground;
+        int xWert2 = 150;
         int yWert2 = 0;
 
         //Erzeugung von
-        for (int x = 0; x < 4; x++) {
+        for (int x = 0; x < 18; x++) {
             for (int y = 0; y < 18; y++) {
                 arr2[x][y] = new Label();
                 arr2[x][y].setMaxWidth(30);
@@ -775,11 +762,9 @@ public class Controller {
                 arr2[x][y].setFont(new Font(10));
                 String felder = "Zeile " + (x + 1) + " Spalte " + (y + 1) + " (Index[" + x + "][" + y + "]) Feld " + i;
                 arr2[x][y].setId(felder);
-                arr2[x][y].toFront();
-                //arrayListLabel
                 arrayListLabel.add(arr2[x][y]);
                 arr2[x][y].setVisible(false);
-                MainAnchorPane.getChildren().add(arr2[x][y]);
+                p1.getChildren().add(arr2[x][y]);
                 yWert2 += 40;
             }
             yWert2 = 0;
@@ -809,48 +794,120 @@ public class Controller {
         }, 0, 100);
     }
 
-    int xZähler = 0;
-    int yZähler = 0;
-    boolean setVisible = true;
 
     public void BackGroundMovementMuster(int form) {
         Timer delay = new Timer();
+        Timer delay2 = new Timer();
         switch (form) {
             case 1:
                 delay.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    Platform.runLater(() -> {
-                        arr2[xZähler][yZähler].setVisible(setVisible);
-                        if (yZähler == 16) {
-                            xZähler++;
-                            yZähler = 0;
-                        } else {
-                            yZähler++;
-                        }
-                        if (xZähler == 4) {
-                            xZähler = 0;
-                            yZähler = 0;
-                            if (setVisible) {
-                                setVisible = false;
+                    @Override
+                    public void run() {
+                        Platform.runLater(() -> {
+                            arr2[xZähler][yZähler].setVisible(setVisible);
+                            if (yZähler == 16) {
+                                xZähler++;
+                                yZähler = 0;
                             } else {
-                                setVisible = true;
+                                yZähler++;
                             }
-                        }
-                    });
-                }
-            }, 0, 250);
-            break;
+                            if (xZähler == 4) {
+                                xZähler = 0;
+                                yZähler = 0;
+                                if (setVisible) {
+                                    setVisible = false;
+                                } else {
+                                    setVisible = true;
+                                }
+                            }
+                        });
+                    }
+                }, 0, 250);
+                break;
 
             case 2:
                 delay.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
                         Platform.runLater(() -> {
+                            for (int j = 0; j < 12; j++) {
+                                arr2[xZähler][yZähler].setVisible(setVisible);
+                                switch (xZähler) {
+                                    case 1:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #c40012;");
+                                        break;
+                                    case 2:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #c40077;");
+                                        break;
+                                    case 3:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #0019c4;");
+                                        break;
+                                    case 4:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #53c419;");
+                                        break;
+                                    case 5:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #00c4c1;");
+                                        break;
+                                    case 6:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #fff100;");
+                                        break;
+                                    case 7:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #00360b;");
+                                        break;
+                                    case 8:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #ff00ed;");
+                                        break;
+                                    case 9:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #ff5700;");
+                                        break;
+                                    case 10:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #8c0275;");
+                                        break;
+                                    case 11:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #412875;");
+                                        break;
+                                    case 12:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #023b4b;");
+                                        break;
+                                    case 13:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #ff866c;");
+                                        break;
+                                    case 14:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #4c0608;");
+                                        break;
+                                    case 15:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #002a2b;");
+                                        break;
+                                    case 16:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #385500;");
+                                        break;
+                                    case 17:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #041e3b;");
+                                        break;
+                                    case 18:
+                                        arr2[xZähler][yZähler].setStyle("-fx-background-color: #fff100;");
+                                        break;
+
+                                }
+                                yZähler++;
+                            }
+                            xZähler++;
+                            if (yZähler == 15) {
+                                yZähler = 3;
+                            }
+                            if (xZähler == 17) {
+                                xZähler = 0;
+                                if (setVisible) {
+                                    setVisible = false;
+                                } else {
+                                    setVisible = true;
+                                }
+                            }
 
                         });
                     }
-                }, 0,1000);
+                }, 0, 250);
+
                 break;
         }
     }

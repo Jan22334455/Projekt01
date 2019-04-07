@@ -29,7 +29,6 @@
                </image></ImageView>
             <Label fx:id="InfoLabel" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="302.0" />
             <Label fx:id="SpielerLinks" layoutY="290.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" />
-            <Label fx:id="movingBox" layoutX="500.0" layoutY="350.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="SpielerRechts" layoutX="985.0" layoutY="290.0" prefHeight="120.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
             <Label fx:id="Label2" layoutX="264.0" layoutY="49.0" prefHeight="42.0" prefWidth="402.0" styleClass="Label2" text="Punkte R: 0 Punkte L: 0" textFill="#e10000" />
             <CheckBox fx:id="volume" layoutX="936.0" layoutY="165.0" mnemonicParsing="false" onAction="#MusikLautStärke" styleClass="volume" stylesheets="@../CSS_P/HauptGame.css" text="Mute" />
@@ -45,6 +44,7 @@
             <Pane layoutX="31.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" />
             <Slider fx:id="LauterLeiserSlider" layoutX="971.0" layoutY="14.0" max="1.0" onMouseDragged="#MusikLautstärkeLauter" orientation="VERTICAL" prefHeight="140.0" prefWidth="5.0" value="0.1" />
             <Button layoutX="131.0" layoutY="16.0" mnemonicParsing="false" text="Button" visible="false" />
+            <Label fx:id="movingBox" layoutX="494.0" layoutY="343.0" prefHeight="0.0" prefWidth="16.0" style="-fx-background-color: #000000;" textFill="#e10000" />
 
          </children></Pane>
       <Label fx:id="Label1Rechts" layoutX="1000.0" prefHeight="1105.0" prefWidth="10.0" style="-fx-background-color: #ab2345;" textFill="#e10000" visible="false" />
